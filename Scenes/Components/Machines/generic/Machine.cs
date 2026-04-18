@@ -9,18 +9,20 @@ using System;
 */
 
 [GlobalClass]
-public partial class Machine : Node
+public partial class Machine : Node3D
 {	
 	//This is the name of the machine, used by signal to check if this is the right one
 	[Export]
 	public string MachineName = "Unnamed Machine";
 
 	//Input Signal
-    public SignalAction inputSignal;
+	[Export]
+    public GameSignal InputSignal;
 
 	//Output Signal (oftentimes stripped of the step we just did)
-    public SignalAction outputSignal;
+	[Export]
+    public GameSignal OutputSignal;
 
 	//Is that machine receiving power
-	public bool powered;
+	public bool Powered;
 }
