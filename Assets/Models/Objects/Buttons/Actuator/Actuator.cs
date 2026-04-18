@@ -5,14 +5,15 @@ using System.Threading;
 [GlobalClass]
 public partial class Actuator : Node3D
 {
-    private bool _mouseEntered = false;
-    private bool _isOn = false;
+    protected bool _mouseEntered = false;
+    protected bool _isOn = false;
     [Signal]
     public delegate void ActuatorTriggeredEventHandler(bool isOn);
 
     [Export]
-    public NodePath _shaderMeshPath { get; set; }
-    ShaderMaterial _mShaderMat;
+    protected NodePath _shaderMeshPath { get; set; }
+    protected ShaderMaterial _mShaderMat;
+    protected AnimationPlayer _animationPlayer;
 
     public override void _Ready()
     {
@@ -22,6 +23,8 @@ public partial class Actuator : Node3D
         mouseDetect.Connect(Area3D.SignalName.AreaExited, new Callable(this, nameof(this.OnAreaExited)));
         // this.Connect(Actuator.SignalName.ActuatorTriggered, new Callable(this, nameof(this.OnTrigger)));
 
+        _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+
         // Shader SetUp
         if (!_shaderMeshPath.IsEmpty)
         {
@@ -30,6 +33,8 @@ public partial class Actuator : Node3D
             _mShaderMat = mMat as ShaderMaterial;
             UpdateShaderMesh(0);
         }
+
+        ActuatorReady();
     }
 
     public override void _Input(InputEvent @event)
@@ -47,7 +52,12 @@ public partial class Actuator : Node3D
         EmitSignal(SignalName.ActuatorTriggered, _isOn);
     }
 
-    public virtual void ActuatorBehavior()
+    protected virtual void ActuatorReady()
+    {
+
+    }
+
+    protected virtual void ActuatorBehavior()
     {
         // Basic behavior : example for a lever
         _isOn = !_isOn;

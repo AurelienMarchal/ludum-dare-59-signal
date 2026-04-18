@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cpmywfj2uo47s" path="res://Scenes/Global Managers/Level Manager/Level.cs" id="1_xfuy1"]
 [ext_resource type="Texture2D" uid="uid://cg2j8asuid6ka" path="res://Assets/Textures/Prototype/Dark/texture_02.png" id="1_xy7q8"]
 [ext_resource type="PackedScene" uid="uid://dc6v214h1g3g0" path="res://Scenes/CharacterController/CharacterController.tscn" id="2_tlj6a"]
-[ext_resource type="PackedScene" uid="uid://vva8wxe2a2ry" path="res://Assets/Models/Objects/Buttons/Actuator/Actuator.tscn" id="4_5o222"]
 [ext_resource type="Texture2D" uid="uid://c8h4huyo3hhcy" path="res://Assets/Textures/Prototype/Orange/texture_01.png" id="4_wbw8a"]
+[ext_resource type="PackedScene" uid="uid://e2n7stou2kme" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorSwitch/ActuatorSwitch.tscn" id="5_tv554"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xfuy1"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -85,8 +85,8 @@ mesh = SubResource("CylinderMesh_tv554")
 
 [node name="Actuators" type="Node" parent="." unique_id=678187150]
 
-[node name="Actuator" parent="Actuators" unique_id=599775088 instance=ExtResource("4_5o222")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.620068, 1.1914256, 0)
+[node name="ActuatorSwitch" parent="Actuators" unique_id=506296751 instance=ExtResource("5_tv554")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6434035, 1.0177523, -1.134834)
 
 [node name="CharacterController" parent="." unique_id=152917674 instance=ExtResource("2_tlj6a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1596863, 0)
