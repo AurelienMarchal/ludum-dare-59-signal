@@ -1,11 +1,21 @@
 [gd_scene format=3 uid="uid://7jljiq720ng2"]
 
+[ext_resource type="Script" uid="uid://db8vlflhlwnl4" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanel.cs" id="1_eehgd"]
 [ext_resource type="PackedScene" uid="uid://dtpiv28rr7d8s" path="res://Scenes/Components/SignalRoutingPanel/MachineConnector/MachineConnector.tscn" id="1_vixha"]
+[ext_resource type="Script" uid="uid://6wl7j7q4xmr7" path="res://Scenes/Components/SignalRoutingPanel/CablesManager.cs" id="3_kih8r"]
+[ext_resource type="Script" uid="uid://b814cd2ttsip0" path="res://Scenes/Components/SignalRoutingPanel/PlayerConnector.cs" id="5_2dokw"]
 
 [node name="SignalRoutingPanel" type="Node3D" unique_id=573874878]
+script = ExtResource("1_eehgd")
 
 [node name="Signal Generator" parent="." unique_id=104554026 instance=ExtResource("1_vixha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054528713, 0, 0)
 
 [node name="Basic Processing" parent="." unique_id=517836460 instance=ExtResource("1_vixha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.91007686, 0, 0)
+
+[node name="CablesManager" type="Node3D" parent="." unique_id=1321690325]
+script = ExtResource("3_kih8r")
+
+[node name="PlayerConnector" type="Node3D" parent="." unique_id=1826218908]
+script = ExtResource("5_2dokw")
