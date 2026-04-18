@@ -33,8 +33,6 @@ public partial class Actuator : Node3D
             _mShaderMat = mMat as ShaderMaterial;
             UpdateShaderMesh(0);
         }
-
-        ActuatorReady();
     }
 
     public override void _Input(InputEvent @event)
@@ -52,15 +50,9 @@ public partial class Actuator : Node3D
         EmitSignal(SignalName.ActuatorTriggered, _isOn);
     }
 
-    protected virtual void ActuatorReady()
-    {
-
-    }
-
     protected virtual void ActuatorBehavior()
     {
-        // Basic behavior : example for a lever
-        _isOn = !_isOn;
+
     }
 
     private void OnAreaEntered(Area3D area)
