@@ -10,7 +10,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ja4gy"]
 render_priority = 0
 shader = ExtResource("2_lxnyx")
-shader_parameter/outline_thickness = -0.099
+shader_parameter/outline_thickness = -0.097
 shader_parameter/speed = 2.0
 shader_parameter/noise_scale = 4.0
 shader_parameter/alpha = 0.0
@@ -172,6 +172,7 @@ radius = 0.20356552
 
 [node name="Actuator" type="Node3D" unique_id=599775088]
 script = ExtResource("1_6v10a")
+_shaderMeshPath = NodePath("Mesh/Interuptor")
 metadata/_custom_type_script = "uid://dt4okd4fqfeiu"
 
 [node name="Mesh" type="Node3D" parent="." unique_id=1733309135]
