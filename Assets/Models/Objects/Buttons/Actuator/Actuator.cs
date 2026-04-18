@@ -67,11 +67,6 @@ public partial class Actuator : Node3D
         UpdateShaderMesh(0);
     }
 
-    private void OnTrigger(bool isOn)
-    {
-        GD.Print("on trigger " + isOn);
-    }
-
     private void UpdateShaderMesh(float alpha)
     {
         if (_shaderMeshPath.IsEmpty)
