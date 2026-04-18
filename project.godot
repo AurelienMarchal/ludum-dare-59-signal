@@ -22,6 +22,7 @@ project/assembly_name="LudumDare59-Signal"
 [global_group]
 
 LevelManager=""
+Player=""
 
 [input]
 
