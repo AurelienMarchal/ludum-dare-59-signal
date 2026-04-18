@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://7jljiq720ng2"]
+
+[ext_resource type="PackedScene" uid="uid://dtpiv28rr7d8s" path="res://Scenes/Components/SignalRoutingPanel/MachineConnector/MachineConnector.tscn" id="1_vixha"]
+
+[node name="SignalRoutingPanel" type="Node3D" unique_id=573874878]
+
+[node name="Signal Generator" parent="." unique_id=104554026 instance=ExtResource("1_vixha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054528713, 0, 0)
+
+[node name="Basic Processing" parent="." unique_id=517836460 instance=ExtResource("1_vixha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.91007686, 0, 0)

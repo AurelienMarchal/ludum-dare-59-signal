@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://damw0qiyfs0jb"]
 
 [ext_resource type="Script" uid="uid://d1ep5o78t4ucj" path="res://Scenes/Components/Machines/Basic/BasicProcessing.cs" id="1_6ph3s"]
+[ext_resource type="Texture2D" uid="uid://c8h4huyo3hhcy" path="res://Assets/Textures/Prototype/Orange/texture_01.png" id="2_3b1fi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrad1"]
+albedo_texture = ExtResource("2_3b1fi")
 
 [sub_resource type="BoxMesh" id="BoxMesh_6ph3s"]
+material = SubResource("StandardMaterial3D_wrad1")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_6ph3s"]
 viewport_path = NodePath("SubViewport")
