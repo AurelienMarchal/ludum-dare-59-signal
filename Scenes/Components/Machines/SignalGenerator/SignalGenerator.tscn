@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://caq80iv131s3v"]
+
+[ext_resource type="Script" uid="uid://drtmebqp4tgrk" path="res://Scenes/Components/Machines/generic/Machine.cs" id="1_mhxj8"]
+[ext_resource type="Texture2D" uid="uid://r376vnc4fvwx" path="res://Assets/Textures/Prototype/Red/texture_01.png" id="2_5wgta"]
+[ext_resource type="Script" uid="uid://drcxhke2571cx" path="res://Scenes/Components/GameSignal/SignalAction.cs" id="2_d0b7p"]
+[ext_resource type="Script" uid="uid://ch0dfrr2gjlif" path="res://Scenes/Components/GameSignal/GameSignal.cs" id="3_v3q1w"]
+
+[sub_resource type="Resource" id="Resource_ryq0y"]
+script = ExtResource("2_d0b7p")
+MachineName = "Basic Processing"
+NextSignalState = "Decoded signal, wow"
+metadata/_custom_type_script = "uid://drcxhke2571cx"
+
+[sub_resource type="Resource" id="Resource_28plt"]
+script = ExtResource("3_v3q1w")
+SignalId = "Generated Signal"
+ProcessingSteps = [SubResource("Resource_ryq0y")]
+Signal = null
+metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhukq"]
+albedo_texture = ExtResource("2_5wgta")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_d0b7p"]
+material = SubResource("StandardMaterial3D_jhukq")
+
+[node name="SignalGenerator" type="Node3D" unique_id=1309082409]
+script = ExtResource("1_mhxj8")
+MachineName = "Signal Generator"
+OutputSignal = SubResource("Resource_28plt")
+metadata/_custom_type_script = "uid://drtmebqp4tgrk"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1482335121]
+mesh = SubResource("CylinderMesh_d0b7p")

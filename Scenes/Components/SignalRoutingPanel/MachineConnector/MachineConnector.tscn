@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dtpiv28rr7d8s"]
+
+[ext_resource type="Texture2D" uid="uid://uuklu4a2kr5g" path="res://Assets/Textures/Prototype/Red/texture_05.png" id="1_cclgn"]
+[ext_resource type="Script" uid="uid://bix3iiu8ty440" path="res://Scenes/Components/SignalRoutingPanel/MachineConnector/MachineConnector.cs" id="1_svwxq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_svwxq"]
+radius = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_da85y"]
+albedo_texture = ExtResource("1_cclgn")
+
+[sub_resource type="SphereMesh" id="SphereMesh_es6xy"]
+material = SubResource("StandardMaterial3D_da85y")
+radius = 0.2
+height = 0.4
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2yhd5"]
+load_path = "res://.godot/imported/texture_01.png-d033c1db81b2f7599aee6651a57ecb68.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j3vci"]
+albedo_texture = SubResource("CompressedTexture2D_2yhd5")
+
+[sub_resource type="SphereMesh" id="SphereMesh_om772"]
+material = SubResource("StandardMaterial3D_j3vci")
+radius = 0.2
+height = 0.4
+
+[node name="MachineConnector" type="Node3D" unique_id=104554026]
+script = ExtResource("1_svwxq")
+
+[node name="Output" type="Area3D" parent="." unique_id=211103232]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Output" unique_id=2140092677]
+shape = SubResource("SphereShape3D_svwxq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Output" unique_id=1197388118]
+mesh = SubResource("SphereMesh_es6xy")
+
+[node name="Input" type="Area3D" parent="." unique_id=1431200890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58973515, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Input" unique_id=964704723]
+shape = SubResource("SphereShape3D_svwxq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Input" unique_id=1510417503]
+mesh = SubResource("SphereMesh_om772")

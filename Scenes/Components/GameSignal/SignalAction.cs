@@ -15,5 +15,5 @@ public partial class SignalAction : Resource
 
     //This is the data of the signal after parsing, it can be a text, sound, image, whatever. Used to display the content of the signal at that point
     [Export]
-    public Variant SignalData = "";
+    public Variant NextSignalState;
 }
