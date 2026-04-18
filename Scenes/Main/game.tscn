@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bii32paaqrxlx"]
+
+[ext_resource type="Script" uid="uid://bscilmmcikoj4" path="res://Scenes/Main/Game.cs" id="1_ebmjs"]
+[ext_resource type="PackedScene" uid="uid://daod26b3owx3v" path="res://Scenes/Global Managers/Level Manager/Level Manager.tscn" id="2_fqiip"]
+
+[node name="Game" type="Node" unique_id=845842742]
+script = ExtResource("1_ebmjs")
+
+[node name="LevelManager" parent="." unique_id=2046361908 instance=ExtResource("2_fqiip")]

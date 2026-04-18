@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dngo0eyoph40i"]
+
+[ext_resource type="Script" uid="uid://cpmywfj2uo47s" path="res://Scenes/Global Managers/Level Manager/Level.cs" id="1_fggnv"]
+[ext_resource type="Texture2D" uid="uid://67d1db7pvgg1" path="res://icon.svg" id="2_q0mda"]
+
+[node name="DemoLevel" type="Node" unique_id=392949296]
+script = ExtResource("1_fggnv")
+metadata/_custom_type_script = "uid://cpmywfj2uo47s"
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1143432966]
+position = Vector2(589, 295.5)
+scale = Vector2(7.953125, 3.6953125)
+texture = ExtResource("2_q0mda")
