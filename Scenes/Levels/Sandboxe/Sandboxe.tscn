@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cpmywfj2uo47s" path="res://Scenes/Global Managers/Level Manager/Level.cs" id="1_xfuy1"]
 [ext_resource type="Texture2D" uid="uid://cg2j8asuid6ka" path="res://Assets/Textures/Prototype/Dark/texture_02.png" id="1_xy7q8"]
 [ext_resource type="PackedScene" uid="uid://dc6v214h1g3g0" path="res://Scenes/CharacterController/CharacterController.tscn" id="2_tlj6a"]
+[ext_resource type="PackedScene" uid="uid://vva8wxe2a2ry" path="res://Assets/Models/Objects/Buttons/Actuator/Actuator.tscn" id="4_5o222"]
 [ext_resource type="Texture2D" uid="uid://c8h4huyo3hhcy" path="res://Assets/Textures/Prototype/Orange/texture_01.png" id="4_wbw8a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xfuy1"]
@@ -56,29 +57,36 @@ mesh = SubResource("PlaneMesh_xfuy1")
 [node name="CollisionShape" type="CollisionShape3D" parent="Environnment/Ground" unique_id=1139054438]
 shape = SubResource("ConcavePolygonShape3D_xy7q8")
 
-[node name="CharacterController" parent="." unique_id=152917674 instance=ExtResource("2_tlj6a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1596863, 0)
+[node name="Pillar" type="Node" parent="Environnment" unique_id=1792987184]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1091008299]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environnment/Pillar" unique_id=1091008299]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.569016, 0.3259983, 0)
 mesh = SubResource("CylinderMesh_tv554")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=2124918572]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Environnment/Pillar" unique_id=2124918572]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.98631, 0.3259983, -7.940896)
 mesh = SubResource("CylinderMesh_tv554")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=191888942]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Environnment/Pillar" unique_id=191888942]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4636011, 0.3259983, -7.940896)
 mesh = SubResource("CylinderMesh_tv554")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=586848638]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Environnment/Pillar" unique_id=586848638]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4636011, 0.3259983, 3.9386969)
 mesh = SubResource("CylinderMesh_tv554")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=231331377]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Environnment/Pillar" unique_id=231331377]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.898937, 0.3259983, 5.395265)
 mesh = SubResource("CylinderMesh_tv554")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=803875371]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Environnment/Pillar" unique_id=803875371]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.711173, 0.3259983, -1.6710577)
 mesh = SubResource("CylinderMesh_tv554")
+
+[node name="Actuators" type="Node" parent="." unique_id=678187150]
+
+[node name="Actuator" parent="Actuators" unique_id=599775088 instance=ExtResource("4_5o222")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.620068, 1.7706695, 0)
+
+[node name="CharacterController" parent="." unique_id=152917674 instance=ExtResource("2_tlj6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1596863, 0)

@@ -58,6 +58,10 @@ ui_down={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_2="MouseInteract"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

@@ -1,0 +1,56 @@
+using Godot;
+using System;
+using System.Threading;
+
+[GlobalClass]
+public partial class Actuator : Node3D
+{
+    private bool _mouseEntered = false;
+    private bool _isOn = false;
+    [Signal]
+    public delegate void ActuatorTriggeredEventHandler(bool isOn);
+
+    public override void _Ready()
+    {
+        Area3D mouseDetect = GetNode<Area3D>("MouseDetector");
+        mouseDetect.Connect(Area3D.SignalName.AreaEntered, new Callable(this, nameof(this.OnAreaEntered)));
+        mouseDetect.Connect(Area3D.SignalName.AreaExited, new Callable(this, nameof(this.OnAreaExited)));
+        // this.Connect(Actuator.SignalName.ActuatorTriggered, new Callable(this, nameof(this.OnTrigger)));
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is not InputEventMouseButton trigger) return;
+
+        if (!_mouseEntered)
+            return;
+
+        if (!trigger.Pressed)
+            return;
+
+        ActuatorBehavior();
+
+        EmitSignal(SignalName.ActuatorTriggered, _isOn);
+    }
+
+    private void OnAreaEntered(Area3D area)
+    {
+        _mouseEntered = true;
+    }
+
+    private void OnAreaExited(Area3D area)
+    {
+        _mouseEntered = false;
+    }
+
+    private void OnTrigger(bool isOn)
+    {
+        GD.Print("on trigger " + isOn);
+    }
+
+    public virtual void ActuatorBehavior()
+    {
+        // Basic behavior : example for a lever
+        _isOn = !_isOn;
+    }
+}
