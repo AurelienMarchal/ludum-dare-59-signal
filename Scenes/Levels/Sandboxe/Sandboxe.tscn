@@ -86,7 +86,7 @@ mesh = SubResource("CylinderMesh_tv554")
 [node name="Actuators" type="Node" parent="." unique_id=678187150]
 
 [node name="Actuator" parent="Actuators" unique_id=599775088 instance=ExtResource("4_5o222")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.620068, 1.7706695, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.620068, 1.1914256, 0)
 
 [node name="CharacterController" parent="." unique_id=152917674 instance=ExtResource("2_tlj6a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1596863, 0)

@@ -10,12 +10,26 @@ public partial class Actuator : Node3D
     [Signal]
     public delegate void ActuatorTriggeredEventHandler(bool isOn);
 
+    [Export]
+    public NodePath _shaderMeshPath { get; set; }
+    ShaderMaterial _mShaderMat;
+
     public override void _Ready()
     {
+        // Mouse Detector SetUp
         Area3D mouseDetect = GetNode<Area3D>("MouseDetector");
         mouseDetect.Connect(Area3D.SignalName.AreaEntered, new Callable(this, nameof(this.OnAreaEntered)));
         mouseDetect.Connect(Area3D.SignalName.AreaExited, new Callable(this, nameof(this.OnAreaExited)));
         // this.Connect(Actuator.SignalName.ActuatorTriggered, new Callable(this, nameof(this.OnTrigger)));
+
+        // Shader SetUp
+        if (!_shaderMeshPath.IsEmpty)
+        {
+            MeshInstance3D mShaderMesh = GetNode<MeshInstance3D>(_shaderMeshPath);
+            Material mMat = mShaderMesh.MaterialOverlay;
+            _mShaderMat = mMat as ShaderMaterial;
+            UpdateShaderMesh(0);
+        }
     }
 
     public override void _Input(InputEvent @event)
@@ -33,14 +47,22 @@ public partial class Actuator : Node3D
         EmitSignal(SignalName.ActuatorTriggered, _isOn);
     }
 
+    public virtual void ActuatorBehavior()
+    {
+        // Basic behavior : example for a lever
+        _isOn = !_isOn;
+    }
+
     private void OnAreaEntered(Area3D area)
     {
         _mouseEntered = true;
+        UpdateShaderMesh(1);
     }
 
     private void OnAreaExited(Area3D area)
     {
         _mouseEntered = false;
+        UpdateShaderMesh(0);
     }
 
     private void OnTrigger(bool isOn)
@@ -48,9 +70,11 @@ public partial class Actuator : Node3D
         GD.Print("on trigger " + isOn);
     }
 
-    public virtual void ActuatorBehavior()
+    private void UpdateShaderMesh(float alpha)
     {
-        // Basic behavior : example for a lever
-        _isOn = !_isOn;
+        if (_shaderMeshPath.IsEmpty)
+            return;
+
+        _mShaderMat.SetShaderParameter("alpha", alpha);
     }
 }
