@@ -13,7 +13,7 @@ points = PackedVector3Array(-0.25, -0.5000979, 0, -0.24882537, -0.5000979, -0.02
 radius = 0.028320313
 height = 1.7139893
 
-[node name="CharacterController" type="CharacterBody3D" unique_id=152917674]
+[node name="CharacterController" type="CharacterBody3D" unique_id=152917674 groups=["Player"]]
 script = ExtResource("1_04gch")
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=1378799346]
