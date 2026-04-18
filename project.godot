@@ -12,7 +12,7 @@ config_version=5
 
 config/name="LudumDare59-Signal"
 run/main_scene="uid://bii32paaqrxlx"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
