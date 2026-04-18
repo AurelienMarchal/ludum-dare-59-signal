@@ -11,11 +11,12 @@ public partial class Game : Node
 	{
 		//Launch the default page
 		lm = (LevelManager)GetTree().GetFirstNodeInGroup("LevelManager");
-		_  = lm.ChangeLevel("Scenes/Levels/DemoLevel/DemoLevel.tscn"); 
-	}
+        //_  = lm.ChangeLevel("Scenes/Levels/DemoLevel/DemoLevel.tscn"); 
+        _  = lm.ChangeLevel("Scenes/Levels/Sandboxe/Sandboxe.tscn"); 
+    }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
 	{
 	}
 }

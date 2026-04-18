@@ -1,3 +1,84 @@
 [gd_scene format=3 uid="uid://bw53i0yaklnb3"]
 
-[node name="Sandboxe" type="Node" unique_id=1739413617]
+[ext_resource type="Script" uid="uid://cpmywfj2uo47s" path="res://Scenes/Global Managers/Level Manager/Level.cs" id="1_xfuy1"]
+[ext_resource type="Texture2D" uid="uid://cg2j8asuid6ka" path="res://Assets/Textures/Prototype/Dark/texture_02.png" id="1_xy7q8"]
+[ext_resource type="PackedScene" uid="uid://dc6v214h1g3g0" path="res://Scenes/CharacterController/CharacterController.tscn" id="2_tlj6a"]
+[ext_resource type="Texture2D" uid="uid://c8h4huyo3hhcy" path="res://Assets/Textures/Prototype/Orange/texture_01.png" id="4_wbw8a"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xfuy1"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_wbw8a"]
+sky_material = SubResource("ProceduralSkyMaterial_xfuy1")
+
+[sub_resource type="Environment" id="Environment_5o222"]
+background_mode = 2
+sky = SubResource("Sky_wbw8a")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlj6a"]
+albedo_texture = ExtResource("1_xy7q8")
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xfuy1"]
+material = SubResource("StandardMaterial3D_tlj6a")
+size = Vector2(200, 200)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xy7q8"]
+data = PackedVector3Array(100, 0, 100, -100, 0, 100, 100, 0, -100, -100, 0, 100, -100, 0, -100, 100, 0, -100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5o222"]
+albedo_texture = ExtResource("4_wbw8a")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tv554"]
+material = SubResource("StandardMaterial3D_5o222")
+
+[node name="Sandboxe" type="Node" unique_id=1421369382]
+script = ExtResource("1_xfuy1")
+metadata/_custom_type_script = "uid://cpmywfj2uo47s"
+
+[node name="Environnment" type="Node" parent="." unique_id=53248083]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environnment" unique_id=1085804370]
+environment = SubResource("Environment_5o222")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environnment" unique_id=751827667]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="Environnment" unique_id=2084536025]
+
+[node name="Mesh" type="MeshInstance3D" parent="Environnment/Ground" unique_id=856048692]
+mesh = SubResource("PlaneMesh_xfuy1")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Environnment/Ground" unique_id=1139054438]
+shape = SubResource("ConcavePolygonShape3D_xy7q8")
+
+[node name="CharacterController" parent="." unique_id=152917674 instance=ExtResource("2_tlj6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1596863, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1091008299]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.569016, 0.3259983, 0)
+mesh = SubResource("CylinderMesh_tv554")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=2124918572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.98631, 0.3259983, -7.940896)
+mesh = SubResource("CylinderMesh_tv554")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=191888942]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4636011, 0.3259983, -7.940896)
+mesh = SubResource("CylinderMesh_tv554")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=586848638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4636011, 0.3259983, 3.9386969)
+mesh = SubResource("CylinderMesh_tv554")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=231331377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.898937, 0.3259983, 5.395265)
+mesh = SubResource("CylinderMesh_tv554")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=803875371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.711173, 0.3259983, -1.6710577)
+mesh = SubResource("CylinderMesh_tv554")
