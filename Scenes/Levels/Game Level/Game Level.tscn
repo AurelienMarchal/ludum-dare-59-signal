@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ooh5gkdw0jkv" path="res://Assets/Textures/Concrete/concrete_wall_007_nor_dx_4k.jpg" id="4_fotk7"]
 [ext_resource type="Texture2D" uid="uid://d1vcbmt2cp3pj" path="res://Assets/Textures/Concrete/Floor/damaged_concrete_floor_diff_4k.jpg" id="4_hims3"]
 [ext_resource type="Texture2D" uid="uid://ng26uxvjplxn" path="res://Assets/Textures/Concrete/Floor/damaged_concrete_floor_nor_dx_4k.jpg" id="5_kw2y0"]
+[ext_resource type="PackedScene" uid="uid://dc6v214h1g3g0" path="res://Scenes/CharacterController/CharacterController.tscn" id="6_kw2y0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4taje"]
 size = Vector3(0.2, 4, 5)
@@ -166,11 +167,13 @@ material = SubResource("StandardMaterial3D_fotk7")
 
 [node name="Floor" type="CSGMesh3D" parent="Control Room Structure/Floor & Roof" unique_id=211987042]
 transform = Transform3D(0.7193398, 0, -0.6946584, 0, 1, 0, 0.6946584, 0, 0.7193398, -1.534841, -0.090382636, -1.4115293)
+use_collision = true
 mesh = SubResource("BoxMesh_xkrdo")
 material = SubResource("StandardMaterial3D_ju7jk")
 
 [node name="Roof" type="CSGMesh3D" parent="Control Room Structure/Floor & Roof" unique_id=1962424204]
 transform = Transform3D(0.7193398, 0, -0.6946584, 0, 1, 0, 0.6946584, 0, 0.7193398, -1.534841, 4.464257, -1.4115293)
+use_collision = true
 mesh = SubResource("BoxMesh_xkrdo")
 material = SubResource("StandardMaterial3D_ju7jk")
 
@@ -178,9 +181,13 @@ material = SubResource("StandardMaterial3D_ju7jk")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="Control Room Structure/Piedestal" unique_id=1423619680]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23860042, 0)
+use_collision = true
 mesh = SubResource("CylinderMesh_hims3")
 material = SubResource("StandardMaterial3D_ju7jk")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=399022044]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2721148, 0)
 omni_range = 9.56
+
+[node name="CharacterController" parent="." unique_id=152917674 instance=ExtResource("6_kw2y0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1504276, 0)
