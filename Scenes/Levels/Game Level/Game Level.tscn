@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://dj4sjbd4kp7rx"]
+
+[ext_resource type="Script" uid="uid://cpmywfj2uo47s" path="res://Scenes/Global Managers/Level Manager/Level.cs" id="1_4taje"]
+[ext_resource type="Texture2D" uid="uid://q01ymi7wh06i" path="res://Assets/Textures/Concrete/concrete_wall_007_diff_4k.jpg" id="2_ccnwj"]
+[ext_resource type="Texture2D" uid="uid://ooh5gkdw0jkv" path="res://Assets/Textures/Concrete/concrete_wall_007_nor_dx_4k.jpg" id="4_fotk7"]
+[ext_resource type="Texture2D" uid="uid://d1vcbmt2cp3pj" path="res://Assets/Textures/Concrete/Floor/damaged_concrete_floor_diff_4k.jpg" id="4_hims3"]
+[ext_resource type="Texture2D" uid="uid://ng26uxvjplxn" path="res://Assets/Textures/Concrete/Floor/damaged_concrete_floor_nor_dx_4k.jpg" id="5_kw2y0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4taje"]
+size = Vector3(0.2, 4, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrqc7"]
+albedo_texture = ExtResource("2_ccnwj")
+normal_enabled = true
+normal_texture = ExtResource("4_fotk7")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+uv2_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_fotk7"]
+size = Vector3(0.2, 4, 3.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hims3"]
+size = Vector3(0.2, 4, 3.435)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kw2y0"]
+size = Vector3(0.2, 4, 2.42)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ju7jk"]
+size = Vector3(0.2, 4, 2.36)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xrqc7"]
+size = Vector3(0.1, 13.8, 2.095)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fotk7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xkrdo"]
+size = Vector3(9.02, 1, 5.035)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ju7jk"]
+albedo_texture = ExtResource("4_hims3")
+normal_enabled = true
+normal_scale = 2.25
+normal_texture = ExtResource("5_kw2y0")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+uv2_world_triplanar = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hims3"]
+top_radius = 1.0
+bottom_radius = 1.87
+height = 0.815
+radial_segments = 6
+
+[node name="GameLevel" type="Node" unique_id=1195220977]
+script = ExtResource("1_4taje")
+metadata/_custom_type_script = "uid://cpmywfj2uo47s"
+
+[node name="Control Room Structure" type="Node3D" parent="." unique_id=1626977533]
+transform = Transform3D(3, 0, 0, 0, 1.5, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="Walls" type="Node3D" parent="Control Room Structure" unique_id=534267561]
+
+[node name="Wall2" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=1023581871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.3310149, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_4taje")
+material = SubResource("StandardMaterial3D_xrqc7")
+
+[node name="Wall3" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=640193447]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 1.767767, 2.3310149, -1.767767)
+use_collision = true
+mesh = SubResource("BoxMesh_fotk7")
+material = SubResource("StandardMaterial3D_xrqc7")
+
+[node name="Wall4" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=1789436661]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -1.767767, 2.3310149, 1.767767)
+use_collision = true
+mesh = SubResource("BoxMesh_hims3")
+material = SubResource("StandardMaterial3D_xrqc7")
+
+[node name="Wall5" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=537787165]
+transform = Transform3D(0, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 0, 0, 2.3310149, -2.5)
+use_collision = true
+mesh = SubResource("BoxMesh_4taje")
+material = SubResource("StandardMaterial3D_xrqc7")
+
+[node name="Wall6" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=1208172894]
+transform = Transform3D(0, 0, 0.43795493, 0, 1, 0, -0.99999994, 0, 0, -0.5318942, 2.5, 2.5)
+use_collision = true
+mesh = SubResource("BoxMesh_4taje")
+material = SubResource("StandardMaterial3D_xrqc7")
+
+[node name="Wall7" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=674202875]
+transform = Transform3D(-0.70710665, 0, 0.70710665, 0, 1, 0, -0.70710665, 0, -0.70710665, -1.767767, 2.5, -1.767767)
+use_collision = true
+mesh = SubResource("BoxMesh_4taje")
+material = SubResource("StandardMaterial3D_xrqc7")
+
+[node name="Wall9" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=370683102]
+transform = Transform3D(-0.70710665, 0, 0.70710665, 0, 0.20423959, 0, -0.70710665, 0, -0.70710665, 1.767767, 0.5961714, 1.767767)
+use_collision = true
+mesh = SubResource("BoxMesh_kw2y0")
+material = SubResource("StandardMaterial3D_xrqc7")
+
+[node name="Wall11" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=307559361]
+transform = Transform3D(-0.9999998, 0, 0, 0, 0.20423959, 0, 0, 0, -0.9999998, 2.5315554, 0.59617126, -1.4378064)
+use_collision = true
+mesh = SubResource("BoxMesh_4taje")
+material = SubResource("StandardMaterial3D_xrqc7")
+
+[node name="Wall10" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=1926437792]
+transform = Transform3D(-0.70710665, 0, 0.70710665, 0, 0.20423959, 0, -0.70710665, 0, -0.70710665, 1.767767, 4.093439, 1.767767)
+use_collision = true
+mesh = SubResource("BoxMesh_ju7jk")
+material = SubResource("StandardMaterial3D_xrqc7")
+
+[node name="Wall14" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=703118620]
+transform = Transform3D(4.3711378e-08, 0, -0.99999976, 0, 0.20423956, 0, 0.99999976, 0, 4.3711378e-08, -1.3968809, 0.59617114, 2.5037076)
+use_collision = true
+mesh = SubResource("BoxMesh_4taje")
+material = SubResource("StandardMaterial3D_xrqc7")
+
+[node name="Wall8" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=1606554851]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 0.308491, 0, 8.742278e-08, 0, -1, 2.540123, 4.296241, -1.471378)
+use_collision = true
+mesh = SubResource("BoxMesh_4taje")
+material = SubResource("StandardMaterial3D_xrqc7")
+
+[node name="Wall12" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=427219088]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 0.308491, 0, -1, 0, -4.371139e-08, -1.4296101, 4.296241, 2.496428)
+use_collision = true
+mesh = SubResource("BoxMesh_4taje")
+material = SubResource("StandardMaterial3D_xrqc7")
+
+[node name="Wall13" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=645197720]
+transform = Transform3D(-0.99999994, 0, -1.9143618e-08, 0, 1, 0, 4.3711385e-08, 0, -0.43795493, 2.5347595, 2.5, -0.59509313)
+use_collision = true
+mesh = SubResource("BoxMesh_4taje")
+material = SubResource("StandardMaterial3D_xrqc7")
+
+[node name="Glass" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=1401425902]
+transform = Transform3D(-0.70706666, -0.0009128097, 0.7071326, -0.0018897995, 0.20423721, 0.004430625, -0.7071442, 0.00036689785, -0.70706695, 1.767767, 2.260202, 1.767767)
+transparency = 0.89
+use_collision = true
+mesh = SubResource("BoxMesh_xrqc7")
+material = SubResource("StandardMaterial3D_fotk7")
+
+[node name="Glass2" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=2004964844]
+transform = Transform3D(-0.9999998, 0, 0, 0, 0.20423959, 0, 0, 0, -0.9999998, 2.523, 2.26, -0.055)
+transparency = 0.89
+use_collision = true
+mesh = SubResource("BoxMesh_xrqc7")
+material = SubResource("StandardMaterial3D_fotk7")
+
+[node name="Glass3" type="CSGMesh3D" parent="Control Room Structure/Walls" unique_id=359773796]
+transform = Transform3D(4.3711378e-08, 0, 0.99999976, 0, 0.20423956, 0, -0.99999976, 0, 4.3711378e-08, -0.057, 2.26, 2.522)
+transparency = 0.89
+use_collision = true
+mesh = SubResource("BoxMesh_xrqc7")
+material = SubResource("StandardMaterial3D_fotk7")
+
+[node name="Floor & Roof" type="Node3D" parent="Control Room Structure" unique_id=1318662932]
+
+[node name="Floor" type="CSGMesh3D" parent="Control Room Structure/Floor & Roof" unique_id=211987042]
+transform = Transform3D(0.7193398, 0, -0.6946584, 0, 1, 0, 0.6946584, 0, 0.7193398, -1.534841, -0.090382636, -1.4115293)
+mesh = SubResource("BoxMesh_xkrdo")
+material = SubResource("StandardMaterial3D_ju7jk")
+
+[node name="Roof" type="CSGMesh3D" parent="Control Room Structure/Floor & Roof" unique_id=1962424204]
+transform = Transform3D(0.7193398, 0, -0.6946584, 0, 1, 0, 0.6946584, 0, 0.7193398, -1.534841, 4.464257, -1.4115293)
+mesh = SubResource("BoxMesh_xkrdo")
+material = SubResource("StandardMaterial3D_ju7jk")
+
+[node name="Piedestal" type="Node3D" parent="Control Room Structure" unique_id=1362707963]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Control Room Structure/Piedestal" unique_id=1423619680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23860042, 0)
+mesh = SubResource("CylinderMesh_hims3")
+material = SubResource("StandardMaterial3D_ju7jk")
