@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 [GlobalClass]
@@ -14,6 +15,7 @@ public partial class Actuator : Node3D
     protected NodePath _shaderMeshPath { get; set; }
     protected ShaderMaterial _mShaderMat;
     protected AnimationPlayer _animationPlayer;
+    protected CharacterController _player;
 
     public override void _Ready()
     {
@@ -35,6 +37,8 @@ public partial class Actuator : Node3D
             _mShaderMat = mMat as ShaderMaterial;
             UpdateShaderMesh(0);
         }
+
+        _player = (CharacterController)GetTree().GetNodesInGroup("Player")[0];
     }
 
     public override void _Input(InputEvent @event)
@@ -60,6 +64,7 @@ public partial class Actuator : Node3D
     private void OnAreaEntered(Area3D area)
     {
         _mouseEntered = true;
+        _player.SetCurrentFocusedActuator(this);
         UpdateShaderMesh(1);
     }
 
@@ -75,5 +80,11 @@ public partial class Actuator : Node3D
             return;
 
         _mShaderMat.SetShaderParameter("alpha", alpha);
+    }
+
+    public void ForceUnfocus()
+    {
+        _mouseEntered = false;
+        UpdateShaderMesh(0);
     }
 }

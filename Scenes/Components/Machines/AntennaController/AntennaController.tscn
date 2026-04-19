@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cc7jv731i5b7v" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorLever/ActuatorLever.tscn" id="2_ebmoh"]
 [ext_resource type="PackedScene" uid="uid://bj24fw3afpg2n" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorButtonLever/ActuatorButtonLever.tscn" id="3_p0j8s"]
 [ext_resource type="PackedScene" uid="uid://c55jy8wtl1wfu" path="res://Assets/Models/Objects/Antenna/Antenna.tscn" id="4_w48bk"]
+[ext_resource type="PackedScene" uid="uid://b0pb0rb215tkv" path="res://Scenes/Components/ElectricalSystem/PowerGauge.tscn" id="5_kxtug"]
+[ext_resource type="Script" uid="uid://snqrvg7w7e" path="res://Scenes/Components/ElectricalSystem/PowerGauge.cs" id="6_icwrv"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7pyva"]
 viewport_path = NodePath("SubViewport")
@@ -296,6 +298,7 @@ shader_parameter/color_ramp = SubResource("GradientTexture1D_icwrv")
 script = ExtResource("1_7pyva")
 _antennaPath = NodePath("Antenna")
 MachineName = "AntennaController"
+_powerGaugePath = NodePath("PowerGauge")
 metadata/_custom_type_script = "uid://drtmebqp4tgrk"
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=155853279]
@@ -368,7 +371,15 @@ blend_times = [&"Down", &"Down", 0.1, &"Down", &"Idle", 0.05, &"Down", &"RESET",
 [node name="Antenna" parent="." unique_id=1294799428 instance=ExtResource("4_w48bk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.701104)
 
+[node name="PowerGauge" parent="." unique_id=69414646 instance=ExtResource("5_kxtug")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2237007)
+script = ExtResource("6_icwrv")
+
+[node name="Indicator" parent="PowerGauge/Mesh" parent_id_path=PackedInt32Array(69414646, 1129075579) index="0" unique_id=116429497]
+transform = Transform3D(-0.8489716, 0, 0.5284382, 0, 1, 0, -0.5284382, 0, -0.8489716, 0.011962287, 0.0019699857, -5.228882e-10)
+
 [editable path="ActuatorLeverX"]
 [editable path="ActuatorLeverY"]
 [editable path="ActuatorButtonLeverReset"]
 [editable path="ActuatorButtonLeverValidate"]
+[editable path="PowerGauge"]

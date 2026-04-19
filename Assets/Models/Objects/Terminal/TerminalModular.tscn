@@ -4,6 +4,57 @@
 
 [node name="Terminal_Modular_Assets" unique_id=1460927805 instance=ExtResource("1_x8ent")]
 
+[node name="Guage_03" parent="." index="0" unique_id=1340696395]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -0.4558515, 0, -0.032239616)
+
+[node name="Guage_01" parent="." index="1" unique_id=420481826]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -0.36261475, 0, -0.273999)
+
+[node name="Guage_02" parent="." index="2" unique_id=1962170236]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -0.57233965, 0, -0.10014081)
+
+[node name="Guage_04" parent="." index="3" unique_id=389245466]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -0.59547853, 0, -0.21339327)
+
+[node name="Guage_05" parent="." index="4" unique_id=1112228503]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -0.5157614, 0, -0.28553274)
+
+[node name="Gauge_Base" parent="." index="5" unique_id=2123455610]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -0.3913165, 0, -0.14510667)
+
+[node name="Switch_Off" parent="." index="6" unique_id=1667650698]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -0.21518962, 0, 0.20151898)
+
+[node name="Switch_On" parent="." index="7" unique_id=1552545694]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -0.17541003, 0, 0.1972352)
+
+[node name="Keypad_Terminal" parent="." index="9" unique_id=1456894295]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -0.36563087, 0, 0)
+
+[node name="Gauge_06" parent="." index="10" unique_id=695013423]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -0.20628862, 0, -0.2862761)
+
+[node name="Gauge_07" parent="." index="11" unique_id=1541837811]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -0.5439668, 0, 0.14228624)
+
+[node name="SM_Panel_04" parent="." index="12" unique_id=1664886780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.60761034)
+
+[node name="SM_Panel_03" parent="." index="13" unique_id=891974123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.97412103)
+
+[node name="SM_Panel_Base" parent="." index="14" unique_id=1237220348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.9390533)
+
+[node name="SM_Panel_05" parent="." index="15" unique_id=1279933450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4972649, 0, 0.7003877)
+
+[node name="SM_Panel_02" parent="." index="16" unique_id=930822179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68781066, 0, 0.63663733)
+
+[node name="SM_Panel_06" parent="." index="17" unique_id=222261730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3131285, 0, 0)
+
 [node name="SM_Lever_1" parent="." index="19" unique_id=1004069012]
 transform = Transform3D(-1, 0, -3.8941437e-07, 0, 1, 0, 3.8941437e-07, 0, -1, -1.7616317, 0, 0)
 
@@ -11,7 +62,16 @@ transform = Transform3D(-1, 0, -3.8941437e-07, 0, 1, 0, 3.8941437e-07, 0, -1, -1
 transform = Transform3D(2.3841856e-08, 0, 1, 0, 1, 0, -0.39999998, 0, 5.9604645e-08, -1.4816055, 0, 0)
 
 [node name="SM_Lever_Holder" parent="." index="21" unique_id=1449349215]
-transform = Transform3D(0.39999998, 0, 0, 0, 1, 0, 0, 0, 1, -1.7529204, 0, 0)
+transform = Transform3D(0.39999998, 0, 0, 0, 1, 0, 0, 0, 1, -1.5807309, 0, 0.12342113)
+
+[node name="SM_Panel_Base_Small" parent="." index="22" unique_id=959067843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1174635, 0, -0.6384913)
+
+[node name="SM_Panel_01_003" parent="." index="23" unique_id=1183877501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8545779, 0, 0.70232713)
+
+[node name="SM_Panel_07" parent="." index="24" unique_id=1610267921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42335138, 0, -0.5865589)
 
 [node name="SM_Console" parent="." index="26" unique_id=1358656703]
 transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 2.291421, 0, -1.0676632)
@@ -21,3 +81,27 @@ transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 1.20
 
 [node name="SM_ConsoleKeyboard" parent="." index="28" unique_id=317986155]
 transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 1.9946994, 0, 0)
+
+[node name="SM_modularConsoleWall_Top" parent="." index="29" unique_id=932586338]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -0.8408223, 0.9622977, -3.9709797)
+
+[node name="SM_modularConsoleWall_Joint1" parent="." index="30" unique_id=75764015]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 0, 0, -1.0965947)
+
+[node name="SM_modularConsoleWall_Straight" parent="." index="31" unique_id=148579199]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -1.2292291, 0, -3.6464138)
+
+[node name="SM_modularConsoleWall_Joint2" parent="." index="32" unique_id=440604678]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -2.3141358, 0, -0.7245976)
+
+[node name="SM_modularConsoleWall_Bottom" parent="." index="33" unique_id=2137595600]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, -1.6568036, 0, -1.7409598)
+
+[node name="SM_Console_Rack_01" parent="." index="35" unique_id=105934400]
+transform = Transform3D(1.1920929e-07, 0, 2, 0, 2, 0, -2, 0, 1.1920929e-07, -1.2244625, 0, 0)
+
+[node name="SM_Console_Rack_03" parent="." index="37" unique_id=1747305332]
+transform = Transform3D(1.1920929e-07, 0, 2, 0, 2, 0, -2, 0, 1.1920929e-07, 0.74214303, 0, 0)
+
+[node name="SM_Console_Rack_02" parent="." index="38" unique_id=1772710341]
+transform = Transform3D(1.1920929e-07, 0, 2, 0, 2, 0, -2, 0, 1.1920929e-07, -0.8003636, 0, 0)

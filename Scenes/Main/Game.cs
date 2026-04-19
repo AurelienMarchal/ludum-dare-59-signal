@@ -11,8 +11,8 @@ public partial class Game : Node
 	{
 		//Launch the default page
 		lm = (LevelManager)GetTree().GetFirstNodeInGroup("LevelManager");
-        //_  = lm.ChangeLevel("Scenes/Levels/DemoLevel/DemoLevel.tscn"); 
-        _  = lm.ChangeLevel("uid://dj4sjbd4kp7rx"); 
+        _  = lm.ChangeLevel("Scenes/Levels/Sandboxe/Sandboxe.tscn"); 
+        //_  = lm.ChangeLevel("uid://dj4sjbd4kp7rx"); 
     }
 
 }
