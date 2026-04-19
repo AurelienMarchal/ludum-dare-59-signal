@@ -111,4 +111,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6110396, 0.50000024, -4.725
 
 [editable path="SignalRoutingPanel"]
 [editable path="SignalRoutingPanel/Signal Generator"]
-[editable path="SignalRoutingPanel/Signal Generator/Signal Generator"]
