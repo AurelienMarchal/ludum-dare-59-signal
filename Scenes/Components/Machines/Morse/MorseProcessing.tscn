@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://fthhtfoovhqp"]
+
+[ext_resource type="PackedScene" uid="uid://damw0qiyfs0jb" path="res://Scenes/Components/Machines/Basic/BasicProcessing.tscn" id="1_tll0h"]
+[ext_resource type="Script" uid="uid://dqgqv1i6mjmwe" path="res://Scenes/Components/Machines/Morse/MorseProcessing.cs" id="2_1pt5s"]
+[ext_resource type="Script" uid="uid://ch0dfrr2gjlif" path="res://Scenes/Components/GameSignal/GameSignal.cs" id="3_k2uhi"]
+[ext_resource type="Script" uid="uid://drcxhke2571cx" path="res://Scenes/Components/GameSignal/SignalAction.cs" id="3_uprju"]
+
+[sub_resource type="Resource" id="Resource_jfjqg"]
+script = ExtResource("3_uprju")
+MachineName = "Morse"
+NextSignalState = null
+metadata/_custom_type_script = "uid://drcxhke2571cx"
+
+[sub_resource type="Resource" id="Resource_uprju"]
+script = ExtResource("3_k2uhi")
+ProcessingSteps = [SubResource("Resource_jfjqg")]
+Signal = "hello la team"
+metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
+
+[sub_resource type="Resource" id="Resource_75qco"]
+script = ExtResource("3_k2uhi")
+Signal = null
+metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_k2uhi"]
+viewport_path = NodePath("SubViewport")
+
+[node name="MorseProcessing" unique_id=667471579 instance=ExtResource("1_tll0h")]
+script = ExtResource("2_1pt5s")
+AsciiToMorse = true
+MachineName = "Morse"
+InputSignal = SubResource("Resource_uprju")
+OutputSignal = SubResource("Resource_75qco")
+
+[node name="Completion" parent="." index="2" unique_id=270191860]
+texture = SubResource("ViewportTexture_k2uhi")
