@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Linq;
 
 /*
 	Every machine that needs to process / pass signals through needs to inherit this class
@@ -25,4 +26,16 @@ public partial class Machine : Node3D
 
 	//Is that machine receiving power
 	public bool Powered;
+
+	//Call this when processing 
+	public void OutputNewSignal()
+	{
+		SignalAction NextStep = InputSignal.ProcessingSteps[0];
+		if(NextStep != null)
+		{
+			OutputSignal = (GameSignal)InputSignal.DuplicateDeep();
+			OutputSignal.ProcessingSteps = OutputSignal.ProcessingSteps.Skip(1).ToArray(); 
+			OutputSignal.Signal = NextStep.NextSignalState;
+		}
+	}
 }
