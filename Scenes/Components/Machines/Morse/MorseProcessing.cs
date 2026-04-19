@@ -95,7 +95,6 @@ public partial class MorseProcessing : Machine
 
     public override void _Ready()
     {
-        Powered = true;
         label = GetNode<Label>("SubViewport/Label");
         currentCharIndex = 0;
     }
@@ -117,6 +116,12 @@ public partial class MorseProcessing : Machine
             return;
         }
 
+        if(InputSignal.ProcessingSteps.Length == 0)
+        {
+            OutputSignal = null;
+            return;
+        }
+
         SignalAction NextStep = InputSignal.ProcessingSteps[0];
 
         if(NextStep == null)
@@ -132,11 +137,7 @@ public partial class MorseProcessing : Machine
             return;
         }
 
-        
-
         string inputSignalToString = InputSignal.Signal.AsString().ToUpper();
-
-        
 
         if(inputSignalToString == null)
         {
