@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://7jljiq720ng2" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanel.tscn" id="8_q48nj"]
 [ext_resource type="Script" uid="uid://ch0dfrr2gjlif" path="res://Scenes/Components/GameSignal/GameSignal.cs" id="9_xn2uv"]
 [ext_resource type="PackedScene" uid="uid://caq80iv131s3v" path="res://Scenes/Components/Machines/SignalGenerator/SignalGenerator.tscn" id="12_fopvk"]
+[ext_resource type="PackedScene" uid="uid://ipu2kyfd18rc" path="res://Scenes/Components/Machines/Scanner/Scanner.tscn" id="13_fopvk"]
 [ext_resource type="PackedScene" uid="uid://dtpiv28rr7d8s" path="res://Scenes/Components/SignalRoutingPanel/MachineConnector/MachineConnector.tscn" id="13_pw6n2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4taje"]
@@ -242,6 +243,9 @@ TargetMachine = NodePath("../../MorseMachine")
 [node name="Basic Processing2" parent="SignalRoutingPanel" unique_id=987706113 instance=ExtResource("13_pw6n2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8201537, 0, 0)
 TargetMachine = NodePath("../../MorseMachine2")
+
+[node name="Scanner" parent="." unique_id=1867250863 instance=ExtResource("13_fopvk")]
+transform = Transform3D(0.0012827945, -0.044870608, 0.733628, 0, 0.7336291, 0.044870675, -0.7349989, -7.831273e-05, 0.0012804018, 7.219, 3.629, -0.948)
 
 [editable path="SignalRoutingPanel"]
 [editable path="SignalRoutingPanel/Signal Generator"]
