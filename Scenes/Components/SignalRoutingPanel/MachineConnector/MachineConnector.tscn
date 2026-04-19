@@ -4,6 +4,73 @@
 [ext_resource type="Script" uid="uid://bix3iiu8ty440" path="res://Scenes/Components/SignalRoutingPanel/MachineConnector/MachineConnector.cs" id="1_svwxq"]
 [ext_resource type="Script" uid="uid://dmwhl8cau3xp8" path="res://Scenes/Components/SignalRoutingPanel/MachineConnector/Plug.cs" id="2_es6xy"]
 
+[sub_resource type="Shader" id="Shader_da85y"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_es6xy"]
+render_priority = 0
+shader = SubResource("Shader_da85y")
+shader_parameter/outline_thickness = -0.085
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_da85y"]
 albedo_texture = ExtResource("1_cclgn")
 
@@ -14,6 +81,73 @@ height = 0.4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_svwxq"]
 radius = 0.2
+
+[sub_resource type="Shader" id="Shader_2yhd5"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j3vci"]
+render_priority = 0
+shader = SubResource("Shader_2yhd5")
+shader_parameter/outline_thickness = -0.085
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2yhd5"]
 load_path = "res://.godot/imported/texture_01.png-d033c1db81b2f7599aee6651a57ecb68.s3tc.ctex"
@@ -31,9 +165,11 @@ script = ExtResource("1_svwxq")
 
 [node name="Output" type="Node3D" parent="." unique_id=1411931370]
 script = ExtResource("2_es6xy")
+_shaderMeshPath = NodePath("MeshInstance3D")
 metadata/_custom_type_script = "uid://dt4okd4fqfeiu"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Output" unique_id=1197388118]
+material_overlay = SubResource("ShaderMaterial_es6xy")
 mesh = SubResource("SphereMesh_es6xy")
 
 [node name="MouseDetector" type="Area3D" parent="Output" unique_id=376791696]
@@ -47,9 +183,11 @@ shape = SubResource("SphereShape3D_svwxq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58973515, 0)
 script = ExtResource("2_es6xy")
 IsInput = true
+_shaderMeshPath = NodePath("MeshInstance3D")
 metadata/_custom_type_script = "uid://dt4okd4fqfeiu"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Input" unique_id=1510417503]
+material_overlay = SubResource("ShaderMaterial_j3vci")
 mesh = SubResource("SphereMesh_om772")
 
 [node name="MouseDetector" type="Area3D" parent="Input" unique_id=1170779917]
