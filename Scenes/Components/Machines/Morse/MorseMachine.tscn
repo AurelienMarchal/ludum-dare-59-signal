@@ -217,7 +217,7 @@ vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="Completion" type="Sprite3D" parent="." unique_id=1991027940]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4676874, -0.2530793)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.987638, -0.2530793)
 pixel_size = 0.04
 texture = SubResource("ViewportTexture_cnf7n")
 

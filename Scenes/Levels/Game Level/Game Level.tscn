@@ -8,10 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://dc6v214h1g3g0" path="res://Scenes/CharacterController/CharacterController.tscn" id="6_kw2y0"]
 [ext_resource type="PackedScene" uid="uid://dsam83ivnrgmx" path="res://Scenes/Components/Machines/Morse/MorseMachine.tscn" id="7_ju7jk"]
 [ext_resource type="Script" uid="uid://drcxhke2571cx" path="res://Scenes/Components/GameSignal/SignalAction.cs" id="8_m3477"]
-[ext_resource type="PackedScene" uid="uid://7jljiq720ng2" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanel.tscn" id="8_q48nj"]
 [ext_resource type="Script" uid="uid://ch0dfrr2gjlif" path="res://Scenes/Components/GameSignal/GameSignal.cs" id="9_xn2uv"]
 [ext_resource type="PackedScene" uid="uid://caq80iv131s3v" path="res://Scenes/Components/Machines/SignalGenerator/SignalGenerator.tscn" id="12_fopvk"]
-[ext_resource type="PackedScene" uid="uid://dtpiv28rr7d8s" path="res://Scenes/Components/SignalRoutingPanel/MachineConnector/MachineConnector.tscn" id="13_pw6n2"]
+[ext_resource type="PackedScene" uid="uid://w6878jnfh3ir" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanelPretty.tscn" id="13_fopvk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4taje"]
 size = Vector3(0.2, 4, 5)
@@ -230,18 +229,19 @@ MachineName = "Morse"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)
 OutputSignal = SubResource("Resource_fopvk")
 
-[node name="SignalRoutingPanel" parent="." unique_id=573874878 instance=ExtResource("8_q48nj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2122107, 2.0105042, -6.943772)
+[node name="SignalRoutingPanelPretty" parent="." unique_id=51792808 instance=ExtResource("13_fopvk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8592906, 0.71383786, -7.192605)
 
-[node name="Signal Generator" parent="SignalRoutingPanel" index="0" unique_id=104554026]
-TargetMachine = NodePath("../../SignalGenerator")
+[node name="MachineConnector1" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="0" unique_id=104554026]
+TargetMachine = NodePath("../../../MorseMachine")
 
-[node name="Basic Processing" parent="SignalRoutingPanel" index="1" unique_id=517836460]
-TargetMachine = NodePath("../../MorseMachine")
+[node name="MachineConnector2" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="1" unique_id=517836460]
+TargetMachine = NodePath("../../../MorseMachine2")
 
-[node name="Basic Processing2" parent="SignalRoutingPanel" unique_id=987706113 instance=ExtResource("13_pw6n2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8201537, 0, 0)
-TargetMachine = NodePath("../../MorseMachine2")
+[node name="MachineConnector3" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="2" unique_id=107649636]
+TargetMachine = NodePath("../../../SignalGenerator")
 
-[editable path="SignalRoutingPanel"]
-[editable path="SignalRoutingPanel/Signal Generator"]
+[editable path="SignalRoutingPanelPretty"]
+[editable path="SignalRoutingPanelPretty/SignalRoutingPanel/MachineConnector1"]
+[editable path="SignalRoutingPanelPretty/SignalRoutingPanel/MachineConnector2"]
+[editable path="SignalRoutingPanelPretty/SignalRoutingPanel/MachineConnector3"]

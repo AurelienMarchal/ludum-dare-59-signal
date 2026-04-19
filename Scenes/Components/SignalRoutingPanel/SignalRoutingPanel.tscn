@@ -153,11 +153,11 @@ shader_parameter/alpha = 1.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4xqxg"]
 load_path = "res://.godot/imported/texture_01.png-d033c1db81b2f7599aee6651a57ecb68.s3tc.ctex"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_itesf"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xqxg"]
 albedo_texture = SubResource("CompressedTexture2D_4xqxg")
 
 [sub_resource type="SphereMesh" id="SphereMesh_58lhw"]
-material = SubResource("StandardMaterial3D_itesf")
+material = SubResource("StandardMaterial3D_4xqxg")
 radius = 0.2
 height = 0.4
 
@@ -185,3 +185,4 @@ script = ExtResource("3_kih8r")
 script = ExtResource("5_2dokw")
 
 [editable path="Signal Generator"]
+[editable path="Basic Processing"]
