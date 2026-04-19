@@ -24,6 +24,8 @@ public partial class AntennaController : Machine
     protected NodePath _antennaPath { get; set; }
     private Antenna _antenna;
 
+    private AudioStreamPlayer3D MovingAudio;
+
     public override void _Ready()
     {
         base._Ready();
@@ -31,6 +33,8 @@ public partial class AntennaController : Machine
 
         _labelX = GetNode<Label>("SubViewport/LabelX");
         _labelY = GetNode<Label>("SubViewport2/LabelY");
+        
+        MovingAudio = GetNode<AudioStreamPlayer3D>("Antenna/AudioStreamPlayer3D");
 
         _actuatorLeverX = GetNode<ActuatorLever>("ActuatorLeverX");
         _actuatorLeverY = GetNode<ActuatorLever>("ActuatorLeverY");
@@ -117,7 +121,10 @@ public partial class AntennaController : Machine
             return;
 
         if (!_antennaPath.IsEmpty)
+        {
             _ = _antenna.UpdatePositionAsync(_x, _y);
+            MovingAudio.Play();
+        }
     }
 
     private void UpdateXLabel()

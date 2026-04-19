@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cjmlj3kygiwd8"
+path="res://.godot/imported/metal door close.wav-8ea9ef467f7834e0340551223447e735.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/metal door close.wav"
+dest_files=["res://.godot/imported/metal door close.wav-8ea9ef467f7834e0340551223447e735.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
