@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://wny8a2wrb0jp" path="res://Assets/Models/Objects/Terminal/material/screen.material" id="3_i8il0"]
 [ext_resource type="Material" uid="uid://ck2yl8gy2n6ta" path="res://Assets/Models/Objects/Terminal/material/keyboard.material" id="5_m44n4"]
 [ext_resource type="PackedScene" uid="uid://e2n7stou2kme" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorSwitch/ActuatorSwitch.tscn" id="6_t4xvc"]
+[ext_resource type="FontFile" uid="uid://dsav2nb5aw8lp" path="res://Assets/Fonts/SPACEBOY.TTF" id="7_fqay8"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_783ow"]
 _surfaces = [{
@@ -168,7 +169,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_78fjc")
 
 [sub_resource type="LabelSettings" id="LabelSettings_fqay8"]
-font_size = 8
+font = ExtResource("7_fqay8")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_cnf7n"]
 viewport_path = NodePath("SubViewport")
@@ -216,7 +217,7 @@ vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="Completion" type="Sprite3D" parent="." unique_id=1991027940]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4676874, -0.2530793)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.987638, -0.2530793)
 pixel_size = 0.04
 texture = SubResource("ViewportTexture_cnf7n")
 

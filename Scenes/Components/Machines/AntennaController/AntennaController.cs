@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Numerics;
 
 public partial class AntennaController : Machine
 {
@@ -8,6 +9,10 @@ public partial class AntennaController : Machine
 
     private int _x = 0;
     private int _y = 0;
+
+    //Where the antenna is currently pointing
+    public int actualX = 0;
+    public int actualY = 0;
 
     private ActuatorLever _actuatorLeverX;
     private ActuatorLever _actuatorLeverY;
@@ -24,7 +29,7 @@ public partial class AntennaController : Machine
         base._Ready();
 
         _labelX = GetNode<Label>("SubViewport/LabelX");
-        _labelY = GetNode<Label>("SubViewport/LabelY");
+        _labelY = GetNode<Label>("SubViewport2/LabelY");
 
         _actuatorLeverX = GetNode<ActuatorLever>("ActuatorLeverX");
         _actuatorLeverY = GetNode<ActuatorLever>("ActuatorLeverY");
@@ -46,7 +51,21 @@ public partial class AntennaController : Machine
 
     public override void _Process(double delta)
     {
-        if (!Powered)
+        if (Powered)
+        {
+            if (InputSignal!=null)
+			{
+				SignalAction NextStep = InputSignal.ProcessingSteps[0];
+				if (NextStep != null && NextStep.MachineName == MachineName)
+                {
+                    Godot.Vector2 target = (Godot.Vector2)InputSignal.Signal;
+                    if(actualX == (int)target.X && actualY == (int)target.Y)
+                    {
+                        OutputNewSignal();
+                    }
+                }
+            }
+        }
             return;
     }
 
@@ -128,7 +147,7 @@ public partial class AntennaController : Machine
             return;
 
         if (!_antennaPath.IsEmpty)
-            _antenna.UpdatePosition(_x, _y);
+            _ = _antenna.UpdatePositionAsync(_x, _y);
     }
 
     private void UpdateXLabel()
