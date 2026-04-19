@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://wny8a2wrb0jp" path="res://Assets/Models/Objects/Terminal/material/screen.material" id="3_i8il0"]
 [ext_resource type="Material" uid="uid://ck2yl8gy2n6ta" path="res://Assets/Models/Objects/Terminal/material/keyboard.material" id="5_m44n4"]
 [ext_resource type="PackedScene" uid="uid://e2n7stou2kme" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorSwitch/ActuatorSwitch.tscn" id="6_t4xvc"]
+[ext_resource type="FontFile" uid="uid://dsav2nb5aw8lp" path="res://Assets/Fonts/SPACEBOY.TTF" id="7_fqay8"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_783ow"]
 _surfaces = [{
@@ -168,7 +169,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_78fjc")
 
 [sub_resource type="LabelSettings" id="LabelSettings_fqay8"]
-font_size = 8
+font = ExtResource("7_fqay8")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_cnf7n"]
 viewport_path = NodePath("SubViewport")
