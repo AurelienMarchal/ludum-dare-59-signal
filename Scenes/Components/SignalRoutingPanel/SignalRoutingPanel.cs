@@ -1,8 +1,8 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 
 //Defines a position in the panel
@@ -34,6 +34,77 @@ public partial class SignalRoutingPanel : Node3D
         base._Ready();
 		CM = GetNode<CablesManager>("CablesManager");
     }
+
+
+
+    public override void _Process(double delta)
+    {
+		_cleanUpInputs();
+        _TransferSignals();
+    }
+
+
+	//This cleans up the inputs of the unplugged 
+	private void _cleanUpInputs()
+	{
+		Array<MachineConnector> machines = _getMachines();
+		foreach (MachineConnector m in machines)
+		{
+			//If there's no inputs
+			if(_getCableLinkContainingPlug(new PlugPosition(m.TargetMachine, true)) == null){
+				Machine A = GetNode<Machine>(m.TargetMachine);
+				A.InputSignal = null;
+			}
+		}
+	}
+
+	private Array<MachineConnector> _getMachines()
+	{
+		Array<Node> children = GetChildren();
+		Array<MachineConnector> machines = [];
+		foreach (Node child in children)
+		{
+			if("PlayerConnector" != child.Name && "CablesManager" != child.Name)
+			{
+				machines.Add((MachineConnector)child);
+			}
+		}
+		return machines;
+	}
+
+
+	//This is the thing that moves the signals from the inputs to the outputs
+	private void _TransferSignals()
+	{
+		foreach (CableLink cable in CableList)
+		{
+			GameSignal SignalToTransmit = null;
+			Machine A = GetNode<Machine>(cable.A.TargetMachine);
+			Machine B = GetNode<Machine>(cable.B.TargetMachine);
+
+			//You shouldn't have an output to an output, so it shouldn't be too bad if they overlap.
+			if (!cable.A.IsInput)
+			{
+				SignalToTransmit = A.OutputSignal;
+			}
+			if (!cable.B.IsInput)
+			{
+				SignalToTransmit = B.OutputSignal;
+			}
+
+			//Copy the signal to the inputs;
+			if (cable.A.IsInput)
+			{
+				A.InputSignal = SignalToTransmit;
+			}
+			if (cable.B.IsInput)
+			{
+				B.InputSignal = SignalToTransmit;
+			}
+
+		}
+	}
+
 
 	//This returns a tuple with the cable that has the plug, as well as a true if it's A that's plugged, false if B 
 	private Tuple<CableLink,bool> _getCableLinkContainingPlug(PlugPosition plug)
