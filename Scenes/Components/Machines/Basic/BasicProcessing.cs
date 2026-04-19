@@ -36,9 +36,8 @@ public partial class BasicProcessing : Machine
 					else
 					{
 						CompletionProcess = 100;
-						OutputSignal = (GameSignal)InputSignal.DuplicateDeep();
-						OutputSignal.ProcessingSteps = OutputSignal.ProcessingSteps.Skip(1).ToArray(); 
-						OutputSignal.Signal = NextStep.NextSignalState;
+						
+						OutputNewSignal();
 
 						GetNode<Label>("SubViewport/Label").Text = (string)OutputSignal.Signal;
 					}
