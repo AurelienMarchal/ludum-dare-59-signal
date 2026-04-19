@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://jsgiypmhpg08" path="res://Scenes/Components/Machines/Scanner/Assets/Model/TV/Television_01_1k.gltf" id="5_micmt"]
 [ext_resource type="Texture2D" uid="uid://ce48agb1m7t6l" path="res://Scenes/Components/Machines/Scanner/Assets/Model/TV/Television_01_nor_gl_1k.jpg" id="7_y3gb6"]
 [ext_resource type="AudioStream" uid="uid://bobah3fujlve6" path="res://Scenes/Components/Machines/Scanner/Assets/Sound/ping.wav" id="9_7qml4"]
+[ext_resource type="FontFile" uid="uid://dsav2nb5aw8lp" path="res://Assets/Fonts/SPACEBOY.TTF" id="12_cvpbu"]
 
 [sub_resource type="Resource" id="Resource_anvna"]
 script = ExtResource("2_aq8h1")
@@ -73,7 +74,8 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3u866")
 
 [sub_resource type="LabelSettings" id="LabelSettings_aq8h1"]
-font_size = 40
+font = ExtResource("12_cvpbu")
+font_size = 29
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_aq8h1"]
 viewport_path = NodePath("SubViewport")
