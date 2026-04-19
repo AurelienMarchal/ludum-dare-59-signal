@@ -26,7 +26,7 @@ public partial class Machine : Node3D
 
     //Is that machine receiving power
     [Export]
-    public bool Powered;
+    public bool Powered = true;
 
     [Export]
     protected NodePath _powerGaugePath { get; set; }
