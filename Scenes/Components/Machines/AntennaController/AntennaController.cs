@@ -75,7 +75,7 @@ public partial class AntennaController : Machine
         if (_labelX==null)
             _labelX = GetNode<Label>("SubViewport/LabelX");
         if (_labelY==null)
-            _labelY = GetNode<Label>("SubViewport/LabelY");
+            _labelY = GetNode<Label>("SubViewport2/LabelY");
 
         _labelX.Text = "";
         _labelY.Text = "";
