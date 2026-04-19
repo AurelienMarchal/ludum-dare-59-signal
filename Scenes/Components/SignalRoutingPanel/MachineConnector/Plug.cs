@@ -9,7 +9,7 @@ public partial class Plug : Actuator
 	public bool IsInput;
 
 	//Calls the parent, saying that the player has clicked on a plug, and what it is
-    protected override void ActuatorBehavior()
+    protected override void ActuatorBehavior(InputEvent @event = null)
     {
         base.ActuatorBehavior();
 		MachineConnector MC = GetParent<MachineConnector>();

@@ -4,116 +4,20 @@
 
 [node name="Terminal_Modular_Assets" unique_id=1460927805 instance=ExtResource("1_x8ent")]
 
-[node name="Guage_03" parent="." index="0" unique_id=1833503098]
-visible = false
+[node name="SM_Lever_1" parent="." index="19" unique_id=1004069012]
+transform = Transform3D(-1, 0, -3.8941437e-07, 0, 1, 0, 3.8941437e-07, 0, -1, -1.7616317, 0, 0)
 
-[node name="Guage_01" parent="." index="1" unique_id=820778304]
-visible = false
+[node name="SM_Lever_2" parent="." index="20" unique_id=1820048624]
+transform = Transform3D(2.3841856e-08, 0, 1, 0, 1, 0, -0.39999998, 0, 5.9604645e-08, -1.4816055, 0, 0)
 
-[node name="Guage_02" parent="." index="2" unique_id=618177643]
-visible = false
+[node name="SM_Lever_Holder" parent="." index="21" unique_id=1449349215]
+transform = Transform3D(0.39999998, 0, 0, 0, 1, 0, 0, 0, 1, -1.7529204, 0, 0)
 
-[node name="Guage_04" parent="." index="3" unique_id=2111323331]
-visible = false
+[node name="SM_Console" parent="." index="26" unique_id=1358656703]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 2.291421, 0, -1.0676632)
 
-[node name="Guage_05" parent="." index="4" unique_id=1861188896]
-visible = false
+[node name="SM_Screen" parent="." index="27" unique_id=603333920]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 1.2053117, 0, 0)
 
-[node name="Gauge_Base" parent="." index="5" unique_id=1522333479]
-visible = false
-
-[node name="Switch_Off" parent="." index="6" unique_id=1132095098]
-visible = false
-
-[node name="Switch_On" parent="." index="7" unique_id=237945753]
-visible = false
-
-[node name="Switch_Knob" parent="." index="8" unique_id=624139298]
-visible = false
-
-[node name="Keypad_Terminal" parent="." index="9" unique_id=909025383]
-visible = false
-
-[node name="Gauge_06" parent="." index="10" unique_id=1106932743]
-visible = false
-
-[node name="Gauge_07" parent="." index="11" unique_id=2006256376]
-visible = false
-
-[node name="SM_Panel_04" parent="." index="12" unique_id=257018167]
-visible = false
-
-[node name="SM_Panel_03" parent="." index="13" unique_id=232796660]
-visible = false
-
-[node name="SM_Panel_Base" parent="." index="14" unique_id=826547049]
-visible = false
-
-[node name="SM_Panel_05" parent="." index="15" unique_id=1019123857]
-visible = false
-
-[node name="SM_Panel_02" parent="." index="16" unique_id=1095009176]
-visible = false
-
-[node name="SM_Panel_06" parent="." index="17" unique_id=258700056]
-visible = false
-
-[node name="SM_Panel_Cover" parent="." index="18" unique_id=1182999638]
-visible = false
-
-[node name="SM_Lever_2" parent="." index="20" unique_id=239324480]
-visible = false
-
-[node name="SM_Lever_Holder" parent="." index="21" unique_id=190163414]
-visible = false
-
-[node name="SM_Panel_Base_Small" parent="." index="22" unique_id=548920135]
-visible = false
-
-[node name="SM_Panel_01_003" parent="." index="23" unique_id=1486567549]
-visible = false
-
-[node name="SM_Panel_07" parent="." index="24" unique_id=1242210307]
-visible = false
-
-[node name="SM_Panel_07_001" parent="." index="25" unique_id=509493115]
-visible = false
-
-[node name="SM_Console" parent="." index="26" unique_id=2071131053]
-visible = false
-
-[node name="SM_Screen" parent="." index="27" unique_id=886000733]
-visible = false
-
-[node name="SM_ConsoleKeyboard" parent="." index="28" unique_id=451685853]
-visible = false
-
-[node name="SM_modularConsoleWall_Top" parent="." index="29" unique_id=1262782347]
-visible = false
-
-[node name="SM_modularConsoleWall_Joint1" parent="." index="30" unique_id=819978085]
-visible = false
-
-[node name="SM_modularConsoleWall_Straight" parent="." index="31" unique_id=11531533]
-visible = false
-
-[node name="SM_modularConsoleWall_Joint2" parent="." index="32" unique_id=1626258081]
-visible = false
-
-[node name="SM_modularConsoleWall_Bottom" parent="." index="33" unique_id=198068184]
-visible = false
-
-[node name="SM_modularConsoleWall_Handle" parent="." index="34" unique_id=328575322]
-visible = false
-
-[node name="SM_Console_Rack_01" parent="." index="35" unique_id=1602785097]
-visible = false
-
-[node name="SM_Console_Rack_Handle" parent="." index="36" unique_id=1557406149]
-visible = false
-
-[node name="SM_Console_Rack_03" parent="." index="37" unique_id=1547719521]
-visible = false
-
-[node name="SM_Console_Rack_02" parent="." index="38" unique_id=491082708]
-visible = false
+[node name="SM_ConsoleKeyboard" parent="." index="28" unique_id=317986155]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 1.9946994, 0, 0)

@@ -21,9 +21,11 @@ public partial class Actuator : Node3D
         Area3D mouseDetect = GetNode<Area3D>("MouseDetector");
         mouseDetect.Connect(Area3D.SignalName.AreaEntered, new Callable(this, nameof(this.OnAreaEntered)));
         mouseDetect.Connect(Area3D.SignalName.AreaExited, new Callable(this, nameof(this.OnAreaExited)));
-        // this.Connect(Actuator.SignalName.ActuatorTriggered, new Callable(this, nameof(this.OnTrigger)));
 
-        _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        if (HasNode("AnimationPlayer"))
+        {
+            _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        }
 
         // Shader SetUp
         if (!_shaderMeshPath.IsEmpty)
@@ -45,12 +47,12 @@ public partial class Actuator : Node3D
         if (!trigger.Pressed)
             return;
 
-        ActuatorBehavior();
+        ActuatorBehavior(@event);
 
         EmitSignal(SignalName.ActuatorTriggered, _isOn);
     }
 
-    protected virtual void ActuatorBehavior()
+    protected virtual void ActuatorBehavior(InputEvent @event = null)
     {
 
     }

@@ -35,14 +35,11 @@ public partial class SignalRoutingPanel : Node3D
 		CM = GetNode<CablesManager>("CablesManager");
     }
 
-
-
     public override void _Process(double delta)
     {
 		_cleanUpInputs();
         _TransferSignals();
     }
-
 
 	//This cleans up the inputs of the unplugged 
 	private void _cleanUpInputs()
@@ -71,7 +68,6 @@ public partial class SignalRoutingPanel : Node3D
 		}
 		return machines;
 	}
-
 
 	//This is the thing that moves the signals from the inputs to the outputs
 	private void _TransferSignals()
@@ -186,9 +182,9 @@ public partial class SignalRoutingPanel : Node3D
 	//Finds the 3D position of a plug
 	public Vector3 GetPlug3DPosition(PlugPosition plug)
 	{
-		foreach (Node3D child in GetChildren())
+		foreach (MachineConnector child in _getMachines())
 		{
-			MachineConnector mc = (MachineConnector)child; //This may not work if it's the cable manager, we'll see
+			MachineConnector mc = child; //This may not work if it's the cable manager, we'll see
 			if (mc.TargetMachine != null)
 			{
 				if(mc.TargetMachine == plug.TargetMachine)
