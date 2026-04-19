@@ -41,7 +41,7 @@ public partial class Antenna : Machine
         rotation.Y = 0;
         rotation.Z = (float)_angle;
         Tween tween = GetTree().CreateTween();
-        tween.TweenProperty(_azimuth, "rotation", rotation, 15.0f);
+        tween.TweenProperty(_azimuth, "rotation", rotation, 20.0f);
 
 
         Vector3 rotation2;
@@ -49,8 +49,8 @@ public partial class Antenna : Machine
         rotation2.Y = (float)_rayon;
         rotation2.Z = 0;
         Tween tween2 = GetTree().CreateTween();
-        tween2.TweenProperty(_elevation, "rotation", rotation2, 15.0f);
-        await ToSignal(GetTree().CreateTimer(15),"timeout");
+        tween2.TweenProperty(_elevation, "rotation", rotation2, 20.0f);
+        await ToSignal(GetTree().CreateTimer(20),"timeout");
         GetParent<AntennaController>().actualX = x;
         GetParent<AntennaController>().actualY = y;
         

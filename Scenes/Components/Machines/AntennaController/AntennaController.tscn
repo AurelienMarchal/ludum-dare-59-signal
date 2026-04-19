@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://snqrvg7w7e" path="res://Scenes/Components/ElectricalSystem/PowerGauge.cs" id="6_icwrv"]
 [ext_resource type="Material" uid="uid://bn5cxqhcteye1" path="res://Assets/Models/Objects/Terminal/material/glass.material" id="6_mqxm3"]
 [ext_resource type="Material" uid="uid://bcc25f632s8y2" path="res://Assets/Models/Objects/Terminal/material/terminal.material" id="7_c8end"]
+[ext_resource type="AudioStream" uid="uid://c7h5svx5qvjfv" path="res://Assets/Sound/MovingAntenna.wav" id="7_vaee1"]
 [ext_resource type="PackedScene" uid="uid://crsrftlp4ctyc" path="res://Assets/Models/Bits and Bobs/LabelPanel/LabelPanel.tscn" id="10_c8end"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dov1f"]
@@ -560,8 +561,12 @@ material_overlay = SubResource("ShaderMaterial_r0rx4")
 blend_times = [&"Down", &"Down", 0.1, &"Down", &"Idle", 0.05, &"Down", &"RESET", 0.1, &"Down", &"Up", 0.1, &"Idle", &"Down", 0.05, &"Idle", &"Up", 0.05, &"RESET", &"Down", 0.3, &"RESET", &"RESET", 0.3, &"RESET", &"Up", 0.3, &"Up", &"Down", 0.1, &"Up", &"Idle", 0.05, &"Up", &"RESET", 0.1, &"Up", &"Up", 0.1]
 
 [node name="Antenna" parent="." unique_id=1294799428 instance=ExtResource("4_w48bk")]
-transform = Transform3D(3.22, 0, 0, 0, 3.22, 0, 0, 0, 3.22, -17.434021, -3.1474, -85.480034)
+transform = Transform3D(3.22, 0, 0, 0, 3.22, 0, 0, 0, 3.22, -17.434021, -4.4390182, -85.480034)
 MachineName = "Antenna"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Antenna" unique_id=1110149259]
+transform = Transform3D(0.310559, 0, 0, 0, 0.310559, 0, 0, 0, 0.310559, 0, 1.3440397, 0)
+stream = ExtResource("7_vaee1")
 
 [node name="ConsoleModel" type="Node3D" parent="." unique_id=444392887]
 
