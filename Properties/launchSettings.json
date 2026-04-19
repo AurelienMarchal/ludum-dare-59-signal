@@ -1,13 +1,13 @@
 {
   "profiles": {
-    "LudumDare59-Signal": {
-      "commandName": "Project"
-    },
-    "LD59": {
-      "commandName": "Executable",
-      "executablePath": "C:\\Program Files\\Installed Software\\Divers\\Godot\\Godot_v4.6.1-stable_mono_win64\\Godot_v4.6.1-stable_mono_win64\\Godot_v4.6.1cs.exe",
-      "workingDirectory": "$(ProjectDir)",
-      "nativeDebugging": true
-    }
+	"LudumDare59-Signal": {
+	  "commandName": "Project"
+	},
+	"LD59": {
+	  "commandName": "Executable",
+	  "executablePath": "C:\\Program Files\\Installed Software\\Divers\\Godot\\Godot_v4.6.1-stable_mono_win64\\Godot_v4.6.1-stable_mono_win64\\Godot_v4.6.1cs.exe",
+	  "workingDirectory": "$(ProjectDir)",
+	  "nativeDebugging": true
+	}
   }
 }

@@ -4,12 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cg2j8asuid6ka" path="res://Assets/Textures/Prototype/Dark/texture_02.png" id="1_xy7q8"]
 [ext_resource type="PackedScene" uid="uid://dc6v214h1g3g0" path="res://Scenes/CharacterController/CharacterController.tscn" id="2_tlj6a"]
 [ext_resource type="PackedScene" uid="uid://caq80iv131s3v" path="res://Scenes/Components/Machines/SignalGenerator/SignalGenerator.tscn" id="3_tv554"]
-[ext_resource type="PackedScene" uid="uid://vva8wxe2a2ry" path="res://Assets/Models/Objects/Buttons/Actuator/Actuator.tscn" id="4_5o222"]
 [ext_resource type="Texture2D" uid="uid://c8h4huyo3hhcy" path="res://Assets/Textures/Prototype/Orange/texture_01.png" id="4_wbw8a"]
 [ext_resource type="PackedScene" uid="uid://damw0qiyfs0jb" path="res://Scenes/Components/Machines/Basic/BasicProcessing.tscn" id="5_5o222"]
-[ext_resource type="PackedScene" uid="uid://7jljiq720ng2" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanel.tscn" id="7_ksetr"]
-[ext_resource type="Texture2D" uid="uid://c8h4huyo3hhcy" path="res://Assets/Textures/Prototype/Orange/texture_01.png" id="4_wbw8a"]
 [ext_resource type="PackedScene" uid="uid://e2n7stou2kme" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorSwitch/ActuatorSwitch.tscn" id="5_tv554"]
+[ext_resource type="PackedScene" uid="uid://7jljiq720ng2" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanel.tscn" id="7_ksetr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xfuy1"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
