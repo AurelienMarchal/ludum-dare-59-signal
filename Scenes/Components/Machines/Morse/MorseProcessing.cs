@@ -95,7 +95,7 @@ public partial class MorseProcessing : Machine
 
     public override void _Ready()
     {
-        Powered = true;
+        Powered = false;
         label = GetNode<Label>("SubViewport/Label");
         currentCharIndex = 0;
     }
@@ -152,12 +152,12 @@ public partial class MorseProcessing : Machine
         if(currentCharIndex >= inputSignalToString.Length)
         {
             CompletionProcess = 100;
-            label.Text = ((int)CompletionProcess).ToString() + "\n" + NextStep.NextSignalState.AsString();
+            label.Text = ((int)CompletionProcess).ToString() + "%" + "\n" + NextStep.NextSignalState.AsString();
             OutputNewSignal();
             return;
         }
 
-        label.Text = ((int)CompletionProcess).ToString() + "\n" + NextStep.NextSignalState.AsString();
+        label.Text = ((int)CompletionProcess).ToString() + "%" + "\n" + NextStep.NextSignalState.AsString();
 
         
 
@@ -183,10 +183,10 @@ public partial class MorseProcessing : Machine
                 
             }
 
-            CompletionProcess = (currentCharIndex / inputSignalToString.Length) * 100.0;
+            CompletionProcess = (double)currentCharIndex / (double)inputSignalToString.Length * 100;
 
 
-            GD.Print((CompletionProcess).ToString() + "\n" + NextStep.NextSignalState.AsString());
+            GD.Print((CompletionProcess).ToString() + "%" + "\n" + NextStep.NextSignalState.AsString());
 
             currentCharIndex ++;
             
@@ -224,9 +224,9 @@ public partial class MorseProcessing : Machine
 
             
 
-            CompletionProcess = (currentCharIndex/inputSignalToString.Length)*100;
+            CompletionProcess = (double)currentCharIndex / (double)inputSignalToString.Length * 100;
 
-            GD.Print(((int)CompletionProcess).ToString() + "\n" + NextStep.NextSignalState.AsString());
+            GD.Print(((int)CompletionProcess).ToString() + "%" + "\n" + NextStep.NextSignalState.AsString());
 
             currentCharIndex ++;
 
@@ -236,4 +236,13 @@ public partial class MorseProcessing : Machine
         
 	}
 
+
+    private void OnActuatorSwitchActuatorTriggered(bool isOn)
+    {
+        Powered = isOn;
+        if (isOn)
+        {
+            currentCharIndex = 0;
+        }
+    }
 }

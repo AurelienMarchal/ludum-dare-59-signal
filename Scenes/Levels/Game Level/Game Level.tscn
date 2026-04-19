@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://d1vcbmt2cp3pj" path="res://Assets/Textures/Concrete/Floor/damaged_concrete_floor_diff_4k.jpg" id="4_hims3"]
 [ext_resource type="Texture2D" uid="uid://ng26uxvjplxn" path="res://Assets/Textures/Concrete/Floor/damaged_concrete_floor_nor_dx_4k.jpg" id="5_kw2y0"]
 [ext_resource type="PackedScene" uid="uid://dc6v214h1g3g0" path="res://Scenes/CharacterController/CharacterController.tscn" id="6_kw2y0"]
+[ext_resource type="PackedScene" uid="uid://dsam83ivnrgmx" path="res://Scenes/Components/Machines/Morse/MorseMachine.tscn" id="7_ju7jk"]
+[ext_resource type="Script" uid="uid://drcxhke2571cx" path="res://Scenes/Components/GameSignal/SignalAction.cs" id="8_m3477"]
+[ext_resource type="Script" uid="uid://ch0dfrr2gjlif" path="res://Scenes/Components/GameSignal/GameSignal.cs" id="9_xn2uv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4taje"]
 size = Vector3(0.2, 4, 5)
@@ -54,6 +57,18 @@ top_radius = 1.0
 bottom_radius = 1.87
 height = 0.815
 radial_segments = 6
+
+[sub_resource type="Resource" id="Resource_jfjqg"]
+script = ExtResource("8_m3477")
+MachineName = "Morse"
+NextSignalState = null
+metadata/_custom_type_script = "uid://drcxhke2571cx"
+
+[sub_resource type="Resource" id="Resource_uprju"]
+script = ExtResource("9_xn2uv")
+ProcessingSteps = [SubResource("Resource_jfjqg")]
+Signal = "hello la team"
+metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
 
 [node name="GameLevel" type="Node" unique_id=1195220977]
 script = ExtResource("1_4taje")
@@ -191,3 +206,9 @@ omni_range = 9.56
 
 [node name="CharacterController" parent="." unique_id=152917674 instance=ExtResource("6_kw2y0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1504276, 0)
+
+[node name="MorseMachine" parent="." unique_id=529271477 instance=ExtResource("7_ju7jk")]
+transform = Transform3D(-0.101195194, 0, 0.9948666, 0, 1, 0, -0.9948666, 0, -0.101195194, -6.8226557, 0.6261867, 1.2290893)
+AsciiToMorse = true
+MachineName = "Morse"
+InputSignal = SubResource("Resource_uprju")
