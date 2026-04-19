@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class Antenna : Machine
 {
@@ -30,7 +31,7 @@ public partial class Antenna : Machine
         }
     }
 
-    public void UpdatePosition(int x, int y)
+    public async Task UpdatePositionAsync(int x, int y)
     {
         _angle = Math.Atan2(x, y);
         _rayon = Math.Atan(Math.Sqrt(x * x + y * y)/_z);
@@ -40,7 +41,7 @@ public partial class Antenna : Machine
         rotation.Y = 0;
         rotation.Z = (float)_angle;
         Tween tween = GetTree().CreateTween();
-        tween.TweenProperty(_azimuth, "rotation", rotation, 3.0f);
+        tween.TweenProperty(_azimuth, "rotation", rotation, 15.0f);
 
 
         Vector3 rotation2;
@@ -48,6 +49,10 @@ public partial class Antenna : Machine
         rotation2.Y = (float)_rayon;
         rotation2.Z = 0;
         Tween tween2 = GetTree().CreateTween();
-        tween2.TweenProperty(_elevation, "rotation", rotation2, 3.0f);
+        tween2.TweenProperty(_elevation, "rotation", rotation2, 15.0f);
+        await ToSignal(GetTree().CreateTimer(15),"timeout");
+        GetParent<AntennaController>().actualX = x;
+        GetParent<AntennaController>().actualY = y;
+        
     }
 }
