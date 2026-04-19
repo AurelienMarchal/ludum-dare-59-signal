@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://crsrftlp4ctyc"]
+
+[ext_resource type="Texture2D" uid="uid://ccvk3ksbb8mfq" path="res://Assets/Textures/Metal/rusty_metal_04_diff_1k.jpg" id="1_hernl"]
+[ext_resource type="Texture2D" uid="uid://xdl0e0wh0o1t" path="res://Assets/Textures/Metal/rusty_metal_04_nor_dx_1k.png" id="2_gfx3h"]
+[ext_resource type="FontFile" uid="uid://boj6428h7c7j4" path="res://Assets/Fonts/boston.ttf" id="3_hernl"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sk7x8"]
+height = 0.095
+radial_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhe8a"]
+albedo_texture = ExtResource("1_hernl")
+normal_enabled = true
+normal_texture = ExtResource("2_gfx3h")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+uv2_world_triplanar = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_folf2"]
+font = ExtResource("3_hernl")
+font_size = 45
+font_color = Color(0.8235294, 0.62352943, 0.12941177, 1)
+outline_size = 3
+outline_color = Color(1, 0.36078432, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.5294118)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3ljtc"]
+viewport_path = NodePath("SubViewport")
+
+[node name="LabelPanel" type="Node3D" unique_id=1002341385]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=103950934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.52, 0, 0, 0)
+mesh = SubResource("CylinderMesh_sk7x8")
+material = SubResource("StandardMaterial3D_xhe8a")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1489154748]
+transparent_bg = true
+size = Vector2i(256, 128)
+
+[node name="Text" type="Label" parent="SubViewport" unique_id=2115537520]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "COUCOU"
+label_settings = SubResource("LabelSettings_folf2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Screen" type="Sprite3D" parent="." unique_id=407905172]
+transform = Transform3D(4.3711392e-08, -1, 1.3113416e-07, -3.821371e-15, 1.3113416e-07, 0.9999999, -0.9999999, -4.371139e-08, 1.9106853e-15, 0, 0.07421291, 0)
+pixel_size = 0.004
+texture = SubResource("ViewportTexture_3ljtc")

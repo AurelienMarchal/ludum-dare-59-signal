@@ -4,13 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://q01ymi7wh06i" path="res://Assets/Textures/Concrete/concrete_wall_007_diff_4k.jpg" id="2_ccnwj"]
 [ext_resource type="Texture2D" uid="uid://ooh5gkdw0jkv" path="res://Assets/Textures/Concrete/concrete_wall_007_nor_dx_4k.jpg" id="4_fotk7"]
 [ext_resource type="Texture2D" uid="uid://d1vcbmt2cp3pj" path="res://Assets/Textures/Concrete/Floor/damaged_concrete_floor_diff_4k.jpg" id="4_hims3"]
+[ext_resource type="PackedScene" uid="uid://bx2uthsk7y8ri" path="res://Scenes/Components/Machines/AntennaController/AntennaController.tscn" id="4_pw6n2"]
 [ext_resource type="Texture2D" uid="uid://ng26uxvjplxn" path="res://Assets/Textures/Concrete/Floor/damaged_concrete_floor_nor_dx_4k.jpg" id="5_kw2y0"]
 [ext_resource type="PackedScene" uid="uid://dc6v214h1g3g0" path="res://Scenes/CharacterController/CharacterController.tscn" id="6_kw2y0"]
 [ext_resource type="PackedScene" uid="uid://dsam83ivnrgmx" path="res://Scenes/Components/Machines/Morse/MorseMachine.tscn" id="7_ju7jk"]
 [ext_resource type="Script" uid="uid://drcxhke2571cx" path="res://Scenes/Components/GameSignal/SignalAction.cs" id="8_m3477"]
+[ext_resource type="PackedScene" uid="uid://7jljiq720ng2" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanel.tscn" id="8_q48nj"]
 [ext_resource type="Script" uid="uid://ch0dfrr2gjlif" path="res://Scenes/Components/GameSignal/GameSignal.cs" id="9_xn2uv"]
 [ext_resource type="PackedScene" uid="uid://caq80iv131s3v" path="res://Scenes/Components/Machines/SignalGenerator/SignalGenerator.tscn" id="12_fopvk"]
-[ext_resource type="PackedScene" uid="uid://w6878jnfh3ir" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanelPretty.tscn" id="13_fopvk"]
+[ext_resource type="PackedScene" uid="uid://ipu2kyfd18rc" path="res://Scenes/Components/Machines/Scanner/Scanner.tscn" id="13_fopvk"]
+[ext_resource type="PackedScene" uid="uid://dtpiv28rr7d8s" path="res://Scenes/Components/SignalRoutingPanel/MachineConnector/MachineConnector.tscn" id="13_pw6n2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4taje"]
 size = Vector3(0.2, 4, 5)
@@ -77,6 +80,25 @@ script = ExtResource("9_xn2uv")
 SignalId = "Generated Signal"
 ProcessingSteps = [SubResource("Resource_6jbr1"), SubResource("Resource_pw6n2")]
 Signal = "Salut la team"
+metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pw6n2"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gb3pf"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="Resource" id="Resource_gb3pf"]
+script = ExtResource("8_m3477")
+MachineName = "Antenna"
+NextSignalState = true
+metadata/_custom_type_script = "uid://drcxhke2571cx"
+
+[sub_resource type="Resource" id="Resource_3q1oc"]
+script = ExtResource("9_xn2uv")
+SignalId = "Signal Test"
+ProcessingSteps = [SubResource("Resource_gb3pf")]
+Signal = Vector2(3, 6)
 metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
 
 [node name="GameLevel" type="Node" unique_id=1195220977]
@@ -229,19 +251,34 @@ MachineName = "Morse"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)
 OutputSignal = SubResource("Resource_fopvk")
 
-[node name="SignalRoutingPanelPretty" parent="." unique_id=51792808 instance=ExtResource("13_fopvk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8592906, 0.71383786, -7.192605)
+[node name="SignalRoutingPanel" parent="." unique_id=573874878 instance=ExtResource("8_q48nj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2122107, 2.0105042, -6.943772)
 
-[node name="MachineConnector1" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="0" unique_id=104554026]
-TargetMachine = NodePath("../../../MorseMachine")
+[node name="Signal Generator" parent="SignalRoutingPanel" index="0" unique_id=104554026]
+TargetMachine = NodePath("../../SignalGenerator")
 
-[node name="MachineConnector2" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="1" unique_id=517836460]
-TargetMachine = NodePath("../../../MorseMachine2")
+[node name="Basic Processing" parent="SignalRoutingPanel" index="1" unique_id=517836460]
+TargetMachine = NodePath("../../MorseMachine")
 
-[node name="MachineConnector3" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="2" unique_id=107649636]
-TargetMachine = NodePath("../../../SignalGenerator")
+[node name="Basic Processing2" parent="SignalRoutingPanel" unique_id=987706113 instance=ExtResource("13_pw6n2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8201537, 0, 0)
+TargetMachine = NodePath("../../MorseMachine2")
 
-[editable path="SignalRoutingPanelPretty"]
-[editable path="SignalRoutingPanelPretty/SignalRoutingPanel/MachineConnector1"]
-[editable path="SignalRoutingPanelPretty/SignalRoutingPanel/MachineConnector2"]
-[editable path="SignalRoutingPanelPretty/SignalRoutingPanel/MachineConnector3"]
+[node name="Scanner" parent="." unique_id=1867250863 instance=ExtResource("13_fopvk")]
+transform = Transform3D(0.0012827945, -0.044870608, 0.733628, 0, 0.7336291, 0.044870675, -0.7349989, -7.831273e-05, 0.0012804018, 7.219, 3.629, -0.948)
+
+[node name="Completion" parent="Scanner" index="9" unique_id=239539688]
+texture = SubResource("ViewportTexture_pw6n2")
+
+[node name="Completion2" parent="Scanner" index="11" unique_id=683709223]
+texture = SubResource("ViewportTexture_gb3pf")
+
+[node name="AntennaController" parent="." unique_id=1976791375 instance=ExtResource("4_pw6n2")]
+transform = Transform3D(-0.70710677, 0, -0.7071067, 0, 0.99999976, 0, 0.7071067, 0, -0.70710677, 0.96711355, 1.06052, 1.3163121)
+MachineName = "Antenna"
+InputSignal = SubResource("Resource_3q1oc")
+
+[editable path="SignalRoutingPanel"]
+[editable path="SignalRoutingPanel/Signal Generator"]
+[editable path="Scanner"]
+[editable path="Scanner/test"]
