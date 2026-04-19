@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://damw0qiyfs0jb" path="res://Scenes/Components/Machines/Basic/BasicProcessing.tscn" id="5_5o222"]
 [ext_resource type="PackedScene" uid="uid://e2n7stou2kme" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorSwitch/ActuatorSwitch.tscn" id="5_tv554"]
 [ext_resource type="PackedScene" uid="uid://7jljiq720ng2" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanel.tscn" id="7_ksetr"]
-[ext_resource type="PackedScene" uid="uid://c7lbsttkcppg8" path="res://Scenes/Components/ElectricalSystem/Gauge.tscn" id="7_s5b1g"]
+[ext_resource type="PackedScene" uid="uid://c7lbsttkcppg8" path="res://Scenes/Components/ElectricalSystem/SystemElectricDemo.tscn" id="7_s5b1g"]
 [ext_resource type="PackedScene" uid="uid://bx2uthsk7y8ri" path="res://Scenes/Components/Machines/AntennaController/AntennaController.tscn" id="7_v4w8i"]
 [ext_resource type="PackedScene" uid="uid://bj24fw3afpg2n" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorButtonLever/ActuatorButtonLever.tscn" id="8_s5b1g"]
 
