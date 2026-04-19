@@ -116,13 +116,13 @@ ProcessingSteps = [SubResource("Resource_6jbr1"), SubResource("Resource_pw6n2")]
 Signal = "Salut la team"
 metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_u1xlj"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_citn4"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_tbkoj"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ed63r"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_eg8ik"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Shader" id="Shader_fopvk"]
@@ -570,7 +570,7 @@ autoplay = true
 [node name="TV hum" type="AudioStreamPlayer3D" parent="AmbiantSounds" unique_id=524848800]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.219, 3.629, -0.948)
 stream = ExtResource("5_tbkoj")
-volume_db = -34.362
+volume_db = -32.635
 autoplay = true
 
 [node name="Control Room Structure" type="Node3D" parent="." unique_id=1626977533]
@@ -730,13 +730,13 @@ MachineName = "Antenna"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11513424, 0.6261867, -7.0820575)
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel" parent_id_path=PackedInt32Array(51792808, 1002341385) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_u1xlj")
+texture = SubResource("ViewportTexture_tbkoj")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection2/LabelPanel" parent_id_path=PackedInt32Array(51792808, 334811226) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_citn4")
+texture = SubResource("ViewportTexture_ed63r")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection3/LabelPanel" parent_id_path=PackedInt32Array(51792808, 765657745) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_tbkoj")
+texture = SubResource("ViewportTexture_eg8ik")
 
 [node name="MachineConnector1" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="0" unique_id=104554026]
 TargetMachine = NodePath("../../../MorseMachine")
