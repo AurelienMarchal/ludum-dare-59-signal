@@ -1,8 +1,374 @@
 [gd_scene format=3 uid="uid://bx2uthsk7y8ri"]
 
 [ext_resource type="Script" uid="uid://3gi07vehalld" path="res://Scenes/Components/Machines/AntennaController/AntennaController.cs" id="1_7pyva"]
+[ext_resource type="PackedScene" uid="uid://cc7jv731i5b7v" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorLever/ActuatorLever.tscn" id="2_ebmoh"]
+[ext_resource type="PackedScene" uid="uid://bj24fw3afpg2n" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorButtonLever/ActuatorButtonLever.tscn" id="3_p0j8s"]
+[ext_resource type="PackedScene" uid="uid://c55jy8wtl1wfu" path="res://Assets/Models/Objects/Antenna/Antenna.tscn" id="4_w48bk"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7pyva"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Shader" id="Shader_ebmoh"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p0j8s"]
+render_priority = 0
+shader = SubResource("Shader_ebmoh")
+shader_parameter/outline_thickness = -0.094
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_w48bk"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_okv5j"]
+render_priority = 0
+shader = SubResource("Shader_w48bk")
+shader_parameter/outline_thickness = -0.094
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_p0j8s"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="Gradient" id="Gradient_w48bk"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_okv5j"]
+gradient = SubResource("Gradient_w48bk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kxtug"]
+render_priority = 0
+shader = SubResource("Shader_p0j8s")
+shader_parameter/outline_thickness = -0.096
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
+shader_parameter/color_ramp = SubResource("GradientTexture1D_okv5j")
+
+[sub_resource type="Shader" id="Shader_okv5j"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="Gradient" id="Gradient_kxtug"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.1833334, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_icwrv"]
+gradient = SubResource("Gradient_kxtug")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r0rx4"]
+render_priority = 0
+shader = SubResource("Shader_okv5j")
+shader_parameter/outline_thickness = -0.096
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
+shader_parameter/color_ramp = SubResource("GradientTexture1D_icwrv")
 
 [node name="AntennaController" type="Node3D" unique_id=1976791375]
 script = ExtResource("1_7pyva")
+_antennaPath = NodePath("Antenna")
 MachineName = "AntennaController"
 metadata/_custom_type_script = "uid://drtmebqp4tgrk"
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=155853279]
+transparent_bg = true
+size = Vector2i(128, 128)
+
+[node name="LabelX" type="Label" parent="SubViewport" unique_id=630408736]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelY" type="Label" parent="SubViewport" unique_id=30761555]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Screen" type="Sprite3D" parent="." unique_id=250996594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98869014, -4.5625854)
+pixel_size = 0.04
+texture = SubResource("ViewportTexture_7pyva")
+
+[node name="ActuatorLeverX" parent="." unique_id=1194258402 instance=ExtResource("2_ebmoh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
+
+[node name="SM_Lever_1" parent="ActuatorLeverX" index="0" unique_id=17856059]
+material_overlay = SubResource("ShaderMaterial_p0j8s")
+
+[node name="AnimationPlayer" parent="ActuatorLeverX" index="2" unique_id=328032218]
+blend_times = [&"Down", &"Down", 0.1, &"Down", &"Idle", 0.05, &"Down", &"RESET", 0.1, &"Down", &"Up", 0.1, &"Idle", &"Down", 0.05, &"Idle", &"Up", 0.05, &"RESET", &"Down", 0.3, &"RESET", &"RESET", 0.3, &"RESET", &"Up", 0.3, &"Up", &"Down", 0.1, &"Up", &"Idle", 0.05, &"Up", &"RESET", 0.1, &"Up", &"Up", 0.1]
+
+[node name="ActuatorLeverY" parent="." unique_id=415068867 instance=ExtResource("2_ebmoh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
+
+[node name="SM_Lever_1" parent="ActuatorLeverY" index="0" unique_id=17856059]
+material_overlay = SubResource("ShaderMaterial_okv5j")
+
+[node name="AnimationPlayer" parent="ActuatorLeverY" index="2" unique_id=328032218]
+blend_times = [&"Down", &"Down", 0.1, &"Down", &"Idle", 0.05, &"Down", &"RESET", 0.1, &"Down", &"Up", 0.1, &"Idle", &"Down", 0.05, &"Idle", &"Up", 0.05, &"RESET", &"Down", 0.3, &"RESET", &"RESET", 0.3, &"RESET", &"Up", 0.3, &"Up", &"Down", 0.1, &"Up", &"Idle", 0.05, &"Up", &"RESET", 0.1, &"Up", &"Up", 0.1]
+
+[node name="ActuatorButtonLeverReset" parent="." unique_id=1865858162 instance=ExtResource("3_p0j8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0)
+
+[node name="SM_Lever_1" parent="ActuatorButtonLeverReset" index="0" unique_id=1856591208]
+material_overlay = SubResource("ShaderMaterial_kxtug")
+
+[node name="AnimationPlayer" parent="ActuatorButtonLeverReset" index="2" unique_id=252791306]
+blend_times = [&"Down", &"Down", 0.1, &"Down", &"Idle", 0.05, &"Down", &"RESET", 0.1, &"Down", &"Up", 0.1, &"Idle", &"Down", 0.05, &"Idle", &"Up", 0.05, &"RESET", &"Down", 0.3, &"RESET", &"RESET", 0.3, &"RESET", &"Up", 0.3, &"Up", &"Down", 0.1, &"Up", &"Idle", 0.05, &"Up", &"RESET", 0.1, &"Up", &"Up", 0.1]
+
+[node name="ActuatorButtonLeverValidate" parent="." unique_id=887823840 instance=ExtResource("3_p0j8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 0)
+
+[node name="SM_Lever_1" parent="ActuatorButtonLeverValidate" index="0" unique_id=1856591208]
+material_overlay = SubResource("ShaderMaterial_r0rx4")
+
+[node name="AnimationPlayer" parent="ActuatorButtonLeverValidate" index="2" unique_id=252791306]
+blend_times = [&"Down", &"Down", 0.1, &"Down", &"Idle", 0.05, &"Down", &"RESET", 0.1, &"Down", &"Up", 0.1, &"Idle", &"Down", 0.05, &"Idle", &"Up", 0.05, &"RESET", &"Down", 0.3, &"RESET", &"RESET", 0.3, &"RESET", &"Up", 0.3, &"Up", &"Down", 0.1, &"Up", &"Idle", 0.05, &"Up", &"RESET", 0.1, &"Up", &"Up", 0.1]
+
+[node name="Antenna" parent="." unique_id=1294799428 instance=ExtResource("4_w48bk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.701104)
+
+[editable path="ActuatorLeverX"]
+[editable path="ActuatorLeverY"]
+[editable path="ActuatorButtonLeverReset"]
+[editable path="ActuatorButtonLeverValidate"]

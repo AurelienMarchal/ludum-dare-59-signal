@@ -14,7 +14,7 @@ public partial class ActuatorSwitch : Actuator
         _audioOff = GetNode<AudioStreamPlayer3D>("AudioOff");
     }
 
-    protected override void ActuatorBehavior()
+    protected override void ActuatorBehavior(InputEvent @event = null)
     {
         base.ActuatorBehavior();
         _isOn = !_isOn;
