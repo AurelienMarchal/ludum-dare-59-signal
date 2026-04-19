@@ -12,7 +12,8 @@
 [ext_resource type="Script" uid="uid://ch0dfrr2gjlif" path="res://Scenes/Components/GameSignal/GameSignal.cs" id="9_xn2uv"]
 [ext_resource type="PackedScene" uid="uid://caq80iv131s3v" path="res://Scenes/Components/Machines/SignalGenerator/SignalGenerator.tscn" id="12_fopvk"]
 [ext_resource type="PackedScene" uid="uid://ipu2kyfd18rc" path="res://Scenes/Components/Machines/Scanner/Scanner.tscn" id="13_fopvk"]
-[ext_resource type="PackedScene" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanelPretty.tscn" id="15_gb3pf"]
+[ext_resource type="PackedScene" uid="uid://c6nkdsi3qce7s" path="res://Scenes/Components/Machines/Image/ImageDecodingMachine.tscn" id="14_pw6n2"]
+[ext_resource type="PackedScene" uid="uid://w6878jnfh3ir" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanelPretty.tscn" id="15_gb3pf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4taje"]
 size = Vector3(0.2, 4, 5)
@@ -81,19 +82,19 @@ ProcessingSteps = [SubResource("Resource_6jbr1"), SubResource("Resource_pw6n2")]
 Signal = "Salut la team"
 metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_fopvk"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_pw6n2"]
-viewport_path = NodePath("SubViewport2")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_gb3pf"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3q1oc"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("SubViewport2")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_6juvh"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pml4l"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v6702"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Shader" id="Shader_fopvk"]
@@ -652,10 +653,10 @@ OutputSignal = SubResource("Resource_fopvk")
 transform = Transform3D(0.0012827945, -0.044870608, 0.733628, 0, 0.7336291, 0.044870675, -0.7349989, -7.831273e-05, 0.0012804018, 7.219, 3.629, -0.948)
 
 [node name="Completion" parent="Scanner" index="9" unique_id=239539688]
-texture = SubResource("ViewportTexture_fopvk")
+texture = SubResource("ViewportTexture_gb3pf")
 
 [node name="Completion2" parent="Scanner" index="11" unique_id=683709223]
-texture = SubResource("ViewportTexture_pw6n2")
+texture = SubResource("ViewportTexture_3q1oc")
 
 [node name="AntennaController" parent="." unique_id=1976791375 instance=ExtResource("4_pw6n2")]
 transform = Transform3D(-0.70710677, 0, -0.7071067, 0, 0.99999976, 0, 0.7071067, 0, -0.70710677, 0.96711355, 1.06052, 1.3163121)
@@ -665,13 +666,13 @@ MachineName = "Antenna"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11513424, 0.6261867, -7.0820575)
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel" parent_id_path=PackedInt32Array(51792808, 1002341385) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_gb3pf")
+texture = SubResource("ViewportTexture_6juvh")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection2/LabelPanel" parent_id_path=PackedInt32Array(51792808, 334811226) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_3q1oc")
+texture = SubResource("ViewportTexture_pml4l")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection3/LabelPanel" parent_id_path=PackedInt32Array(51792808, 765657745) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_6juvh")
+texture = SubResource("ViewportTexture_v6702")
 
 [node name="MachineConnector1" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="0" unique_id=104554026]
 TargetMachine = NodePath("../../../MorseMachine")
@@ -699,6 +700,9 @@ material_overlay = SubResource("ShaderMaterial_gb3pf")
 
 [node name="SM_Lever_Holder" parent="SignalRoutingPanelPretty/SignalRoutingPanel/MachineConnector3/Input" parent_id_path=PackedInt32Array(51792808, 107649636, 525851882) index="0" unique_id=1706492280]
 material_overlay = SubResource("ShaderMaterial_6juvh")
+
+[node name="ImageDecodingMachine" parent="." unique_id=1108847518 instance=ExtResource("14_pw6n2")]
+transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, -6, 1, -2)
 
 [editable path="Scanner"]
 [editable path="Scanner/test"]
