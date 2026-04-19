@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://w6878jnfh3ir"]
 
 [ext_resource type="Script" uid="uid://db8vlflhlwnl4" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanel.cs" id="1_71dif"]
+[ext_resource type="PackedScene" uid="uid://crsrftlp4ctyc" path="res://Assets/Models/Bits and Bobs/LabelPanel/LabelPanel.tscn" id="2_8dhor"]
 [ext_resource type="Material" uid="uid://c0k3bu5uvg85i" path="res://Assets/Models/Objects/Terminal/material/wall.material" id="2_wamek"]
 [ext_resource type="Script" uid="uid://6wl7j7q4xmr7" path="res://Scenes/Components/SignalRoutingPanel/CablesManager.cs" id="3_8dhor"]
 [ext_resource type="PackedScene" uid="uid://dtpiv28rr7d8s" path="res://Scenes/Components/SignalRoutingPanel/MachineConnector/MachineConnector.tscn" id="3_wamek"]
@@ -176,6 +177,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ij4q5")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_wubmg"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8dhor"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8rdm8"]
+viewport_path = NodePath("SubViewport")
+
 [node name="SignalRoutingPanelPretty" type="Node3D" unique_id=51792808]
 
 [node name="Walls" type="Node3D" parent="." unique_id=1592149208]
@@ -210,6 +220,15 @@ mesh = SubResource("ArrayMesh_wubmg")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2.2, 0.25)
 mesh = SubResource("ArrayMesh_0mtf2")
 
+[node name="LabelPanel" parent="Walls/WallSection" unique_id=1002341385 instance=ExtResource("2_8dhor")]
+transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
+
+[node name="Text" parent="Walls/WallSection/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(1002341385, 1489154748) index="0" unique_id=2115537520]
+text = "Machine 2"
+
+[node name="Screen" parent="Walls/WallSection/LabelPanel" index="2" unique_id=407905172]
+texture = SubResource("ViewportTexture_wubmg")
+
 [node name="WallSection2" type="Node3D" parent="Walls" unique_id=774841510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
@@ -240,6 +259,15 @@ mesh = SubResource("ArrayMesh_wubmg")
 [node name="SM_modularConsoleWall_Top" type="MeshInstance3D" parent="Walls/WallSection2" unique_id=1020915144]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2.2, 0.25)
 mesh = SubResource("ArrayMesh_0mtf2")
+
+[node name="LabelPanel" parent="Walls/WallSection2" unique_id=334811226 instance=ExtResource("2_8dhor")]
+transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
+
+[node name="Text" parent="Walls/WallSection2/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(334811226, 1489154748) index="0" unique_id=2115537520]
+text = "Machine 3"
+
+[node name="Screen" parent="Walls/WallSection2/LabelPanel" index="2" unique_id=407905172]
+texture = SubResource("ViewportTexture_8dhor")
 
 [node name="WallSection3" type="Node3D" parent="Walls" unique_id=612113619]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
@@ -272,6 +300,15 @@ mesh = SubResource("ArrayMesh_wubmg")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2.2, 0.25)
 mesh = SubResource("ArrayMesh_0mtf2")
 
+[node name="LabelPanel" parent="Walls/WallSection3" unique_id=765657745 instance=ExtResource("2_8dhor")]
+transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
+
+[node name="Text" parent="Walls/WallSection3/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(765657745, 1489154748) index="0" unique_id=2115537520]
+text = "Machine 1"
+
+[node name="Screen" parent="Walls/WallSection3/LabelPanel" index="2" unique_id=407905172]
+texture = SubResource("ViewportTexture_8rdm8")
+
 [node name="SignalRoutingPanel" type="Node3D" parent="." unique_id=573874878]
 script = ExtResource("1_71dif")
 
@@ -299,6 +336,9 @@ script = ExtResource("3_8dhor")
 [node name="PlayerConnector" type="Node3D" parent="SignalRoutingPanel" unique_id=1826218908]
 script = ExtResource("4_wubmg")
 
+[editable path="Walls/WallSection/LabelPanel"]
+[editable path="Walls/WallSection2/LabelPanel"]
+[editable path="Walls/WallSection3/LabelPanel"]
 [editable path="SignalRoutingPanel/MachineConnector1"]
 [editable path="SignalRoutingPanel/MachineConnector2"]
 [editable path="SignalRoutingPanel/MachineConnector3"]
