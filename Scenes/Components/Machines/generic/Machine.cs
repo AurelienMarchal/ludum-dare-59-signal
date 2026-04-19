@@ -24,11 +24,16 @@ public partial class Machine : Node3D
 	[Export]
     public GameSignal OutputSignal;
 
-	//Is that machine receiving power
-	public bool Powered;
+    //Is that machine receiving power
+    [Export]
+    public bool Powered = true;
 
-	//Call this when processing 
-	public void OutputNewSignal()
+    [Export]
+    protected NodePath _powerGaugePath { get; set; }
+    private PowerGauge _powerGauge;
+
+    //Call this when processing 
+    public void OutputNewSignal()
 	{
 		SignalAction NextStep = InputSignal.ProcessingSteps[0];
 		if(NextStep != null)
@@ -38,4 +43,37 @@ public partial class Machine : Node3D
 			OutputSignal.Signal = NextStep.NextSignalState;
 		}
 	}
+
+	public override void _Ready()
+	{
+        if (_powerGaugePath != null)
+        {
+            _powerGauge = GetNode<PowerGauge>(_powerGaugePath);
+        }
+    }
+
+    public void SetPower(bool isPowered)
+	{
+		Powered = isPowered;
+		if (Powered)
+			TurnOnBehavior();
+		else
+			TurnOffBehavior();
+    }
+
+    protected virtual void TurnOffBehavior()
+	{
+		if (_powerGauge == null)
+			return;
+
+		_powerGauge.UpdateGauge(false);
+    }
+
+    protected virtual void TurnOnBehavior()
+    {
+        if (_powerGauge == null)
+            return;
+
+        _powerGauge.UpdateGauge(true);
+    }
 }

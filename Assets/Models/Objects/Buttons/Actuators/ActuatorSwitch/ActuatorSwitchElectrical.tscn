@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://1m1yt6nf5ldc"]
+
+[ext_resource type="PackedScene" uid="uid://e2n7stou2kme" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorSwitch/ActuatorSwitch.tscn" id="1_o8yws"]
+[ext_resource type="Script" uid="uid://cexnrrllxx35j" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorSwitch/ActuatorSwitchElectrical.cs" id="2_ansnm"]
+[ext_resource type="AudioStream" uid="uid://dkym033qs3hi6" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorLever/leverDown.wav" id="3_d2ohy"]
+
+[node name="ActuatorSwitchElectrical" unique_id=599775088 instance=ExtResource("1_o8yws")]
+script = ExtResource("2_ansnm")
+_powerAmountRequired = 2
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=873188330]
+blend_times = [&"Idle", &"Idle", 0.05, &"Idle", &"Off", 0.05, &"Idle", &"On", 0.05, &"Idle", &"RESET", 0.05, &"Off", &"Idle", 0.1, &"Off", &"Off", 0.1, &"Off", &"On", 0.1, &"Off", &"RESET", 0.1, &"On", &"Idle", 0.1, &"On", &"Off", 0.1, &"On", &"On", 0.1, &"On", &"RESET", 0.1]
+
+[node name="AudioError" type="AudioStreamPlayer3D" parent="." index="5" unique_id=1523803499]
+stream = ExtResource("3_d2ohy")

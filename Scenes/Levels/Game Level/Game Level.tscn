@@ -2,18 +2,52 @@
 
 [ext_resource type="Script" uid="uid://cpmywfj2uo47s" path="res://Scenes/Global Managers/Level Manager/Level.cs" id="1_4taje"]
 [ext_resource type="Texture2D" uid="uid://q01ymi7wh06i" path="res://Assets/Textures/Concrete/concrete_wall_007_diff_4k.jpg" id="2_ccnwj"]
+[ext_resource type="Texture2D" uid="uid://csrp16ftt64rs" path="res://Assets/Textures/Skybox/NightSky1.png" id="2_pw6n2"]
+[ext_resource type="AudioStream" uid="uid://bd3chinm70iof" path="res://Assets/Sound/eerie forest.mp3" id="3_u1xlj"]
+[ext_resource type="AudioStream" uid="uid://brfd5yjfoj2p4" path="res://Assets/Sound/fan.wav" id="4_citn4"]
 [ext_resource type="Texture2D" uid="uid://ooh5gkdw0jkv" path="res://Assets/Textures/Concrete/concrete_wall_007_nor_dx_4k.jpg" id="4_fotk7"]
 [ext_resource type="Texture2D" uid="uid://d1vcbmt2cp3pj" path="res://Assets/Textures/Concrete/Floor/damaged_concrete_floor_diff_4k.jpg" id="4_hims3"]
 [ext_resource type="PackedScene" uid="uid://bx2uthsk7y8ri" path="res://Scenes/Components/Machines/AntennaController/AntennaController.tscn" id="4_pw6n2"]
 [ext_resource type="Texture2D" uid="uid://ng26uxvjplxn" path="res://Assets/Textures/Concrete/Floor/damaged_concrete_floor_nor_dx_4k.jpg" id="5_kw2y0"]
+[ext_resource type="AudioStream" uid="uid://cirwnlgn6ey7n" path="res://Assets/Sound/tv hum.wav" id="5_tbkoj"]
 [ext_resource type="PackedScene" uid="uid://dc6v214h1g3g0" path="res://Scenes/CharacterController/CharacterController.tscn" id="6_kw2y0"]
 [ext_resource type="PackedScene" uid="uid://dsam83ivnrgmx" path="res://Scenes/Components/Machines/Morse/MorseMachine.tscn" id="7_ju7jk"]
 [ext_resource type="Script" uid="uid://drcxhke2571cx" path="res://Scenes/Components/GameSignal/SignalAction.cs" id="8_m3477"]
 [ext_resource type="Script" uid="uid://ch0dfrr2gjlif" path="res://Scenes/Components/GameSignal/GameSignal.cs" id="9_xn2uv"]
 [ext_resource type="PackedScene" uid="uid://caq80iv131s3v" path="res://Scenes/Components/Machines/SignalGenerator/SignalGenerator.tscn" id="12_fopvk"]
 [ext_resource type="PackedScene" uid="uid://ipu2kyfd18rc" path="res://Scenes/Components/Machines/Scanner/Scanner.tscn" id="13_fopvk"]
-[ext_resource type="PackedScene" uid="uid://c6nkdsi3qce7s" path="res://Scenes/Components/Machines/Image/ImageDecodingMachine.tscn" id="14_pw6n2"]
-[ext_resource type="PackedScene" uid="uid://w6878jnfh3ir" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanelPretty.tscn" id="15_gb3pf"]
+[ext_resource type="PackedScene" uid="uid://bjk66onerp5fv" path="res://Assets/Models/Bits and Bobs/Terrain/terrain.gltf" id="15_3q1oc"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanelPretty.tscn" id="15_gb3pf"]
+[ext_resource type="Texture2D" uid="uid://dop6e2g02x1bv" path="res://Assets/Textures/Tree/Tree.png" id="16_3q1oc"]
+[ext_resource type="Texture2D" uid="uid://becr4suytao3y" path="res://Assets/Textures/dirt/forest_leaves_02_diffuse_1k.jpg" id="16_pml4l"]
+[ext_resource type="Texture2D" uid="uid://d125dvf44n7ug" path="res://Assets/Textures/Tree/Tree2.png" id="17_6juvh"]
+[ext_resource type="Texture2D" uid="uid://dvrs8guod7h83" path="res://Assets/Textures/dirt/forest_leaves_02_nor_dx_1k.png" id="17_rlf6u"]
+[ext_resource type="Texture2D" uid="uid://ubepcdmm0lj1" path="res://Assets/Textures/dirt/forest_leaves_02_rough_1k.jpg" id="18_u1xlj"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fopvk"]
+panorama = ExtResource("2_pw6n2")
+energy_multiplier = 0.09
+
+[sub_resource type="Sky" id="Sky_pw6n2"]
+sky_material = SubResource("PanoramaSkyMaterial_fopvk")
+
+[sub_resource type="Environment" id="Environment_gb3pf"]
+background_mode = 2
+sky = SubResource("Sky_pw6n2")
+tonemap_mode = 2
+tonemap_exposure = 0.7
+tonemap_white = 6.03
+ssao_enabled = true
+glow_enabled = true
+glow_bloom = 0.11
+fog_enabled = true
+fog_light_color = Color(0.019799998, 0.023709998, 0.03, 1)
+fog_light_energy = 0.4
+fog_sun_scatter = 0.15
+fog_density = 0.0115
+fog_aerial_perspective = 0.883
+adjustment_enabled = true
+adjustment_contrast = 1.07
 
 [sub_resource type="BoxMesh" id="BoxMesh_4taje"]
 size = Vector3(0.2, 4, 5)
@@ -82,19 +116,13 @@ ProcessingSteps = [SubResource("Resource_6jbr1"), SubResource("Resource_pw6n2")]
 Signal = "Salut la team"
 metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_gb3pf"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_u1xlj"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_3q1oc"]
-viewport_path = NodePath("SubViewport2")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_6juvh"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_citn4"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_pml4l"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_v6702"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_tbkoj"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Shader" id="Shader_fopvk"]
@@ -499,9 +527,51 @@ shader_parameter/speed = 2.0
 shader_parameter/noise_scale = 4.0
 shader_parameter/alpha = 1.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6juvh"]
+albedo_texture = ExtResource("16_pml4l")
+roughness_texture = ExtResource("18_u1xlj")
+normal_enabled = true
+normal_texture = ExtResource("17_rlf6u")
+uv1_scale = Vector3(0.585, 0.585, 0.585)
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+uv2_world_triplanar = true
+
 [node name="GameLevel" type="Node" unique_id=1195220977]
 script = ExtResource("1_4taje")
 metadata/_custom_type_script = "uid://cpmywfj2uo47s"
+
+[node name="Environment" type="Node" parent="." unique_id=66775913]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=496979770]
+transform = Transform3D(-0.99691737, 0.06794748, -0.039229482, 0, 0.49999997, 0.86602545, 0.07845898, 0.8633558, -0.49845862, 0, 0, 0)
+light_color = Color(0.4743, 0.68696, 0.93, 1)
+light_energy = 0.083
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=968506933]
+environment = SubResource("Environment_gb3pf")
+
+[node name="AmbiantSounds" type="Node" parent="." unique_id=782095210]
+
+[node name="Forest Sound" type="AudioStreamPlayer3D" parent="AmbiantSounds" unique_id=201547784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.756628, 0, 17.043613)
+stream = ExtResource("3_u1xlj")
+unit_size = 4.0
+autoplay = true
+
+[node name="Fan" type="AudioStreamPlayer3D" parent="AmbiantSounds" unique_id=199343753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.541246, -6.73407)
+stream = ExtResource("4_citn4")
+volume_db = -22.259
+autoplay = true
+
+[node name="TV hum" type="AudioStreamPlayer3D" parent="AmbiantSounds" unique_id=524848800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.219, 3.629, -0.948)
+stream = ExtResource("5_tbkoj")
+volume_db = -34.362
+autoplay = true
 
 [node name="Control Room Structure" type="Node3D" parent="." unique_id=1626977533]
 transform = Transform3D(3, 0, 0, 0, 1.5, 0, 0, 0, 3, 0, 0, 0)
@@ -610,7 +680,7 @@ material = SubResource("StandardMaterial3D_fotk7")
 [node name="Floor & Roof" type="Node3D" parent="Control Room Structure" unique_id=1318662932]
 
 [node name="Floor" type="CSGMesh3D" parent="Control Room Structure/Floor & Roof" unique_id=211987042]
-transform = Transform3D(0.7193398, 0, -0.6946584, 0, 1, 0, 0.6946584, 0, 0.7193398, -1.534841, -0.090382636, -1.4115293)
+transform = Transform3D(0.7193398, 0, -0.69465846, 0, 1, 0, 0.69465846, 0, 0.7193398, -1.534841, -0.10842711, -1.4115293)
 use_collision = true
 mesh = SubResource("BoxMesh_xkrdo")
 material = SubResource("StandardMaterial3D_ju7jk")
@@ -652,12 +722,6 @@ OutputSignal = SubResource("Resource_fopvk")
 [node name="Scanner" parent="." unique_id=1867250863 instance=ExtResource("13_fopvk")]
 transform = Transform3D(0.0012827945, -0.044870608, 0.733628, 0, 0.7336291, 0.044870675, -0.7349989, -7.831273e-05, 0.0012804018, 7.219, 3.629, -0.948)
 
-[node name="Completion" parent="Scanner" index="9" unique_id=239539688]
-texture = SubResource("ViewportTexture_gb3pf")
-
-[node name="Completion2" parent="Scanner" index="11" unique_id=683709223]
-texture = SubResource("ViewportTexture_3q1oc")
-
 [node name="AntennaController" parent="." unique_id=1976791375 instance=ExtResource("4_pw6n2")]
 transform = Transform3D(-0.70710677, 0, -0.7071067, 0, 0.99999976, 0, 0.7071067, 0, -0.70710677, 0.96711355, 1.06052, 1.3163121)
 MachineName = "Antenna"
@@ -666,13 +730,13 @@ MachineName = "Antenna"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11513424, 0.6261867, -7.0820575)
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel" parent_id_path=PackedInt32Array(51792808, 1002341385) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_6juvh")
+texture = SubResource("ViewportTexture_u1xlj")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection2/LabelPanel" parent_id_path=PackedInt32Array(51792808, 334811226) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_pml4l")
+texture = SubResource("ViewportTexture_citn4")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection3/LabelPanel" parent_id_path=PackedInt32Array(51792808, 765657745) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_v6702")
+texture = SubResource("ViewportTexture_tbkoj")
 
 [node name="MachineConnector1" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="0" unique_id=104554026]
 TargetMachine = NodePath("../../../MorseMachine")
@@ -701,11 +765,431 @@ material_overlay = SubResource("ShaderMaterial_gb3pf")
 [node name="SM_Lever_Holder" parent="SignalRoutingPanelPretty/SignalRoutingPanel/MachineConnector3/Input" parent_id_path=PackedInt32Array(51792808, 107649636, 525851882) index="0" unique_id=1706492280]
 material_overlay = SubResource("ShaderMaterial_6juvh")
 
-[node name="ImageDecodingMachine" parent="." unique_id=1108847518 instance=ExtResource("14_pw6n2")]
-transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, -6, 1, -2)
+[node name="Exterior" type="Node3D" parent="." unique_id=537628111]
 
-[editable path="Scanner"]
-[editable path="Scanner/test"]
+[node name="terrain" parent="Exterior" unique_id=77538588 instance=ExtResource("15_3q1oc")]
+transform = Transform3D(1.6797404, 0, 0, 0, 1.2369887, 0, 0, 0, 1.6182325, -57.73485, 28.246298, 27.41631)
+
+[node name="Grid" parent="Exterior/terrain" index="0" unique_id=1355081315]
+transform = Transform3D(-24.773746, 0, -0.55657005, 0, 24.78, 0, 0.55657005, 0, -24.773746, 69.814, -24.523, -1.732)
+surface_material_override/0 = SubResource("StandardMaterial3D_6juvh")
+
+[node name="Trees" type="Node3D" parent="Exterior" unique_id=1646730533]
+
+[node name="Pines" type="Node3D" parent="Exterior/Trees" unique_id=1837308911]
+
+[node name="Pine" type="Node3D" parent="Exterior/Trees/Pines" unique_id=811474497]
+transform = Transform3D(-0.2116563, 0, -0.7071067, 0, 0.2993272, 0, 0.21165627, 0, -0.7071068, 27.21828, 12.556828, 74.889084)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine" unique_id=215757534]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine" unique_id=646794438]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Node3D" parent="Exterior/Trees/Pines" unique_id=951664075]
+transform = Transform3D(-0.2116563, 0, -0.7071067, 0, 0.2993272, 0, 0.21165627, 0, -0.7071068, 2.5730934, 12.556828, 76.413216)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine2" unique_id=776745294]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine2" unique_id=1196167846]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine3" type="Node3D" parent="Exterior/Trees/Pines" unique_id=1771422442]
+transform = Transform3D(-0.2116563, 0, -0.7071067, 0, 0.2993272, 0, 0.21165627, 0, -0.7071068, 94.7137, 10.385077, -8.455498)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine3" unique_id=140892155]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine3" unique_id=1882315377]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine4" type="Node3D" parent="Exterior/Trees/Pines" unique_id=259402689]
+transform = Transform3D(-0.2116563, 0, -0.7071067, 0, 0.2993272, 0, 0.21165627, 0, -0.7071068, 70.06851, 6.1495895, -6.931366)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine4" unique_id=1420935111]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine4" unique_id=1780177604]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine5" type="Node3D" parent="Exterior/Trees/Pines" unique_id=1180636869]
+transform = Transform3D(-0.085504256, 0, 0.95833266, 0, 0.29932722, 0, -0.286855, 0, -0.28565496, 71.09787, 3.6848671, -27.433813)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine5" unique_id=2022523932]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine5" unique_id=746509907]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine6" type="Node3D" parent="Exterior/Trees/Pines" unique_id=183747522]
+transform = Transform3D(-0.085504256, 0, 0.95833266, 0, 0.29932722, 0, -0.286855, 0, -0.28565496, 47.29481, 12.556828, -27.096714)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine6" unique_id=317229570]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine6" unique_id=49791812]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine7" type="Node3D" parent="Exterior/Trees/Pines" unique_id=1532711301]
+transform = Transform3D(-0.085504256, 0, 0.95833266, 0, 0.29932722, 0, -0.286855, 0, -0.28565496, 78.12091, 12.556828, 94.32132)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine7" unique_id=863629896]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine7" unique_id=1093030805]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine8" type="Node3D" parent="Exterior/Trees/Pines" unique_id=1254877028]
+transform = Transform3D(-0.085504256, 0, 0.95833266, 0, 0.29932722, 0, -0.286855, 0, -0.28565496, 88.502846, 12.556828, 71.91768)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine8" unique_id=539391835]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine8" unique_id=1287606528]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine9" type="Node3D" parent="Exterior/Trees/Pines" unique_id=600104294]
+transform = Transform3D(-0.12234492, 0, 0.6638186, 0, 0.233, 0, -0.19829452, 0, -0.40956667, 22.247768, 7.051342, -3.3672256)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine9" unique_id=682309477]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine9" unique_id=1697758866]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine10" type="Node3D" parent="Exterior/Trees/Pines" unique_id=1065436012]
+transform = Transform3D(-0.12234492, 0, 0.6638186, 0, 0.233, 0, -0.19829452, 0, -0.40956667, 26.445177, 7.051342, -27.700127)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine10" unique_id=541744403]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine10" unique_id=118526219]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine11" type="Node3D" parent="Exterior/Trees/Pines" unique_id=233587114]
+transform = Transform3D(-0.12234492, 0, 0.6638186, 0, 0.233, 0, -0.19829452, 0, -0.40956667, 87.79113, 7.051342, 81.52104)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine11" unique_id=1024271117]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine11" unique_id=1410388237]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine12" type="Node3D" parent="Exterior/Trees/Pines" unique_id=1182384068]
+transform = Transform3D(-0.12234492, 0, 0.6638186, 0, 0.233, 0, -0.19829452, 0, -0.40956667, 91.98854, 7.051342, 57.18815)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine12" unique_id=832016119]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine12" unique_id=661742497]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine13" type="Node3D" parent="Exterior/Trees/Pines" unique_id=1054290930]
+transform = Transform3D(0.23262016, 0, 0.044519268, 0, 0.233, 0, -0.013298705, 0, 0.7787284, 97.45259, 7.051342, 24.40934)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine13" unique_id=1289100345]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine13" unique_id=1870609280]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine14" type="Node3D" parent="Exterior/Trees/Pines" unique_id=563006457]
+transform = Transform3D(0.23262016, 0, 0.044519268, 0, 0.233, 0, -0.013298705, 0, 0.7787284, 116.86006, 7.051342, 39.67558)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine14" unique_id=1374264957]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine14" unique_id=1080074898]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine15" type="Node3D" parent="Exterior/Trees/Pines" unique_id=1495512180]
+transform = Transform3D(0.23262016, 0, 0.044519268, 0, 0.233, 0, -0.013298705, 0, 0.7787284, -8.393864, 7.051342, 41.68586)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine15" unique_id=1371487742]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine15" unique_id=863139562]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine16" type="Node3D" parent="Exterior/Trees/Pines" unique_id=1620056418]
+transform = Transform3D(0.23262016, 0, 0.044519268, 0, 0.233, 0, -0.013298705, 0, 0.7787284, 11.013603, 7.051342, 56.9521)
+
+[node name="Pine" type="Sprite3D" parent="Exterior/Trees/Pines/Pine16" unique_id=1285207902]
+transform = Transform3D(1, 0, 1.1920929e-07, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Pine2" type="Sprite3D" parent="Exterior/Trees/Pines/Pine16" unique_id=1010859113]
+transform = Transform3D(0, 0, -3.340826, 0, 1.0000002, 0, 0.2993272, 0, -8.940697e-08, 0, 0, 0)
+modulate = Color(0.57, 0.57, 0.57, 1)
+texture = ExtResource("16_3q1oc")
+
+[node name="Other" type="Node3D" parent="Exterior/Trees" unique_id=403790645]
+
+[node name="Tree" type="Node3D" parent="Exterior/Trees/Other" unique_id=1215225018]
+transform = Transform3D(0.185, 0, 0, 0, 0.185, 0, 0, 0, 0.185, 45.396626, 5.347865, 75.1364)
+
+[node name="TreeSprite1" type="Sprite3D" parent="Exterior/Trees/Other/Tree" unique_id=292082733]
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="TreeSprite2" type="Sprite3D" parent="Exterior/Trees/Other/Tree" unique_id=1337528693]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0226288, 0, 3.071796)
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="Tree2" type="Node3D" parent="Exterior/Trees/Other" unique_id=1001744072]
+transform = Transform3D(0.18319958, -0.025747024, 0, 0.025628492, 0.18235616, 0.017731464, -0.002467743, -0.0175589, 0.1841483, 57.739674, 0.41213894, 44.11079)
+
+[node name="TreeSprite1" type="Sprite3D" parent="Exterior/Trees/Other/Tree2" unique_id=661074217]
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="TreeSprite2" type="Sprite3D" parent="Exterior/Trees/Other/Tree2" unique_id=771236779]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0226288, 0, 3.071796)
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="Tree3" type="Node3D" parent="Exterior/Trees/Other" unique_id=1875217686]
+transform = Transform3D(0.185, 0, 0, 0, 0.265, 0, 0, 0, 0.185, 81.536194, 4.9348884, 12.734709)
+
+[node name="TreeSprite1" type="Sprite3D" parent="Exterior/Trees/Other/Tree3" unique_id=1700719073]
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="TreeSprite2" type="Sprite3D" parent="Exterior/Trees/Other/Tree3" unique_id=1924405506]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0226288, 0, 3.071796)
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="Tree4" type="Node3D" parent="Exterior/Trees/Other" unique_id=582089113]
+transform = Transform3D(0.089356355, 0, -0.16198902, 0, 0.185, 0, 0.16198902, 0, 0.089356355, 35.67318, 5.539111, 74.76344)
+
+[node name="TreeSprite1" type="Sprite3D" parent="Exterior/Trees/Other/Tree4" unique_id=1507795605]
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="TreeSprite2" type="Sprite3D" parent="Exterior/Trees/Other/Tree4" unique_id=1383973386]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0226288, 0, 3.071796)
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="Tree5" type="Node3D" parent="Exterior/Trees/Other" unique_id=1711958796]
+transform = Transform3D(0.09064753, 0.0029388592, -0.16124325, 0.02562849, 0.18235615, 0.01773146, 0.15922059, -0.031025592, 0.08894497, 68.80149, 6.7480116, 70.58562)
+
+[node name="TreeSprite1" type="Sprite3D" parent="Exterior/Trees/Other/Tree5" unique_id=1916267981]
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="TreeSprite2" type="Sprite3D" parent="Exterior/Trees/Other/Tree5" unique_id=11421120]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0226288, 0, 3.071796)
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="Tree6" type="Node3D" parent="Exterior/Trees/Other" unique_id=1414594361]
+transform = Transform3D(0.08935635, 0, -0.161989, 0, 0.265, 0, 0.161989, 0, 0.08935635, 107.7688, 7.1910467, 76.26736)
+
+[node name="TreeSprite1" type="Sprite3D" parent="Exterior/Trees/Other/Tree6" unique_id=417506554]
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="TreeSprite2" type="Sprite3D" parent="Exterior/Trees/Other/Tree6" unique_id=1134905176]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0226288, 0, 3.071796)
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="Tree7" type="Node3D" parent="Exterior/Trees/Other" unique_id=66926663]
+transform = Transform3D(-0.15365665, 0, 0.103027344, 0, 0.185, 0, -0.103027344, 0, -0.15365665, 112.01396, 1.8979311, -8.437151)
+
+[node name="TreeSprite1" type="Sprite3D" parent="Exterior/Trees/Other/Tree7" unique_id=2045087845]
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="TreeSprite2" type="Sprite3D" parent="Exterior/Trees/Other/Tree7" unique_id=565741453]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0226288, 0, 3.071796)
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="Tree8" type="Node3D" parent="Exterior/Trees/Other" unique_id=1282526143]
+transform = Transform3D(-0.15353557, 0.011606244, 0.102553025, 0.02562849, 0.18235615, 0.01773146, -0.09997503, 0.028922636, -0.15294923, 84.48381, -3.037795, 10.45809)
+
+[node name="TreeSprite1" type="Sprite3D" parent="Exterior/Trees/Other/Tree8" unique_id=1281893735]
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="TreeSprite2" type="Sprite3D" parent="Exterior/Trees/Other/Tree8" unique_id=1501897408]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0226288, 0, 3.071796)
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="Tree9" type="Node3D" parent="Exterior/Trees/Other" unique_id=938737652]
+transform = Transform3D(-0.15365665, 0, 0.10302734, 0, 0.265, 0, -0.10302734, 0, -0.15365665, 47.2455, 1.4849544, 23.265928)
+
+[node name="TreeSprite1" type="Sprite3D" parent="Exterior/Trees/Other/Tree9" unique_id=861527886]
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="TreeSprite2" type="Sprite3D" parent="Exterior/Trees/Other/Tree9" unique_id=1714306719]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0226288, 0, 3.071796)
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="Tree10" type="Node3D" parent="Exterior/Trees/Other" unique_id=1253272695]
+transform = Transform3D(0.01599513, 0, 0.18430723, 0, 0.185, 0, -0.18430723, 0, 0.01599513, 119.882324, 2.0891771, -2.7123542)
+
+[node name="TreeSprite1" type="Sprite3D" parent="Exterior/Trees/Other/Tree10" unique_id=1796280183]
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="TreeSprite2" type="Sprite3D" parent="Exterior/Trees/Other/Tree10" unique_id=87717372]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0226288, 0, 3.071796)
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="Tree11" type="Node3D" parent="Exterior/Trees/Other" unique_id=585139262]
+transform = Transform3D(0.01338096, -0.019719243, 0.1834587, 0.02562849, 0.18235613, 0.017731462, -0.1827269, 0.024132472, 0.015921496, 90.04008, 3.2980776, -17.691656)
+
+[node name="TreeSprite1" type="Sprite3D" parent="Exterior/Trees/Other/Tree11" unique_id=2067700136]
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="TreeSprite2" type="Sprite3D" parent="Exterior/Trees/Other/Tree11" unique_id=1329856310]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0226288, 0, 3.071796)
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="Tree12" type="Node3D" parent="Exterior/Trees/Other" unique_id=189522991]
+transform = Transform3D(0.01599513, 0, 0.18430722, 0, 0.265, 0, -0.18430722, 0, 0.01599513, 60.838932, 3.7411127, -44.111847)
+
+[node name="TreeSprite1" type="Sprite3D" parent="Exterior/Trees/Other/Tree12" unique_id=65986855]
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="TreeSprite2" type="Sprite3D" parent="Exterior/Trees/Other/Tree12" unique_id=181435721]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0226288, 0, 3.071796)
+modulate = Color(0.67, 0.67, 0.67, 1)
+alpha_cut = 1
+alpha_scissor_threshold = 0.704
+texture = ExtResource("17_6juvh")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Exterior" unique_id=1244545839]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -1, 0, 1, -4.3711385e-08, 71.075226, 0, 44.60241)
+spot_range = 18.687536
+spot_angle = 39.200012
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Exterior" unique_id=315635483]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -1, 0, 1, -4.3711385e-08, 71.075226, 0, 53.21902)
+spot_range = 18.687536
+spot_angle = 39.200012
+
 [editable path="SignalRoutingPanelPretty"]
 [editable path="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel"]
 [editable path="SignalRoutingPanelPretty/Walls/WallSection2/LabelPanel"]
@@ -713,3 +1197,4 @@ transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.2588
 [editable path="SignalRoutingPanelPretty/SignalRoutingPanel/MachineConnector1"]
 [editable path="SignalRoutingPanelPretty/SignalRoutingPanel/MachineConnector2"]
 [editable path="SignalRoutingPanelPretty/SignalRoutingPanel/MachineConnector3"]
+[editable path="Exterior/terrain"]

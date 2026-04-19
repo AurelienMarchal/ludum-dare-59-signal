@@ -24,13 +24,16 @@ public partial class AntennaController : Machine
     protected NodePath _antennaPath { get; set; }
     private Antenna _antenna;
 
+    private AudioStreamPlayer3D MovingAudio;
+
     public override void _Ready()
     {
         base._Ready();
-        Powered = true;
 
         _labelX = GetNode<Label>("SubViewport/LabelX");
         _labelY = GetNode<Label>("SubViewport2/LabelY");
+        
+        MovingAudio = GetNode<AudioStreamPlayer3D>("Antenna/AudioStreamPlayer3D");
 
         _actuatorLeverX = GetNode<ActuatorLever>("ActuatorLeverX");
         _actuatorLeverY = GetNode<ActuatorLever>("ActuatorLeverY");
@@ -70,8 +73,30 @@ public partial class AntennaController : Machine
             return;
     }
 
+    protected override void TurnOffBehavior()
+    {
+        base.TurnOffBehavior();
+        if (_labelX==null)
+            _labelX = GetNode<Label>("SubViewport/LabelX");
+        if (_labelY==null)
+            _labelY = GetNode<Label>("SubViewport2/LabelY");
+
+        _labelX.Text = "";
+        _labelY.Text = "";
+    }
+
+    protected override void TurnOnBehavior()
+    {
+        base.TurnOnBehavior();
+        _labelX.Text = "X : " + (_x.ToString());
+        _labelY.Text = "Y : " + (_y.ToString());
+    }
+
     private void ActuatorXTrigger(bool isUp)
     {
+        if (!Powered)
+            return;
+
         if (isUp)
         {
             _x++;
@@ -87,6 +112,9 @@ public partial class AntennaController : Machine
 
     private void ActuatorYTrigger(bool isUp)
     {
+        if (!Powered)
+            return;
+
         if (isUp)
         {
             _y++;
@@ -102,6 +130,9 @@ public partial class AntennaController : Machine
 
     private void ResetMachine(bool b)
     {
+        if (!Powered)
+            return;
+
         if (!b)
             return;
 
@@ -113,20 +144,32 @@ public partial class AntennaController : Machine
 
     private void ValidateMachine(bool b)
     {
+        if (!Powered)
+            return;
+
         if (!b)
             return;
 
         if (!_antennaPath.IsEmpty)
+        {
             _ = _antenna.UpdatePositionAsync(_x, _y);
+            MovingAudio.Play();
+        }
     }
 
     private void UpdateXLabel()
     {
+        if (!Powered)
+            return;
+
         _labelX.Text = "X : " + (_x.ToString());
     }
 
     private void UpdateYLabel()
     {
+        if (!Powered)
+            return;
+
         _labelY.Text = "Y : " + (_y.ToString());
     }
 }

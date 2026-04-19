@@ -15,6 +15,8 @@ public partial class CharacterController : CharacterBody3D
     private float _moveSpeed = 20F;
     private bool _pauseController = false;
 
+    private Actuator _currentFocusedActuator = null;
+
     public override void _Ready()
     {
         Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -85,5 +87,14 @@ public partial class CharacterController : CharacterBody3D
         Velocity = direction.Normalized() * _moveSpeed;
 
         MoveAndSlide();
+    }
+
+    public void SetCurrentFocusedActuator(Actuator actuator)
+    {
+        if (_currentFocusedActuator != null)
+            if (_currentFocusedActuator != actuator)
+                _currentFocusedActuator.ForceUnfocus();
+
+        _currentFocusedActuator = actuator;
     }
 }

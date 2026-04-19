@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bd3chinm70iof"
+path="res://.godot/imported/eerie forest.mp3-26bf3c234f9154efdf82d43642f39f2d.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/eerie forest.mp3"
+dest_files=["res://.godot/imported/eerie forest.mp3-26bf3c234f9154efdf82d43642f39f2d.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
