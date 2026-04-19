@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bojgaipq6q10o"]
+
+[ext_resource type="PackedScene" uid="uid://tr2pakdue82m" path="res://Assets/Models/Objects/Terminal/textures/Terminal_Modular_Assets.fbx" id="1_x8ent"]
+
+[node name="Terminal_Modular_Assets" unique_id=1460927805 instance=ExtResource("1_x8ent")]

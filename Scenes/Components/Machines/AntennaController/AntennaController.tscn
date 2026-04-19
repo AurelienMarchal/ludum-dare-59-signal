@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bx2uthsk7y8ri"]
+
+[ext_resource type="Script" uid="uid://3gi07vehalld" path="res://Scenes/Components/Machines/AntennaController/AntennaController.cs" id="1_7pyva"]
+
+[node name="AntennaController" type="Node3D" unique_id=1976791375]
+script = ExtResource("1_7pyva")
+MachineName = "AntennaController"
+metadata/_custom_type_script = "uid://drtmebqp4tgrk"
