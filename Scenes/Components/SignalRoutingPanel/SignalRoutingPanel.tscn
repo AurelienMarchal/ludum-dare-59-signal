@@ -5,11 +5,175 @@
 [ext_resource type="Script" uid="uid://6wl7j7q4xmr7" path="res://Scenes/Components/SignalRoutingPanel/CablesManager.cs" id="3_kih8r"]
 [ext_resource type="Script" uid="uid://b814cd2ttsip0" path="res://Scenes/Components/SignalRoutingPanel/PlayerConnector.cs" id="5_2dokw"]
 
+[sub_resource type="Shader" id="Shader_6sxia"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2dokw"]
+render_priority = 0
+shader = SubResource("Shader_6sxia")
+shader_parameter/outline_thickness = -0.085
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6sxia"]
+load_path = "res://.godot/imported/texture_05.png-0425e8d7ee3719a5bd233c2ea0940ae4.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2dokw"]
+albedo_texture = SubResource("CompressedTexture2D_6sxia")
+
+[sub_resource type="SphereMesh" id="SphereMesh_a4x3f"]
+material = SubResource("StandardMaterial3D_2dokw")
+radius = 0.2
+height = 0.4
+
+[sub_resource type="Shader" id="Shader_a4x3f"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4xqxg"]
+render_priority = 0
+shader = SubResource("Shader_a4x3f")
+shader_parameter/outline_thickness = -0.085
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4xqxg"]
+load_path = "res://.godot/imported/texture_01.png-d033c1db81b2f7599aee6651a57ecb68.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_itesf"]
+albedo_texture = SubResource("CompressedTexture2D_4xqxg")
+
+[sub_resource type="SphereMesh" id="SphereMesh_58lhw"]
+material = SubResource("StandardMaterial3D_itesf")
+radius = 0.2
+height = 0.4
+
 [node name="SignalRoutingPanel" type="Node3D" unique_id=573874878]
 script = ExtResource("1_eehgd")
 
 [node name="Signal Generator" parent="." unique_id=104554026 instance=ExtResource("1_vixha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054528713, 0, 0)
+
+[node name="MeshInstance3D" parent="Signal Generator/Output" parent_id_path=PackedInt32Array(104554026, 1411931370) index="0" unique_id=1197388118]
+material_overlay = SubResource("ShaderMaterial_2dokw")
+mesh = SubResource("SphereMesh_a4x3f")
+
+[node name="MeshInstance3D" parent="Signal Generator/Input" parent_id_path=PackedInt32Array(104554026, 525851882) index="0" unique_id=1510417503]
+material_overlay = SubResource("ShaderMaterial_4xqxg")
+mesh = SubResource("SphereMesh_58lhw")
 
 [node name="Basic Processing" parent="." unique_id=517836460 instance=ExtResource("1_vixha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.91007686, 0, 0)
@@ -19,3 +183,5 @@ script = ExtResource("3_kih8r")
 
 [node name="PlayerConnector" type="Node3D" parent="." unique_id=1826218908]
 script = ExtResource("5_2dokw")
+
+[editable path="Signal Generator"]

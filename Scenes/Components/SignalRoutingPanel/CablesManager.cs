@@ -24,7 +24,6 @@ public partial class CablesManager : Node3D
 	//Call this when plugging a new cable so that all the cables are recreated from scratch
 	public void refreshCables()
 	{
-		GD.Print("Refreshing cables");
 		
 		foreach (Node child in GetChildren())
 		{

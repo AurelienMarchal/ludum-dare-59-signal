@@ -14,6 +14,6 @@ public partial class Plug : Actuator
         base.ActuatorBehavior();
 		MachineConnector MC = GetParent<MachineConnector>();
 		MC.InteractWithPlug(IsInput);
-		GD.Print("Interacted with plug!");
+
     }
 }

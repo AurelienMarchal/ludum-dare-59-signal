@@ -18,14 +18,14 @@ public partial class Level : Node
 	//Sets up the scene, animate itself entering, stuff like that
 	public async Task enter()
 	{
-		string levelName = GetClass();
+		string levelName = GetName();
 		GD.Print("entering " +levelName);
 	}
 
 	//Closes everything up, save data, fade out
 	public async Task exit()
 	{
-		string levelName = GetClass();
+		string levelName = GetName();
 		GD.Print("exiting " +levelName);
 	}
 }
