@@ -95,7 +95,7 @@ public partial class MorseProcessing : Machine
 
     public override void _Ready()
     {
-        Powered = false;
+        Powered = true;
         label = GetNode<Label>("SubViewport/Label");
         currentCharIndex = 0;
     }
@@ -239,7 +239,7 @@ public partial class MorseProcessing : Machine
 
     private void OnActuatorSwitchActuatorTriggered(bool isOn)
     {
-        Powered = isOn;
+        
         if (isOn)
         {
             currentCharIndex = 0;
