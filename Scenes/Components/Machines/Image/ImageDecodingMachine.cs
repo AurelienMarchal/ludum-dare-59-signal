@@ -73,6 +73,7 @@ public partial class ImageDecodingMachine : Machine
         if(inputSignalToGDObject is Material material)
         {
             screenMesh.Mesh.SurfaceSetMaterial(2, material);
+            OutputNewSignal();
         }
         else
         {

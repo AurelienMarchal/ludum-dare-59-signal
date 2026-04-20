@@ -158,6 +158,7 @@ public partial class MorseProcessing : Machine
         {
             diode.SetColor(lightColorError);
             label.Text = "No Signal" ;
+            CompletionProcess = 0;
             return;
         }
 

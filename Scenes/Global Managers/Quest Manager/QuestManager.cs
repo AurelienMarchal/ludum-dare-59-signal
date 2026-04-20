@@ -109,11 +109,12 @@ public partial class QuestManager : Node
         GD.Print("Quest Complete");
         CurrentQuest = null;
         //Simulate upload time
-        await ToSignal(GetTree().CreateTimer(rng.RandiRange(1,3)),"timeout");
+        await ToSignal(GetTree().CreateTimer(rng.RandiRange(10,20)),"timeout");
 
         //Signal no longer appears anywhere
         antenna.OverrideSignal = null;
         _stopRadar();
+        await ToSignal(GetTree().CreateTimer(1),"timeout");
 
         //Signal no longer appears anywhere
         if(QuestList.Count > 0)

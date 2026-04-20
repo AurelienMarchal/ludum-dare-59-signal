@@ -18,6 +18,7 @@ public partial class Radio : Machine
     public override void _Ready()
     {
         base._Ready();
+        Powered = false;
         ActivateMusic(Powered);
 
         _actuatorNext = GetNode<Actuator>("ButtonNext");
