@@ -7,7 +7,7 @@ public partial class NoiseReductionMachine : Machine
 
 	MeshInstance3D screenMesh;
 
-	RandomNumberGenerator rng ;
+	RandomNumberGenerator rng;
 
 	float[] cleanSignalFrequecies;
 	float[] cleanSignalAmplitudes;
@@ -16,36 +16,60 @@ public partial class NoiseReductionMachine : Machine
 
 	int cleanSignalWaveCount;
 
+	[Export]
+    Color lightColorError;
+
+    [Export]
+    Color lightColorDone;
+
+	[Export]
+    NodePath diodePath;
+
+    Diode diode;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		screenMesh = GetNode<MeshInstance3D>("ScreenMesh");
 		rng = new RandomNumberGenerator();
-		Powered = true;
-	
 		GenerateCleanSignal();
+		diode = GetNode<Diode>(diodePath);
 	}
+
+	protected override void TurnOnBehavior()
+    {
+        base.TurnOnBehavior();
+        diode.TurnOn();
+		GenerateCleanSignal();
+    }
+
+    protected override void TurnOffBehavior()
+    {
+        base.TurnOffBehavior();
+        diode.TurnOff();
+    }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
-
 		if (!Powered)
         {   
             DisplayNoSignal();
+			diode.SetColor(lightColorError);
             return;
         }
 
         if(InputSignal == null)
         {
             DisplayNoSignal();
+			diode.SetColor(lightColorError);
             return;
         }
 
         if(InputSignal.ProcessingSteps.Length == 0)
         {
             DisplayNoSignal();
+			diode.SetColor(lightColorError);
             return;
         }
 
@@ -54,6 +78,7 @@ public partial class NoiseReductionMachine : Machine
         if(NextStep == null)
         {
             DisplayNoSignal();
+			diode.SetColor(lightColorError);
             return;
         }
 
@@ -61,8 +86,11 @@ public partial class NoiseReductionMachine : Machine
         if(NextStep.MachineName != MachineName)
         {
             DisplayNoisySignal();
+			diode.SetColor(lightColorError);
             return;
         }
+
+		diode.SetColor(lightColorDone);
 
         DisplayNoisySignal();
 		DiplayCleanSignal();

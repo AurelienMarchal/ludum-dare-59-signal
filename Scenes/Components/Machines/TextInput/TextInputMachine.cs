@@ -23,6 +23,20 @@ public partial class TextInputMachine : Machine
 		label.Text = text == "" ? "text .." : text;
 	}
 
+	protected override void TurnOnBehavior()
+    {
+        base.TurnOnBehavior();
+        //diode.TurnOn();
+        label.Text = "text ..";
+		text = "";
+    }
+
+    protected override void TurnOffBehavior()
+    {
+        base.TurnOffBehavior();
+        label.Text = "";
+    }
+
 	private void OnKeyPadKeyPressed(string keyString)
 	{
 
@@ -30,10 +44,23 @@ public partial class TextInputMachine : Machine
 		{
 			text = text.Left(text.Length - 1);
 		}
+		
+		else if(keyString == "#")
+		{
+            OutputSignal = new GameSignal
+            {
+                SignalId = "Text Input",
+                Signal = text,
+                ProcessingSteps = [new SignalAction{
+					MachineName = "Morse"
+				}]
+            };
+
+
+		}
 		else
 		{
 			text += keyString;
 		}
-		
 	}
 }
