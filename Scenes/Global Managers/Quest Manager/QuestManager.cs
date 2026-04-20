@@ -197,8 +197,10 @@ public partial class QuestManager : Node
 
         scanner.InputSignal = scannerInput;
 
+        await ToSignal(GetTree().CreateTimer(3),"timeout");
 
-
+        LevelManager lm = (LevelManager)GetTree().GetFirstNodeInGroup("LevelManager");
+        _ = lm.ChangeLevel("uid://2fuk7upxniku");
     }
 
 }

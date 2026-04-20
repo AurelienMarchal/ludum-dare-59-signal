@@ -15,6 +15,11 @@ run/main_scene="uid://bii32paaqrxlx"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/mode=3
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="LudumDare59-Signal"

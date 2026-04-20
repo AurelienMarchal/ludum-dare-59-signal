@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://2fuk7upxniku"]
+
+[ext_resource type="FontFile" uid="uid://boj6428h7c7j4" path="res://Assets/Fonts/boston.ttf" id="1_ha0ce"]
+[ext_resource type="Script" uid="uid://cpmywfj2uo47s" path="res://Scenes/Global Managers/Level Manager/Level.cs" id="1_ya31n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ya31n"]
+font = ExtResource("1_ha0ce")
+font_size = 57
+
+[node name="End" type="Node" unique_id=1073257344]
+script = ExtResource("1_ya31n")
+metadata/_custom_type_script = "uid://cpmywfj2uo47s"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2008160186]
+offset_right = 1195.0
+offset_bottom = 695.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=444898694]
+offset_left = 495.0
+offset_top = 253.0
+offset_right = 699.0
+offset_bottom = 370.0
+text = "THE END"
+label_settings = SubResource("LabelSettings_ya31n")
+horizontal_alignment = 1
