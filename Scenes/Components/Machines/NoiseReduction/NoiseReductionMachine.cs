@@ -22,10 +22,8 @@ public partial class NoiseReductionMachine : Machine
 		screenMesh = GetNode<MeshInstance3D>("ScreenMesh");
 		rng = new RandomNumberGenerator();
 		Powered = true;
-		
-
+	
 		GenerateCleanSignal();
-
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

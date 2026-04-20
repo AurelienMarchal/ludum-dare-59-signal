@@ -91,34 +91,79 @@ public partial class MorseProcessing : Machine
     private Label label;
 
     [Export]
+    float timeToProcess = 0.2f;
+
+    float timer = 0f;
+
+    [Export]
+    Color lightColorError;
+
+    [Export]
+    Color lightColorProcessing;
+
+    [Export]
+    Color lightColorDone;
+
+    [Export]
     public bool AsciiToMorse;
+
+    [Export]
+    NodePath diodePath;
+
+    Diode diode;
+
+    string decodingResult = "";
 
     public override void _Ready()
     {
         label = GetNode<Label>("SubViewport/Label");
         currentCharIndex = 0;
+        diode = GetNode<Diode>(diodePath);
+        decodingResult = "";
+
+    }
+
+    protected override void TurnOnBehavior()
+    {
+        base.TurnOnBehavior();
+        diode.TurnOn();
+        label.Text = "";
+        currentCharIndex = 0;
+    }
+
+    protected override void TurnOffBehavior()
+    {
+        base.TurnOffBehavior();
+        diode.TurnOff();
+        label.Text = "";
     }
 
 
     public override void _Process(double delta)
 	{	
-		label.Text = "Error" ;
+		label.Text = "No Signal" ;
 
         if (!Powered)
         {   
-            OutputSignal = null;
+            diode.TurnOff();
             return;
+        }
+
+        else
+        {
+            diode.TurnOn();
         }
 
         if(InputSignal == null)
         {
-            OutputSignal = null;
+            diode.SetColor(lightColorError);
+            label.Text = "No Signal" ;
             return;
         }
 
         if(InputSignal.ProcessingSteps.Length == 0)
         {
-            OutputSignal = null;
+            diode.SetColor(lightColorError);
             return;
         }
 
@@ -126,14 +171,16 @@ public partial class MorseProcessing : Machine
 
         if(NextStep == null)
         {
-            OutputSignal = null;
+            diode.SetColor(lightColorError);
+            label.Text = "Error" ;
             return;
         }
 
 
         if(NextStep.MachineName != MachineName)
         {
-            OutputSignal = null;
+            diode.SetColor(lightColorError);
+            label.Text = "Error";
             return;
         }
 
@@ -141,26 +188,39 @@ public partial class MorseProcessing : Machine
 
         if(inputSignalToString == null)
         {
-            OutputSignal = null;
+            diode.SetColor(lightColorError);
+            label.Text = "Error" ;
             return;
         }
 
         if(currentCharIndex == 0)
         {
-            NextStep.NextSignalState = "";
+            decodingResult = "";
+            diode.SetColor(lightColorProcessing);
+        
         }
 
         if(currentCharIndex >= inputSignalToString.Length)
         {
             CompletionProcess = 100;
-            label.Text = ((int)CompletionProcess).ToString() + "%" + "\n" + NextStep.NextSignalState.AsString();
+            label.Text = ((int)CompletionProcess).ToString() + "%" + "\n" + decodingResult;
+            NextStep.NextSignalState = decodingResult;
             OutputNewSignal();
+            diode.SetColor(lightColorDone);
             return;
         }
 
-        label.Text = ((int)CompletionProcess).ToString() + "%" + "\n" + NextStep.NextSignalState.AsString();
-
         
+        label.Text = ((int)CompletionProcess).ToString() + "%" + "\n" + decodingResult;
+
+        if(timer < timeToProcess)
+        {
+            timer += (float)delta;
+            return;
+        }
+
+        timer -= timeToProcess;
+
 
         if (AsciiToMorse)
         {
@@ -178,7 +238,7 @@ public partial class MorseProcessing : Machine
                 string morseString = AsciiToMorseTable.Table[asciiCode - AsciiToMorseTable.AsciiCodeStart];
 
                 
-                NextStep.NextSignalState += morseString + (morseString == "/" ? "" : " ");
+                decodingResult += morseString + (morseString == "/" ? "" : " ");
                 
 
                 
@@ -187,7 +247,7 @@ public partial class MorseProcessing : Machine
             CompletionProcess = (double)currentCharIndex / (double)inputSignalToString.Length * 100;
 
 
-            GD.Print((CompletionProcess).ToString() + "%" + "\n" + NextStep.NextSignalState.AsString());
+            //GD.Print((CompletionProcess).ToString() + "%" + "\n" + decodingResult.AsString());
 
             currentCharIndex ++;
             
@@ -196,12 +256,16 @@ public partial class MorseProcessing : Machine
         {
             string morseString = "";
             var c = inputSignalToString[currentCharIndex];
+            
             while (c != ' ' && c != '/' && currentCharIndex < inputSignalToString.Length)
             {
+                
                 morseString += inputSignalToString[currentCharIndex];
                 currentCharIndex++;
                 c = inputSignalToString[currentCharIndex];
             }
+
+            
 
 
             if(morseString != "")
@@ -210,7 +274,9 @@ public partial class MorseProcessing : Machine
                 {
                     if(morseString == AsciiToMorseTable.Table[i])
                     {
-                        NextStep.NextSignalState = NextStep.NextSignalState.AsString() + (char)(i + AsciiToMorseTable.AsciiCodeStart);
+                        
+                        decodingResult += (char)(i + AsciiToMorseTable.AsciiCodeStart);
+                        
                         break;
                     }
                 }
@@ -219,15 +285,13 @@ public partial class MorseProcessing : Machine
             }
 
             if(c == '/')
-                {
-                    NextStep.NextSignalState = NextStep.NextSignalState.AsString() + " ";
-                }
-
-            
+            {
+                decodingResult += " ";
+            }
 
             CompletionProcess = (double)currentCharIndex / (double)inputSignalToString.Length * 100;
 
-            GD.Print(((int)CompletionProcess).ToString() + "%" + "\n" + NextStep.NextSignalState.AsString());
+            GD.Print(((int)CompletionProcess).ToString() + "%" + "\n" + decodingResult);
 
             currentCharIndex ++;
 
@@ -240,10 +304,7 @@ public partial class MorseProcessing : Machine
 
     private void OnActuatorSwitchActuatorTriggered(bool isOn)
     {
-        
-        if (isOn)
-        {
-            currentCharIndex = 0;
-        }
+        //currentCharIndex = 0;
+        AsciiToMorse = isOn;
     }
 }
