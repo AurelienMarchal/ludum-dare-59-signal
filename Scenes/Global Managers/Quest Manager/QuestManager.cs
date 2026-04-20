@@ -11,6 +11,10 @@ public partial class QuestManager : Node
     Array<Quest> QuestList;
     Quest CurrentQuest;
 
+    [Export]
+    NodePath scannerPath;
+    [Export]
+    NodePath antennaPath;
     Scanner scanner;
     AntennaController antenna;
 
@@ -20,8 +24,9 @@ public partial class QuestManager : Node
     public override void _Ready()
     {
         base._Ready();
-        scanner = GetNode<Scanner>("Scanner");
-        antenna = GetNode<AntennaController>("Antenna");
+        scanner = GetNode<Scanner>(scannerPath);
+        antenna = GetNode<AntennaController>(antennaPath);
+        rng = new RandomNumberGenerator();
         rng.Randomize();
     }   
 
