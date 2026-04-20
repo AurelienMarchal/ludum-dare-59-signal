@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://chocnbctdd2bq"]
+
+[ext_resource type="Script" uid="uid://drcxhke2571cx" path="res://Scenes/Components/GameSignal/SignalAction.cs" id="1_okfru"]
+[ext_resource type="Script" uid="uid://ch0dfrr2gjlif" path="res://Scenes/Components/GameSignal/GameSignal.cs" id="2_gnw1i"]
+[ext_resource type="Texture2D" uid="uid://bljseypgx1ru7" path="res://Content/Asset/Image/Quest5.png" id="2_seovu"]
+[ext_resource type="Script" uid="uid://b5skfigjx3lg7" path="res://Scenes/Global Managers/Quest Manager/Quest/Quest.cs" id="3_seovu"]
+
+[sub_resource type="Resource" id="Resource_6jy0i"]
+script = ExtResource("1_okfru")
+MachineName = "Antenna"
+NextSignalState = false
+metadata/_custom_type_script = "uid://drcxhke2571cx"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_35hra"]
+albedo_texture = ExtResource("2_seovu")
+
+[sub_resource type="Resource" id="Resource_jebap"]
+script = ExtResource("1_okfru")
+MachineName = "NoiseReduction"
+NextSignalState = SubResource("StandardMaterial3D_35hra")
+metadata/_custom_type_script = "uid://drcxhke2571cx"
+
+[sub_resource type="Resource" id="Resource_67sow"]
+script = ExtResource("1_okfru")
+MachineName = "Image"
+NextSignalState = null
+metadata/_custom_type_script = "uid://drcxhke2571cx"
+
+[sub_resource type="Resource" id="Resource_x7f8e"]
+script = ExtResource("2_gnw1i")
+SignalId = "Moon 5"
+ProcessingSteps = [SubResource("Resource_6jy0i"), SubResource("Resource_jebap"), SubResource("Resource_67sow")]
+Signal = Vector2(-7, 6)
+metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
+
+[resource]
+script = ExtResource("3_seovu")
+Request = SubResource("Resource_x7f8e")
+RadarPosition = Vector2(0.5, -0.2)
+metadata/_custom_type_script = "uid://b5skfigjx3lg7"

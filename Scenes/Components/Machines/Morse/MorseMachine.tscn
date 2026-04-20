@@ -187,10 +187,10 @@ outline_color = Color(1, 0.36078432, 0, 1)
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 0.5294118)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_m44n4"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_fqay8"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_t4xvc"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_i8il0"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="LabelSettings" id="LabelSettings_fqay8"]
@@ -267,7 +267,7 @@ text = "Morse > Text"
 label_settings = SubResource("LabelSettings_t4xvc")
 
 [node name="Screen" parent="LabelPanel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_m44n4")
+texture = SubResource("ViewportTexture_fqay8")
 
 [node name="LabelPanel2" parent="." unique_id=996827672 instance=ExtResource("8_1sjfv")]
 transform = Transform3D(-4.371138e-09, -4.3711395e-09, -0.1, -0.1, -4.371139e-09, 4.3711386e-09, -4.3711395e-09, 0.1, -4.371139e-09, 0.3, 0.673, -0.20167118)
@@ -283,7 +283,7 @@ text = "Text > Morse"
 label_settings = SubResource("LabelSettings_t4xvc")
 
 [node name="Screen" parent="LabelPanel2" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_t4xvc")
+texture = SubResource("ViewportTexture_i8il0")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=2135988895]
 transparent_bg = true
