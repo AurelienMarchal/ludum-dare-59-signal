@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://d0qnyannthh3x"]
+
+[ext_resource type="Shader" uid="uid://daxgre4fqaba2" path="res://Scenes/Components/Machines/NoiseReduction/WaveFormShader.gdshader" id="1_n06tc"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_n06tc")
+shader_parameter/wave_count = 3
+shader_parameter/frequencies = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/amplitudes = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/phases = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/thickness = 0.02
+shader_parameter/noise_amount = 0.0
+shader_parameter/glitch_scale = 40.0
+shader_parameter/glitch_speed = 15.0
+shader_parameter/glitch_strength = 1.0

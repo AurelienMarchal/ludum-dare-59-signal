@@ -3,8 +3,34 @@
 [ext_resource type="Script" uid="uid://dekpx18mfioba" path="res://Scenes/Components/Machines/NoiseReduction/NoiseReductionMachine.cs" id="1_dfa35"]
 [ext_resource type="Material" uid="uid://bn5cxqhcteye1" path="res://Assets/Models/Objects/Terminal/material/glass.material" id="2_5gwal"]
 [ext_resource type="Material" uid="uid://bcc25f632s8y2" path="res://Assets/Models/Objects/Terminal/material/terminal.material" id="3_lnc2m"]
-[ext_resource type="Material" uid="uid://wny8a2wrb0jp" path="res://Assets/Models/Objects/Terminal/material/screen.material" id="4_fp1ws"]
+[ext_resource type="Shader" uid="uid://daxgre4fqaba2" path="res://Scenes/Components/Machines/NoiseReduction/WaveFormShader.gdshader" id="4_lnc2m"]
 [ext_resource type="Material" uid="uid://dxa4jba4wc0a1" path="res://Assets/Models/Objects/Terminal/material/buttons.material" id="5_lnc2m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lnc2m"]
+render_priority = 0
+shader = ExtResource("4_lnc2m")
+shader_parameter/wave_count = 3
+shader_parameter/frequencies = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/amplitudes = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/phases = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/thickness = 0.02
+shader_parameter/noise_amount = 0.0
+shader_parameter/glitch_scale = 40.0
+shader_parameter/glitch_speed = 15.0
+shader_parameter/glitch_strength = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fp1ws"]
+render_priority = 0
+shader = ExtResource("4_lnc2m")
+shader_parameter/wave_count = 3
+shader_parameter/frequencies = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/amplitudes = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/phases = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/thickness = 0.02
+shader_parameter/noise_amount = 0.0
+shader_parameter/glitch_scale = 40.0
+shader_parameter/glitch_speed = 15.0
+shader_parameter/glitch_strength = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_78mx2"]
 _surfaces = [{
@@ -86,7 +112,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAABAAIAAwAEAAUA"),
-"material": ExtResource("4_fp1ws"),
+"material": SubResource("ShaderMaterial_lnc2m"),
 "name": "Screen_01",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -98,7 +124,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray("AAABAAIAAwAEAAUA"),
-"material": ExtResource("4_fp1ws"),
+"material": SubResource("ShaderMaterial_fp1ws"),
 "name": "Screen_02",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -146,10 +172,11 @@ shadow_mesh = SubResource("ArrayMesh_sf1hx")
 script = ExtResource("1_dfa35")
 MachineName = "NoiseReduction"
 
-[node name="SM_Screen" type="MeshInstance3D" parent="." unique_id=940451834]
+[node name="ScreenMesh" type="MeshInstance3D" parent="." unique_id=940451834]
 transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_bio82")
 
 [node name="Switch_Knob" type="MeshInstance3D" parent="." unique_id=1505890161]
 transform = Transform3D(5.7320566e-15, -1.3113416e-07, -3, -3, -1.3113416e-07, 0, -1.3113416e-07, 3, -1.3113416e-07, -0.00266096, 0.20718797, 0.16496672)
+visible = false
 mesh = SubResource("ArrayMesh_fp1ws")
