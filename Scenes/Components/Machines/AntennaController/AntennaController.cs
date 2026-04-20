@@ -83,6 +83,8 @@ public partial class AntennaController : Machine
 
         _labelX.Text = "";
         _labelY.Text = "";
+
+        GetTree().SetGroup("AntennaLights", "visible", false);
     }
 
     protected override void TurnOnBehavior()
@@ -90,6 +92,8 @@ public partial class AntennaController : Machine
         base.TurnOnBehavior();
         _labelX.Text = "X : " + (_x.ToString());
         _labelY.Text = "Y : " + (_y.ToString());
+
+        GetTree().SetGroup("AntennaLights", "visible", true);
     }
 
     private void ActuatorXTrigger(bool isUp)
@@ -104,8 +108,6 @@ public partial class AntennaController : Machine
         else
         {
             _x--;
-            if (_x < 0)
-                _x = 0;
         }
         UpdateXLabel();
     }
@@ -122,8 +124,6 @@ public partial class AntennaController : Machine
         else
         {
             _y--;
-            if (_y < 0)
-                _y = 0;
         }
         UpdateYLabel();
     }

@@ -45,6 +45,21 @@ material = SubResource("StandardMaterial3D_5o222")
 [sub_resource type="ViewportTexture" id="ViewportTexture_v4w8i"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_s5b1g"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_krign"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0rh5p"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xva26"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pauvq"]
+viewport_path = NodePath("SubViewport")
+
 [node name="Sandboxe" type="Node" unique_id=1421369382]
 script = ExtResource("1_xfuy1")
 metadata/_custom_type_script = "uid://cpmywfj2uo47s"
@@ -100,8 +115,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6434035, 1.0177523, -1.134
 [node name="AntennaController" parent="Actuators" unique_id=1976791375 instance=ExtResource("7_v4w8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3000824, 0.7445382, 0)
 
-[node name="Screen" parent="Actuators/AntennaController" index="1" unique_id=250996594]
+[node name="Screen" parent="Actuators/AntennaController" index="3" unique_id=250996594]
 texture = SubResource("ViewportTexture_v4w8i")
+
+[node name="ScreenY" parent="Actuators/AntennaController" index="4" unique_id=914579009]
+texture = SubResource("ViewportTexture_s5b1g")
+
+[node name="Screen" parent="Actuators/AntennaController/ResetLabel" parent_id_path=PackedInt32Array(1976791375, 1002341385) index="2" unique_id=407905172]
+texture = SubResource("ViewportTexture_krign")
+
+[node name="Screen" parent="Actuators/AntennaController/X Label" parent_id_path=PackedInt32Array(1976791375, 477482214) index="2" unique_id=407905172]
+texture = SubResource("ViewportTexture_0rh5p")
+
+[node name="Screen" parent="Actuators/AntennaController/Y Label" parent_id_path=PackedInt32Array(1976791375, 1286683989) index="2" unique_id=407905172]
+texture = SubResource("ViewportTexture_xva26")
+
+[node name="Screen" parent="Actuators/AntennaController/AcceptLabel" parent_id_path=PackedInt32Array(1976791375, 924890128) index="2" unique_id=407905172]
+texture = SubResource("ViewportTexture_pauvq")
 
 [node name="ActuatorButtonLever" parent="Actuators" unique_id=1865858162 instance=ExtResource("8_s5b1g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.386436, 0.8189999, 0)
@@ -132,6 +162,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6110396, 0.50000024, -4.725
 [editable path="Actuators/AntennaController/ActuatorLeverY"]
 [editable path="Actuators/AntennaController/ActuatorButtonLeverReset"]
 [editable path="Actuators/AntennaController/ActuatorButtonLeverValidate"]
+[editable path="Actuators/AntennaController/Antenna"]
+[editable path="Actuators/AntennaController/ResetLabel"]
+[editable path="Actuators/AntennaController/X Label"]
+[editable path="Actuators/AntennaController/Y Label"]
+[editable path="Actuators/AntennaController/AcceptLabel"]
 [editable path="Actuators/AntennaController/PowerGauge"]
 [editable path="SignalRoutingPanel"]
 [editable path="SignalRoutingPanel/Signal Generator"]
+[editable path="SignalRoutingPanel/Basic Processing"]
