@@ -40,14 +40,29 @@
 [ext_resource type="Script" uid="uid://cak2ts08w3sdm" path="res://Scenes/Components/Machines/Speaker/Audio.cs" id="35_g3jjy"]
 [ext_resource type="Script" uid="uid://bbdgcs36sdogv" path="res://Scenes/Global Managers/Quest Manager/QuestManager.cs" id="36_s4dlf"]
 [ext_resource type="FontFile" uid="uid://boj6428h7c7j4" path="res://Assets/Fonts/boston.ttf" id="38_2esd7"]
+[ext_resource type="Resource" uid="uid://chocnbctdd2bq" path="res://Content/Quests/Quest5.tres" id="38_ayug7"]
+[ext_resource type="Resource" uid="uid://cfv6qtc1obyjq" path="res://Content/Quests/Quest1.tres" id="38_dk68j"]
+[ext_resource type="Resource" uid="uid://0ihbbc751ebr" path="res://Content/Quests/Quest2.tres" id="39_dk68j"]
 [ext_resource type="Material" uid="uid://c0k3bu5uvg85i" path="res://Assets/Models/Objects/Terminal/material/wall.material" id="40_dk68j"]
+[ext_resource type="Resource" uid="uid://dsyujysh0xuwj" path="res://Content/Quests/Quest3.tres" id="40_x7f8e"]
 [ext_resource type="Material" uid="uid://dxa4jba4wc0a1" path="res://Assets/Models/Objects/Terminal/material/buttons.material" id="41_67sow"]
+[ext_resource type="Resource" uid="uid://bantkfgms8vwx" path="res://Content/Quests/Quest4.tres" id="41_n7vm3"]
 [ext_resource type="Material" uid="uid://bn5cxqhcteye1" path="res://Assets/Models/Objects/Terminal/material/glass.material" id="42_x7f8e"]
+[ext_resource type="Resource" uid="uid://dcl0haawwy47i" path="res://Content/Quests/Quest6.tres" id="43_ftmvw"]
 [ext_resource type="Material" uid="uid://bcc25f632s8y2" path="res://Assets/Models/Objects/Terminal/material/terminal.material" id="43_n7vm3"]
-[ext_resource type="Resource" uid="uid://cfku5gyp0uu50" path="res://Content/Quests/Quest16.tres" id="45_mwgcq"]
+[ext_resource type="Resource" uid="uid://1mt2uaswkiye" path="res://Content/Quests/Quest11.tres" id="45_4j5rq"]
+[ext_resource type="Resource" uid="uid://dfb7w5lq2cnwk" path="res://Content/Quests/Quest7.tres" id="45_rmtv0"]
 [ext_resource type="AudioStream" uid="uid://dysc1cd5hvju5" path="res://Assets/Sound/alarm.wav" id="48_vtd4x"]
 [ext_resource type="PackedScene" uid="uid://ceo3dpqgnu3k0" path="res://Scenes/Components/Machines/Speaker/scene.gltf" id="50_5pbec"]
+[ext_resource type="Resource" uid="uid://bbx12dagomthh" path="res://Content/Quests/Quest8.tres" id="52_cw3y4"]
+[ext_resource type="Resource" uid="uid://cm32hwjxd7m12" path="res://Content/Quests/Quest9.tres" id="53_xw7bd"]
 [ext_resource type="AudioStream" uid="uid://dfyyituucfrwc" path="res://Content/Asset/Audio/victor.wav" id="54_xw7bd"]
+[ext_resource type="Resource" uid="uid://disasacqi6ofg" path="res://Content/Quests/Quest10.tres" id="55_rlraf"]
+[ext_resource type="Resource" uid="uid://dsb8rjx5ea17k" path="res://Content/Quests/Quest12.tres" id="56_rlraf"]
+[ext_resource type="Resource" uid="uid://c03lacscawl0c" path="res://Content/Quests/Quest13.tres" id="57_8ob1m"]
+[ext_resource type="Resource" uid="uid://kalrt3ib7a0e" path="res://Content/Quests/Quest14.tres" id="58_sabp4"]
+[ext_resource type="Resource" uid="uid://cfku5gyp0uu50" path="res://Content/Quests/Quest15.tres" id="59_s04ml"]
+[ext_resource type="Resource" uid="uid://cfku5gyp0uu50" path="res://Content/Quests/Quest16.tres" id="60_8ob1m"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fopvk"]
 panorama = ExtResource("2_pw6n2")
@@ -2240,7 +2255,7 @@ shape = SubResource("BoxShape3D_5pbec")
 
 [node name="QuestManager" type="Node" parent="." unique_id=1559703165 groups=["QuestManager"]]
 script = ExtResource("36_s4dlf")
-QuestList = Array[Object]([ExtResource("45_mwgcq")])
+QuestList = Array[Object]([ExtResource("38_dk68j"), ExtResource("39_dk68j"), ExtResource("40_x7f8e"), ExtResource("41_n7vm3"), ExtResource("38_ayug7"), ExtResource("43_ftmvw"), ExtResource("45_rmtv0"), ExtResource("52_cw3y4"), ExtResource("53_xw7bd"), ExtResource("55_rlraf"), ExtResource("45_4j5rq"), ExtResource("56_rlraf"), ExtResource("57_8ob1m"), ExtResource("58_sabp4"), ExtResource("59_s04ml"), ExtResource("60_8ob1m")])
 scannerPath = NodePath("../Scanner")
 antennaPath = NodePath("../AntennaController")
 
