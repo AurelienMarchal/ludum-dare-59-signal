@@ -449,9 +449,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_78mx2")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dov1f"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_a3t2f"]
 viewport_path = NodePath("SubViewport")
 
@@ -459,6 +456,9 @@ viewport_path = NodePath("SubViewport")
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nj6jt"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ctro7"]
 viewport_path = NodePath("SubViewport")
 
 [node name="AntennaController" type="Node3D" unique_id=1976791375]
@@ -564,6 +564,8 @@ blend_times = [&"Down", &"Down", 0.1, &"Down", &"Idle", 0.05, &"Down", &"RESET",
 transform = Transform3D(3.22, 0, 0, 0, 3.22, 0, 0, 0, 3.22, -17.434021, -4.4390182, -85.480034)
 MachineName = "Antenna"
 
+[node name="OmniLight3D" parent="Antenna/Sketchfab_model/root/GLTF_SceneRootNode/american_with_barrier_8/almaVertex_7/azimuth_6/elevation_axis_4/VertexRSIH_MeshPart2_3/Object_36/MeshInstance3D" parent_id_path=PackedInt32Array(1294799428, 308125009) index="0" unique_id=374948787 groups=["AntennaLights"]]
+
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Antenna" unique_id=1110149259]
 transform = Transform3D(0.310559, 0, 0, 0, 0.310559, 0, 0, 0, 0.310559, 0, 1.3440397, 0)
 stream = ExtResource("7_vaee1")
@@ -586,7 +588,7 @@ text = "RESET"
 
 [node name="Screen" parent="ResetLabel" index="2" unique_id=407905172]
 pixel_size = 0.007
-texture = SubResource("ViewportTexture_dov1f")
+texture = SubResource("ViewportTexture_a3t2f")
 
 [node name="X Label" parent="." unique_id=477482214 instance=ExtResource("10_c8end")]
 transform = Transform3D(-5.9010374e-09, 0, -0.135, 0, 0.135, 0, 0.135, 0, -5.9010374e-09, -0.24322608, 0.6366986, 0.16346443)
@@ -596,7 +598,7 @@ text = "X"
 
 [node name="Screen" parent="X Label" index="2" unique_id=407905172]
 pixel_size = 0.007
-texture = SubResource("ViewportTexture_a3t2f")
+texture = SubResource("ViewportTexture_i8525")
 
 [node name="Y Label" parent="." unique_id=1286683989 instance=ExtResource("10_c8end")]
 transform = Transform3D(-5.9010374e-09, 0, -0.135, 0, 0.135, 0, 0.135, 0, -5.9010374e-09, 0.22527269, 0.6366986, 0.16346443)
@@ -606,7 +608,7 @@ text = "Y"
 
 [node name="Screen" parent="Y Label" index="2" unique_id=407905172]
 pixel_size = 0.007
-texture = SubResource("ViewportTexture_i8525")
+texture = SubResource("ViewportTexture_nj6jt")
 
 [node name="AcceptLabel" parent="." unique_id=924890128 instance=ExtResource("10_c8end")]
 transform = Transform3D(-5.9010374e-09, 0, -0.135, 0, 0.135, 0, 0.135, 0, -5.9010374e-09, 0.7232527, 0.6366986, 0.16346443)
@@ -616,7 +618,7 @@ text = "Set"
 
 [node name="Screen" parent="AcceptLabel" index="2" unique_id=407905172]
 pixel_size = 0.007
-texture = SubResource("ViewportTexture_nj6jt")
+texture = SubResource("ViewportTexture_ctro7")
 
 [node name="PowerGauge" parent="." unique_id=69414646 instance=ExtResource("5_kxtug")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.40463233, 0.27760297)
@@ -625,10 +627,23 @@ script = ExtResource("6_icwrv")
 [node name="Indicator" parent="PowerGauge/Mesh" parent_id_path=PackedInt32Array(69414646, 1129075579) index="0" unique_id=116429497]
 transform = Transform3D(-0.73845524, 0, -0.67430234, 0, 1, 0, 0.67430234, 0, -0.73845524, 0.011962287, 0.0019699857, -5.228882e-10)
 
+[node name="Lights" type="Node3D" parent="." unique_id=49870139]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lights" unique_id=375018022 groups=["AntennaLights"]]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -1, 0, 1, -4.3711385e-08, -13.327076, 0, -89.65714)
+spot_range = 18.687536
+spot_angle = 39.200012
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Lights" unique_id=277754617 groups=["AntennaLights"]]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -1, 0, 1, -4.3711385e-08, -11.493092, 0.81411505, -80.86046)
+spot_range = 18.687536
+spot_angle = 39.200012
+
 [editable path="ActuatorLeverX"]
 [editable path="ActuatorLeverY"]
 [editable path="ActuatorButtonLeverReset"]
 [editable path="ActuatorButtonLeverValidate"]
+[editable path="Antenna"]
 [editable path="ResetLabel"]
 [editable path="X Label"]
 [editable path="Y Label"]

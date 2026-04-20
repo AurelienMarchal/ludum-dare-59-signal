@@ -1180,16 +1180,6 @@ alpha_cut = 1
 alpha_scissor_threshold = 0.704
 texture = ExtResource("17_6juvh")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Exterior" unique_id=1244545839]
-transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -1, 0, 1, -4.3711385e-08, 71.075226, 0, 44.60241)
-spot_range = 18.687536
-spot_angle = 39.200012
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="Exterior" unique_id=315635483]
-transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -1, 0, 1, -4.3711385e-08, 71.075226, 0, 53.21902)
-spot_range = 18.687536
-spot_angle = 39.200012
-
 [editable path="SignalRoutingPanelPretty"]
 [editable path="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel"]
 [editable path="SignalRoutingPanelPretty/Walls/WallSection2/LabelPanel"]
