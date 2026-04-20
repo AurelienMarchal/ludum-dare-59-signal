@@ -32,6 +32,9 @@
 [ext_resource type="PackedScene" uid="uid://1m1yt6nf5ldc" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorSwitch/ActuatorSwitchElectrical.tscn" id="30_n2xh5"]
 [ext_resource type="PackedScene" uid="uid://d88iolutijoi" path="res://Assets/Models/Bits and Bobs/Wall Lamps/industrial_wall_lamp_1k.gltf" id="31_c1m3j"]
 [ext_resource type="PackedScene" uid="uid://dq7t66pfdc2ne" path="res://Scenes/Components/Machines/Radio/Radio.tscn" id="32_3n33g"]
+[ext_resource type="PackedScene" uid="uid://c6nkdsi3qce7s" path="res://Scenes/Components/Machines/Image/ImageDecodingMachine.tscn" id="33_7tuyw"]
+[ext_resource type="PackedScene" uid="uid://0tfyp2550ah0" path="res://Scenes/Components/Machines/NoiseReduction/NoiseReductionMachine.tscn" id="34_s4dlf"]
+[ext_resource type="PackedScene" uid="uid://da3hy0wksug3a" path="res://Scenes/Components/Machines/TextInput/TextInputMachine.tscn" id="35_dscvi"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fopvk"]
 panorama = ExtResource("2_pw6n2")
@@ -757,11 +760,8 @@ material = SubResource("StandardMaterial3D_6jy0i")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1504276, 0)
 
 [node name="MorseMachine" parent="." unique_id=529271477 instance=ExtResource("7_ju7jk")]
-transform = Transform3D(-0.101195194, 0, 0.9948666, 0, 1, 0, -0.9948666, 0, -0.101195194, -6.8226557, 0.6261867, 1.2290893)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, 0.6, 1)
 AsciiToMorse = true
-
-[node name="MorseMachine2" parent="." unique_id=935175522 instance=ExtResource("7_ju7jk")]
-transform = Transform3D(0.2897167, 0, 0.9571125, 0, 1, 0, -0.9571125, 0, 0.2897167, -5.9866195, 0.6261867, -3.4526968)
 
 [node name="SignalGenerator" parent="." unique_id=1309082409 instance=ExtResource("12_fopvk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)
@@ -817,7 +817,7 @@ material_overlay = SubResource("ShaderMaterial_pw6n2")
 material_overlay = SubResource("ShaderMaterial_3q1oc")
 
 [node name="Keypad" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="2" unique_id=517836460]
-TargetMachine = NodePath("../../../MorseMachine2")
+TargetMachine = NodePath("")
 
 [node name="SM_Lever_Holder" parent="SignalRoutingPanelPretty/SignalRoutingPanel/Keypad/Output" parent_id_path=PackedInt32Array(51792808, 517836460, 1411931370) index="0" unique_id=269371257]
 material_overlay = SubResource("ShaderMaterial_pml4l")
@@ -830,7 +830,7 @@ material_overlay = SubResource("ShaderMaterial_rlf6u")
 [node name="terrain" parent="Exterior" unique_id=77538588 instance=ExtResource("15_3q1oc")]
 transform = Transform3D(1.6797404, 0, 0, 0, 1.2369887, 0, 0, 0, 1.6182325, -57.73485, 28.246298, 27.41631)
 
-[node name="Grid" parent="Exterior/terrain" index="0" unique_id=1355081315]
+[node name="Grid" parent="Exterior/terrain" index="0" unique_id=1980512572]
 transform = Transform3D(-24.773746, 0, -0.55657005, 0, 24.78, 0, 0.55657005, 0, -24.773746, 69.814, -24.523, -1.732)
 surface_material_override/0 = SubResource("StandardMaterial3D_6juvh")
 
@@ -1245,7 +1245,7 @@ texture = ExtResource("17_6juvh")
 [node name="security_camera_01_1k" parent="Decor" unique_id=294197419 instance=ExtResource("24_ed63r")]
 transform = Transform3D(-0.9999999, 0, -8.7422755e-08, 1.560586e-08, 0.98393804, -0.17851026, 8.6018574e-08, -0.17851028, -0.9839379, -0.44776458, 5.352971, 6.9168005)
 
-[node name="security_camera_01" parent="Decor/security_camera_01_1k" index="0" unique_id=368457456]
+[node name="security_camera_01" parent="Decor/security_camera_01_1k" index="0" unique_id=755406358]
 transform = Transform3D(1.0000014, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000015, 0, 0, 0)
 
 [node name="industrial_wall_lamp_1k" parent="Decor" unique_id=986140591 instance=ExtResource("31_c1m3j")]
@@ -1278,6 +1278,15 @@ _machine = NodePath("../LightHandler")
 
 [node name="Radio" parent="Decor" unique_id=713797886 instance=ExtResource("32_3n33g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5070858, 1.122895, -2.2398412)
+
+[node name="ImageDecodingMachine" parent="." unique_id=1108847518 instance=ExtResource("33_7tuyw")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, 0.6, 0)
+
+[node name="NoiseReductionMachine" parent="." unique_id=432472323 instance=ExtResource("34_s4dlf")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, 0.6, -1)
+
+[node name="TextInputMachine" parent="." unique_id=237586227 instance=ExtResource("35_dscvi")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, 0.6, -2)
 
 [editable path="SignalRoutingPanelPretty"]
 [editable path="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel"]
