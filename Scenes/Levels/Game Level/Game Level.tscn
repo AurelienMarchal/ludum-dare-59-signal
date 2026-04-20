@@ -48,7 +48,9 @@
 [ext_resource type="Material" uid="uid://dxa4jba4wc0a1" path="res://Assets/Models/Objects/Terminal/material/buttons.material" id="41_67sow"]
 [ext_resource type="Resource" uid="uid://bantkfgms8vwx" path="res://Content/Quests/Quest4.tres" id="41_n7vm3"]
 [ext_resource type="Material" uid="uid://bn5cxqhcteye1" path="res://Assets/Models/Objects/Terminal/material/glass.material" id="42_x7f8e"]
+[ext_resource type="Resource" uid="uid://dcl0haawwy47i" path="res://Content/Quests/Quest6.tres" id="43_ftmvw"]
 [ext_resource type="Material" uid="uid://bcc25f632s8y2" path="res://Assets/Models/Objects/Terminal/material/terminal.material" id="43_n7vm3"]
+[ext_resource type="Resource" uid="uid://dfb7w5lq2cnwk" path="res://Content/Quests/Quest7.tres" id="45_rmtv0"]
 [ext_resource type="PackedScene" uid="uid://ceo3dpqgnu3k0" path="res://Scenes/Components/Machines/Speaker/scene.gltf" id="50_5pbec"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fopvk"]
@@ -2124,6 +2126,8 @@ metadata/_custom_type_script = "uid://drtmebqp4tgrk"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Machines/Audio" unique_id=336789144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.102689, 4.9632773, -10.258148)
+volume_db = -6.625
+unit_size = 4.85
 
 [node name="MorseMachine" parent="Machines" unique_id=529271477 instance=ExtResource("7_ju7jk")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 1)
@@ -2234,7 +2238,7 @@ shape = SubResource("BoxShape3D_5pbec")
 
 [node name="QuestManager" type="Node" parent="." unique_id=1559703165 groups=["QuestManager"]]
 script = ExtResource("36_s4dlf")
-QuestList = Array[Object]([ExtResource("38_dk68j"), ExtResource("39_dk68j"), ExtResource("40_x7f8e"), ExtResource("41_n7vm3"), ExtResource("38_ayug7")])
+QuestList = Array[Object]([ExtResource("38_dk68j"), ExtResource("39_dk68j"), ExtResource("40_x7f8e"), ExtResource("41_n7vm3"), ExtResource("38_ayug7"), ExtResource("43_ftmvw"), ExtResource("45_rmtv0")])
 scannerPath = NodePath("../Scanner")
 antennaPath = NodePath("../AntennaController")
 
