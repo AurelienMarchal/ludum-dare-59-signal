@@ -45,7 +45,7 @@ public partial class QuestManager : Node
             {
                 //
                 if (antenna.InputSignal != null)
-                {
+                {   
                     //If the response is the one we expected
                     if(antenna.InputSignal.Signal.ToString() == CurrentQuest.ExpectedResponse.Signal.ToString())
                     {
@@ -55,6 +55,17 @@ public partial class QuestManager : Node
                             _ = QuestCompleteAsync();
                         }
                         
+                    }
+                    else
+                    {
+                        if(CurrentQuest.Request.SignalId == "Mid4" || CurrentQuest.Request.SignalId == "Alien")
+                        {
+                            //If the antenna has power
+                            if (antenna.Powered)
+                            {
+                                _ = QuestCompleteAsync();
+                            }   
+                        }
                     }
                     
                 }
@@ -137,7 +148,24 @@ public partial class QuestManager : Node
     //Inshallah y'a le temps
     public void AlienStuff()
     {
-        GD.Print("BOUH LES ALIENS ILS FONT PEUR§!!!!");
+        //Setup the radar
+
+        SignalAction action = new SignalAction
+        {
+            NextSignalState = (Variant)new Vector2(-0,-0)
+        };
+
+
+        GameSignal scannerInput = new GameSignal
+        {
+            Signal = (Variant)new Vector2(0.5F,0.5F),
+            ProcessingSteps = [action]
+        };
+
+        
+
+        scanner.InputSignal = scannerInput;
+        GetTree().CreateTween().TweenProperty(scanner.InputSignal.Signal.AsGodotObject(), "position",new Vector2(0,0),2);
     }
 
 }

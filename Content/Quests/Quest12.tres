@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://dsb8rjx5ea17k"]
+
+[ext_resource type="Script" uid="uid://ch0dfrr2gjlif" path="res://Scenes/Components/GameSignal/GameSignal.cs" id="1_rbtwo"]
+[ext_resource type="Script" uid="uid://drcxhke2571cx" path="res://Scenes/Components/GameSignal/SignalAction.cs" id="2_s3bfc"]
+[ext_resource type="Script" uid="uid://b5skfigjx3lg7" path="res://Scenes/Global Managers/Quest Manager/Quest/Quest.cs" id="3_l666j"]
+
+[sub_resource type="Resource" id="Resource_8pct6"]
+script = ExtResource("1_rbtwo")
+Signal = null
+metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
+
+[sub_resource type="Resource" id="Resource_6jy0i"]
+script = ExtResource("2_s3bfc")
+MachineName = "Antenna"
+NextSignalState = false
+metadata/_custom_type_script = "uid://drcxhke2571cx"
+
+[sub_resource type="Resource" id="Resource_jebap"]
+script = ExtResource("2_s3bfc")
+MachineName = "NoiseReduction"
+NextSignalState = "- .... .- -. -.- / --. --- -.. --..-- / .-- . / .... .- ...- . / -... . . -. / -.-. ..- - / --- ..-. ..-. / - .... . .-. . ... / ... -....- -- . - .... .. -....- -....- -....- / .... . ..--.. -....- / .... -....- ..--.. .--. /"
+metadata/_custom_type_script = "uid://drcxhke2571cx"
+
+[sub_resource type="Resource" id="Resource_67sow"]
+script = ExtResource("2_s3bfc")
+MachineName = "Morse"
+NextSignalState = null
+metadata/_custom_type_script = "uid://drcxhke2571cx"
+
+[sub_resource type="Resource" id="Resource_x7f8e"]
+script = ExtResource("1_rbtwo")
+SignalId = "Mid5"
+ProcessingSteps = [SubResource("Resource_6jy0i"), SubResource("Resource_jebap"), SubResource("Resource_67sow")]
+Signal = Vector2(9, 2)
+metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
+
+[resource]
+script = ExtResource("3_l666j")
+Request = SubResource("Resource_x7f8e")
+ExpectedResponse = SubResource("Resource_8pct6")
+RadarPosition = Vector2(0.2, 0.5)
+metadata/_custom_type_script = "uid://b5skfigjx3lg7"

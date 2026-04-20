@@ -458,16 +458,16 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_78mx2")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_i8525"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_4j1yc"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_nj6jt"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ncut6"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ctro7"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_v65yn"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_xk684"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_mcu4p"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xk684"]
@@ -563,7 +563,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_kgcyx")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_y18ai"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_mqqwe"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="LabelSettings" id="LabelSettings_ncut6"]
@@ -575,7 +575,7 @@ outline_color = Color(1, 0.36078432, 0, 1)
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 0.5294118)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4j1yc"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_7bkha"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4j1yc"]
@@ -779,7 +779,7 @@ text = "RESET"
 
 [node name="Screen" parent="ResetLabel" index="2" unique_id=407905172]
 pixel_size = 0.007
-texture = SubResource("ViewportTexture_i8525")
+texture = SubResource("ViewportTexture_4j1yc")
 
 [node name="X Label" parent="." unique_id=477482214 instance=ExtResource("10_c8end")]
 transform = Transform3D(-5.9010374e-09, 0, -0.135, 0, 0.135, 0, 0.135, 0, -5.9010374e-09, -0.24322608, 0.6366986, 0.16346443)
@@ -789,7 +789,7 @@ text = "X"
 
 [node name="Screen" parent="X Label" index="2" unique_id=407905172]
 pixel_size = 0.007
-texture = SubResource("ViewportTexture_nj6jt")
+texture = SubResource("ViewportTexture_ncut6")
 
 [node name="Y Label" parent="." unique_id=1286683989 instance=ExtResource("10_c8end")]
 transform = Transform3D(-5.9010374e-09, 0, -0.135, 0, 0.135, 0, 0.135, 0, -5.9010374e-09, 0.22527269, 0.6366986, 0.16346443)
@@ -799,7 +799,7 @@ text = "Y"
 
 [node name="Screen" parent="Y Label" index="2" unique_id=407905172]
 pixel_size = 0.007
-texture = SubResource("ViewportTexture_ctro7")
+texture = SubResource("ViewportTexture_v65yn")
 
 [node name="AcceptLabel" parent="." unique_id=924890128 instance=ExtResource("10_c8end")]
 transform = Transform3D(-5.9010374e-09, 0, -0.135, 0, 0.135, 0, 0.135, 0, -5.9010374e-09, 0.7232527, 0.6366986, 0.16346443)
@@ -809,7 +809,7 @@ text = "Set"
 
 [node name="Screen" parent="AcceptLabel" index="2" unique_id=407905172]
 pixel_size = 0.007
-texture = SubResource("ViewportTexture_xk684")
+texture = SubResource("ViewportTexture_mcu4p")
 
 [node name="PowerGauge" parent="." unique_id=69414646 instance=ExtResource("5_kxtug")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.40463233, 0.27760297)
@@ -851,7 +851,7 @@ text = "Receiving
 Signal"
 
 [node name="Screen" parent="LabelPanel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_y18ai")
+texture = SubResource("ViewportTexture_mqqwe")
 
 [node name="LabelPanel2" parent="." unique_id=525536907 instance=ExtResource("10_c8end")]
 transform = Transform3D(-9.1503816e-10, -4.497556e-09, -0.105, -0.102892086, 0.020933634, 0, 0.020933634, 0.102892086, -4.5896957e-09, 0.8163186, 0.3926168, 0.28630546)
@@ -863,7 +863,7 @@ label_settings = SubResource("LabelSettings_ncut6")
 
 [node name="Screen" parent="LabelPanel2" index="2" unique_id=407905172]
 pixel_size = 0.007
-texture = SubResource("ViewportTexture_4j1yc")
+texture = SubResource("ViewportTexture_7bkha")
 
 [node name="ErrorDiode" parent="." unique_id=1356713658 instance=ExtResource("14_i8525")]
 transform = Transform3D(-2.4696932e-08, 0.565, 2.4696932e-08, -0.565, -2.469693e-08, -2.4696936e-08, -2.4696934e-08, -2.4696934e-08, 0.565, 0.8311548, 0.5481877, 0.27678204)

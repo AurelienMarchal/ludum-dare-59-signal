@@ -50,11 +50,14 @@
 [ext_resource type="Material" uid="uid://bn5cxqhcteye1" path="res://Assets/Models/Objects/Terminal/material/glass.material" id="42_x7f8e"]
 [ext_resource type="Resource" uid="uid://dcl0haawwy47i" path="res://Content/Quests/Quest6.tres" id="43_ftmvw"]
 [ext_resource type="Material" uid="uid://bcc25f632s8y2" path="res://Assets/Models/Objects/Terminal/material/terminal.material" id="43_n7vm3"]
+[ext_resource type="Resource" uid="uid://1mt2uaswkiye" path="res://Content/Quests/Quest11.tres" id="45_4j5rq"]
 [ext_resource type="Resource" uid="uid://dfb7w5lq2cnwk" path="res://Content/Quests/Quest7.tres" id="45_rmtv0"]
 [ext_resource type="PackedScene" uid="uid://ceo3dpqgnu3k0" path="res://Scenes/Components/Machines/Speaker/scene.gltf" id="50_5pbec"]
 [ext_resource type="Resource" uid="uid://bbx12dagomthh" path="res://Content/Quests/Quest8.tres" id="52_cw3y4"]
 [ext_resource type="Resource" uid="uid://cm32hwjxd7m12" path="res://Content/Quests/Quest9.tres" id="53_xw7bd"]
 [ext_resource type="AudioStream" uid="uid://dfyyituucfrwc" path="res://Content/Asset/Audio/victor.wav" id="54_xw7bd"]
+[ext_resource type="Resource" uid="uid://disasacqi6ofg" path="res://Content/Quests/Quest10.tres" id="55_rlraf"]
+[ext_resource type="Resource" uid="uid://dsb8rjx5ea17k" path="res://Content/Quests/Quest12.tres" id="56_rlraf"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fopvk"]
 panorama = ExtResource("2_pw6n2")
@@ -148,15 +151,6 @@ ProcessingSteps = [SubResource("Resource_6jbr1"), SubResource("Resource_pw6n2")]
 Signal = "Salut la team"
 metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_rmtv0"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_0yeyr"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_cw3y4"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_xw7bd"]
 viewport_path = NodePath("SubViewport")
 
@@ -209,6 +203,15 @@ viewport_path = NodePath("SubViewport")
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_76d20"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dupgk"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ewgfm"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0iccc"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Shader" id="Shader_pw6n2"]
@@ -1133,7 +1136,7 @@ shadow_mesh = SubResource("ArrayMesh_0fnmv")
 [sub_resource type="BoxShape3D" id="BoxShape3D_5pbec"]
 size = Vector3(0.75494385, 2.8582764, 7.616623)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dupgk"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8cm6e"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ewgfm"]
@@ -1370,7 +1373,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7855067, 0.6261867, -17.476
 text = "Morse"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel" parent_id_path=PackedInt32Array(51792808, 1002341385) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_rmtv0")
+texture = SubResource("ViewportTexture_xw7bd")
 
 [node name="InputLabel" parent="SignalRoutingPanelPretty/Walls/WallSection" parent_id_path=PackedInt32Array(51792808, 2028283842) index="8" unique_id=1002341385 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0.21663427, 1.5987931, 0.03280449)
@@ -1382,7 +1385,7 @@ visible = false
 text = "Input"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection/InputLabel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_0yeyr")
+texture = SubResource("ViewportTexture_607up")
 
 [node name="OutputLabel" parent="SignalRoutingPanelPretty/Walls/WallSection" parent_id_path=PackedInt32Array(51792808, 2028283842) index="9" unique_id=389610109 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0.23641157, 0.7747419, 0.03280449)
@@ -1395,14 +1398,14 @@ text = "Output"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection/OutputLabel" index="2" unique_id=407905172]
 transform = Transform3D(4.3711395e-08, -1, 1.3113416e-07, 3.5527137e-15, 1.3113416e-07, 0.9999999, -0.9999999, -4.371139e-08, 3.5527137e-15, -0.10345125, 0.07421112, 0)
-texture = SubResource("ViewportTexture_cw3y4")
+texture = SubResource("ViewportTexture_4j5rq")
 
 [node name="Text" parent="SignalRoutingPanelPretty/Walls/WallSection2/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(51792808, 334811226, 1489154748) index="0" unique_id=2115537520]
 text = "Text
 Input"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection2/LabelPanel" parent_id_path=PackedInt32Array(51792808, 334811226) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_xw7bd")
+texture = SubResource("ViewportTexture_rlraf")
 
 [node name="InputLabel" parent="SignalRoutingPanelPretty/Walls/WallSection2" parent_id_path=PackedInt32Array(51792808, 774841510) index="8" unique_id=1337277073 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0.21663427, 1.5987931, 0.03280449)
@@ -1414,7 +1417,7 @@ visible = false
 text = "Input"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection2/InputLabel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_607up")
+texture = SubResource("ViewportTexture_a4y1q")
 
 [node name="OutputLabel" parent="SignalRoutingPanelPretty/Walls/WallSection2" parent_id_path=PackedInt32Array(51792808, 774841510) index="9" unique_id=436053430 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0.23641157, 0.7747419, 0.03280449)
@@ -1427,10 +1430,10 @@ text = "Output"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection2/OutputLabel" index="2" unique_id=407905172]
 transform = Transform3D(4.3711395e-08, -1, 1.3113416e-07, 3.5527137e-15, 1.3113416e-07, 0.9999999, -0.9999999, -4.371139e-08, 3.5527137e-15, -0.10345125, 0.07421112, 0)
-texture = SubResource("ViewportTexture_4j5rq")
+texture = SubResource("ViewportTexture_s4wny")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection3/LabelPanel" parent_id_path=PackedInt32Array(51792808, 765657745) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_rlraf")
+texture = SubResource("ViewportTexture_elld8")
 
 [node name="InputLabel" parent="SignalRoutingPanelPretty/Walls/WallSection3" parent_id_path=PackedInt32Array(51792808, 612113619) index="8" unique_id=2040462919 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0.21663427, 1.5987931, 0.03280449)
@@ -1442,7 +1445,7 @@ visible = false
 text = "Input"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection3/InputLabel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_a4y1q")
+texture = SubResource("ViewportTexture_djg78")
 
 [node name="OutputLabel" parent="SignalRoutingPanelPretty/Walls/WallSection3" parent_id_path=PackedInt32Array(51792808, 612113619) index="9" unique_id=1084417364 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0.23641157, 0.7747419, 0.03280449)
@@ -1455,14 +1458,14 @@ text = "Output"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection3/OutputLabel" index="2" unique_id=407905172]
 transform = Transform3D(4.3711395e-08, -1, 1.3113416e-07, 3.5527137e-15, 1.3113416e-07, 0.9999999, -0.9999999, -4.371139e-08, 3.5527137e-15, -0.10345125, 0.07421112, 0)
-texture = SubResource("ViewportTexture_s4wny")
+texture = SubResource("ViewportTexture_8ob1m")
 
 [node name="Text" parent="SignalRoutingPanelPretty/Walls/WallSection4/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(51792808, 694213290, 1489154748) index="0" unique_id=2115537520]
 text = "Image
 Processing"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection4/LabelPanel" parent_id_path=PackedInt32Array(51792808, 694213290) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_elld8")
+texture = SubResource("ViewportTexture_sabp4")
 
 [node name="InputLabel" parent="SignalRoutingPanelPretty/Walls/WallSection4" parent_id_path=PackedInt32Array(51792808, 508664717) index="8" unique_id=1160206309 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0.21663427, 1.5987931, 0.03280449)
@@ -1474,7 +1477,7 @@ visible = false
 text = "Input"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection4/InputLabel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_djg78")
+texture = SubResource("ViewportTexture_s04ml")
 
 [node name="OutputLabel" parent="SignalRoutingPanelPretty/Walls/WallSection4" parent_id_path=PackedInt32Array(51792808, 508664717) index="9" unique_id=1572244990 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0.23641157, 0.7747419, 0.03280449)
@@ -1487,14 +1490,14 @@ text = "Output"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection4/OutputLabel" index="2" unique_id=407905172]
 transform = Transform3D(4.3711395e-08, -1, 1.3113416e-07, 3.5527137e-15, 1.3113416e-07, 0.9999999, -0.9999999, -4.371139e-08, 3.5527137e-15, -0.10345125, 0.07421112, 0)
-texture = SubResource("ViewportTexture_8ob1m")
+texture = SubResource("ViewportTexture_y6q4g")
 
 [node name="Text" parent="SignalRoutingPanelPretty/Walls/WallSection5/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(51792808, 1601435377, 1489154748) index="0" unique_id=2115537520]
 text = "Noise
 Reduction"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection5/LabelPanel" parent_id_path=PackedInt32Array(51792808, 1601435377) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_sabp4")
+texture = SubResource("ViewportTexture_r0dw5")
 
 [node name="InputLabel" parent="SignalRoutingPanelPretty/Walls/WallSection5" parent_id_path=PackedInt32Array(51792808, 1072211194) index="8" unique_id=674443770 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0.21663427, 1.5987931, 0.03280449)
@@ -1506,7 +1509,7 @@ visible = false
 text = "Input"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection5/InputLabel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_s04ml")
+texture = SubResource("ViewportTexture_exvbf")
 
 [node name="OutputLabel" parent="SignalRoutingPanelPretty/Walls/WallSection5" parent_id_path=PackedInt32Array(51792808, 1072211194) index="9" unique_id=795467259 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0.23641157, 0.7747419, 0.03280449)
@@ -1519,10 +1522,10 @@ text = "Output"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection5/OutputLabel" index="2" unique_id=407905172]
 transform = Transform3D(4.3711395e-08, -1, 1.3113416e-07, 3.5527137e-15, 1.3113416e-07, 0.9999999, -0.9999999, -4.371139e-08, 3.5527137e-15, -0.10345125, 0.07421112, 0)
-texture = SubResource("ViewportTexture_y6q4g")
+texture = SubResource("ViewportTexture_y43sv")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection7/LabelPanel" parent_id_path=PackedInt32Array(51792808, 1406069383) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_r0dw5")
+texture = SubResource("ViewportTexture_gnntx")
 
 [node name="InputLabel" parent="SignalRoutingPanelPretty/Walls/WallSection7" parent_id_path=PackedInt32Array(51792808, 1317951756) index="8" unique_id=994423238 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0.21663427, 1.5987931, 0.03280449)
@@ -1534,7 +1537,7 @@ visible = false
 text = "Input"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection7/InputLabel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_exvbf")
+texture = SubResource("ViewportTexture_qnph2")
 
 [node name="OutputLabel" parent="SignalRoutingPanelPretty/Walls/WallSection7" parent_id_path=PackedInt32Array(51792808, 1317951756) index="9" unique_id=828405734 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0.23641157, 0.7747419, 0.03280449)
@@ -1547,13 +1550,13 @@ text = "Output"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection7/OutputLabel" index="2" unique_id=407905172]
 transform = Transform3D(4.3711395e-08, -1, 1.3113416e-07, 3.5527137e-15, 1.3113416e-07, 0.9999999, -0.9999999, -4.371139e-08, 3.5527137e-15, -0.10345125, 0.07421112, 0)
-texture = SubResource("ViewportTexture_y43sv")
+texture = SubResource("ViewportTexture_76d20")
 
 [node name="Text" parent="SignalRoutingPanelPretty/Walls/WallSection6/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(51792808, 30835056, 1489154748) index="0" unique_id=2115537520]
 text = "Speaker"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection6/LabelPanel" parent_id_path=PackedInt32Array(51792808, 30835056) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_gnntx")
+texture = SubResource("ViewportTexture_dupgk")
 
 [node name="InputLabel" parent="SignalRoutingPanelPretty/Walls/WallSection6" parent_id_path=PackedInt32Array(51792808, 923683324) index="8" unique_id=1854883069 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0.21663427, 1.5987931, 0.03280449)
@@ -1565,7 +1568,7 @@ visible = false
 text = "Input"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection6/InputLabel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_qnph2")
+texture = SubResource("ViewportTexture_ewgfm")
 
 [node name="OutputLabel" parent="SignalRoutingPanelPretty/Walls/WallSection6" parent_id_path=PackedInt32Array(51792808, 923683324) index="9" unique_id=1427017293 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0.23641157, 0.7747419, 0.03280449)
@@ -1578,7 +1581,7 @@ text = "Output"
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection6/OutputLabel" index="2" unique_id=407905172]
 transform = Transform3D(4.3711395e-08, -1, 1.3113416e-07, 3.5527137e-15, 1.3113416e-07, 0.9999999, -0.9999999, -4.371139e-08, 3.5527137e-15, -0.10345125, 0.07421112, 0)
-texture = SubResource("ViewportTexture_76d20")
+texture = SubResource("ViewportTexture_0iccc")
 
 [node name="Antenna" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="0" unique_id=107649636]
 TargetMachine = NodePath("../../../AntennaController")
@@ -2241,7 +2244,7 @@ shape = SubResource("BoxShape3D_5pbec")
 
 [node name="QuestManager" type="Node" parent="." unique_id=1559703165 groups=["QuestManager"]]
 script = ExtResource("36_s4dlf")
-QuestList = Array[Object]([ExtResource("38_dk68j"), ExtResource("39_dk68j"), ExtResource("40_x7f8e"), ExtResource("41_n7vm3"), ExtResource("38_ayug7"), ExtResource("43_ftmvw"), ExtResource("45_rmtv0"), ExtResource("52_cw3y4"), ExtResource("53_xw7bd")])
+QuestList = Array[Object]([ExtResource("38_dk68j"), ExtResource("39_dk68j"), ExtResource("40_x7f8e"), ExtResource("41_n7vm3"), ExtResource("38_ayug7"), ExtResource("43_ftmvw"), ExtResource("45_rmtv0"), ExtResource("52_cw3y4"), ExtResource("53_xw7bd"), ExtResource("55_rlraf"), ExtResource("45_4j5rq"), ExtResource("56_rlraf")])
 scannerPath = NodePath("../Scanner")
 antennaPath = NodePath("../AntennaController")
 
@@ -2258,7 +2261,7 @@ transform = Transform3D(-3.090862e-08, 0.70710677, 0.70710677, -1, -4.371139e-08
 text = "Station 88"
 
 [node name="Screen" parent="LabelPanelStation88" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_dupgk")
+texture = SubResource("ViewportTexture_8cm6e")
 
 [node name="Sketchfab_Scene" parent="." unique_id=267414838 instance=ExtResource("50_5pbec")]
 transform = Transform3D(0.16526823, -0.0718332, -0.1732813, -0.099655226, -0.22927895, -1.317751e-08, -0.15891902, 0.06907356, -0.18020432, 1.6600947, 5.6465964, -9.931629)

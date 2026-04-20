@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://kalrt3ib7a0e"]
+
+[ext_resource type="Script" uid="uid://drcxhke2571cx" path="res://Scenes/Components/GameSignal/SignalAction.cs" id="1_bynhv"]
+[ext_resource type="AudioStream" uid="uid://ik28l7lin5c0" path="res://Content/Asset/Audio/quest audio devil machin.wav" id="2_bynhv"]
+[ext_resource type="Script" uid="uid://ch0dfrr2gjlif" path="res://Scenes/Components/GameSignal/GameSignal.cs" id="3_yr74x"]
+[ext_resource type="Script" uid="uid://b5skfigjx3lg7" path="res://Scenes/Global Managers/Quest Manager/Quest/Quest.cs" id="4_leo0b"]
+
+[sub_resource type="Resource" id="Resource_6jy0i"]
+script = ExtResource("1_bynhv")
+MachineName = "Antenna"
+NextSignalState = false
+metadata/_custom_type_script = "uid://drcxhke2571cx"
+
+[sub_resource type="Resource" id="Resource_jebap"]
+script = ExtResource("1_bynhv")
+MachineName = "NoiseReduction"
+NextSignalState = ExtResource("2_bynhv")
+metadata/_custom_type_script = "uid://drcxhke2571cx"
+
+[sub_resource type="Resource" id="Resource_67sow"]
+script = ExtResource("1_bynhv")
+MachineName = "Speaker"
+NextSignalState = null
+metadata/_custom_type_script = "uid://drcxhke2571cx"
+
+[sub_resource type="Resource" id="Resource_x7f8e"]
+script = ExtResource("3_yr74x")
+SignalId = "Mid7"
+ProcessingSteps = [SubResource("Resource_6jy0i"), SubResource("Resource_jebap"), SubResource("Resource_67sow")]
+Signal = Vector2(-3, 5)
+metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
+
+[resource]
+script = ExtResource("4_leo0b")
+Request = SubResource("Resource_x7f8e")
+RadarPosition = Vector2(-0.3, 0.4)
+metadata/_custom_type_script = "uid://b5skfigjx3lg7"
