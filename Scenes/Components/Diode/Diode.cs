@@ -16,6 +16,7 @@ public partial class Diode : Node3D
     private MeshInstance3D mesh;
     private OmniLight3D light;
     private Material TurnOffMaterial;
+    private Material TurnOnMaterial;
 
     public override void _Ready()
     {
@@ -24,6 +25,9 @@ public partial class Diode : Node3D
         light = GetNode<OmniLight3D>("light");
         TurnOffMaterial = GD.Load<Material>("uid://cgkj4iuvcoktm");
         SetColor(lightColor);
+        
+        
+        
     }
 
 
@@ -41,8 +45,10 @@ public partial class Diode : Node3D
 
     public void SetColor(Color color)
     {
+        StandardMaterial3D material = (mesh.Mesh.SurfaceGetMaterial(surfaceIndex) as StandardMaterial3D );
+        material.Emission = color;
+        TurnOnMaterial = material;
         lightColor = color;
         light.LightColor = lightColor;
-        (mesh.Mesh.SurfaceGetMaterial(surfaceIndex) as StandardMaterial3D ).AlbedoColor = lightColor;
     }
 }
