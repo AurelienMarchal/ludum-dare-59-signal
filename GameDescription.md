@@ -22,6 +22,8 @@ At the center of the main room there is a control panel with 4 levers to control
 - X Lever : Left click X++ | Right click X-- 
 - Y Lever : Left click Y++ | Right click Y-- 
 - SET Lever : Command the satelitte antenna to point to the given coordinates (20s animation)
+- Green Light 🟢 = Incoming Signal
+- Red Light 🔴 = Error outputing signal
 
 ### 🌐 Radar
 At the left hand side of the window there is a radar (in light blue) where you can see if signals are being sent to you. If a signal is detected, the radar will give you the coordinates to enter on the [Antenna Controls] to receive the signal. 
@@ -59,8 +61,19 @@ tip : if you translate morse code to morse code, the machine will work but il wi
 
 ## Cheats 
 #### Quest 1
-- 
+- Set the coordinates of the antenna to what is displayed on the radar, wait 20 seconds (there should be an antenna moving sound). A green light on the **Antenna Controls** should appear meaning that there is a signal coming from the antenna.
+- In the **Wiring Panel** wire the output of the antenna to the input of the **Noise Reduction**
+- Wire the **Noise Reduction** Output to the **Morse** Input
+- The decoded message is "HELLO. WE ARE LUNA-3. CAN YOU HEAR US?"
+- And then if you wait 20s a second message should appear : "IF YOU RECEIVE THIS MESSAGE, SEND US YOUR STATION NUMBER"
 
+#### Quest 2
+- Wire the **TextInput** Output to the **Morse**
+- Change the **Morse** Machine setting to Text>Morse (directly on the **Morse** Machine)
+- Wire the **Morse** Output to the Antenna Input
+- Go to the **TextInput** Machine and type 88 and then press #
+
+From there you are on your own but you can always check the signal with the **Signal Analyser** to see what transformation needs to be done on the signal. If you manage to go to Quest 16 you are a true gamer.
 
 ## Credits : 
 
