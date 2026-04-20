@@ -18,6 +18,8 @@ public partial class QuestManager : Node
     Scanner scanner;
     AntennaController antenna;
 
+    AudioStreamPlayer3D victory;
+
     RandomNumberGenerator rng;
 
 
@@ -29,6 +31,7 @@ public partial class QuestManager : Node
         rng = new RandomNumberGenerator();
         rng.Randomize();
         SetupQuest();
+        victory = GetNode<AudioStreamPlayer3D>("../Complete");
     }   
 
     public override void _Process(double delta)
@@ -106,6 +109,7 @@ public partial class QuestManager : Node
     //Called by the machines when the signal is complete or by the antenna if the signal inputted is the one we expected
     public async Task QuestCompleteAsync()
     {
+        victory.Play();
         GD.Print("Quest Complete");
         CurrentQuest = null;
         //Simulate upload time

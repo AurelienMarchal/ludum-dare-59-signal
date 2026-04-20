@@ -52,6 +52,9 @@
 [ext_resource type="Material" uid="uid://bcc25f632s8y2" path="res://Assets/Models/Objects/Terminal/material/terminal.material" id="43_n7vm3"]
 [ext_resource type="Resource" uid="uid://dfb7w5lq2cnwk" path="res://Content/Quests/Quest7.tres" id="45_rmtv0"]
 [ext_resource type="PackedScene" uid="uid://ceo3dpqgnu3k0" path="res://Scenes/Components/Machines/Speaker/scene.gltf" id="50_5pbec"]
+[ext_resource type="Resource" uid="uid://bbx12dagomthh" path="res://Content/Quests/Quest8.tres" id="52_cw3y4"]
+[ext_resource type="Resource" uid="uid://cm32hwjxd7m12" path="res://Content/Quests/Quest9.tres" id="53_xw7bd"]
+[ext_resource type="AudioStream" uid="uid://dfyyituucfrwc" path="res://Content/Asset/Audio/victor.wav" id="54_xw7bd"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fopvk"]
 panorama = ExtResource("2_pw6n2")
@@ -2238,9 +2241,15 @@ shape = SubResource("BoxShape3D_5pbec")
 
 [node name="QuestManager" type="Node" parent="." unique_id=1559703165 groups=["QuestManager"]]
 script = ExtResource("36_s4dlf")
-QuestList = Array[Object]([ExtResource("38_dk68j"), ExtResource("39_dk68j"), ExtResource("40_x7f8e"), ExtResource("41_n7vm3"), ExtResource("38_ayug7"), ExtResource("43_ftmvw"), ExtResource("45_rmtv0")])
+QuestList = Array[Object]([ExtResource("38_dk68j"), ExtResource("39_dk68j"), ExtResource("40_x7f8e"), ExtResource("41_n7vm3"), ExtResource("38_ayug7"), ExtResource("43_ftmvw"), ExtResource("45_rmtv0"), ExtResource("52_cw3y4"), ExtResource("53_xw7bd")])
 scannerPath = NodePath("../Scanner")
 antennaPath = NodePath("../AntennaController")
+
+[node name="Complete" type="AudioStreamPlayer3D" parent="." unique_id=1846513135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1708565, 2.385229, 0.7606991)
+stream = ExtResource("54_xw7bd")
+volume_db = -6.625
+unit_size = 4.85
 
 [node name="LabelPanelStation88" parent="." unique_id=187309523 instance=ExtResource("17_x7f8e")]
 transform = Transform3D(-3.090862e-08, 0.70710677, 0.70710677, -1, -4.371139e-08, 0, 3.090862e-08, -0.70710677, 0.70710677, -5.0637774, 3.2132916, 5.0138206)

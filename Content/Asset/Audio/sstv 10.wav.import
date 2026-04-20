@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b8y4l5e3b6i7c"
+path="res://.godot/imported/sstv 10.wav-e81c886178ea993fcae014170db768b1.sample"
+
+[deps]
+
+source_file="res://Content/Asset/Audio/sstv 10.wav"
+dest_files=["res://.godot/imported/sstv 10.wav-e81c886178ea993fcae014170db768b1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
