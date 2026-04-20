@@ -25,8 +25,8 @@ public partial class Scanner : Machine
         AimThing = GetNode<Sprite3D>("AimThing");
         Ping = GetNode<Sprite3D>("Ping");
         PingAudio = GetNode<AudioStreamPlayer3D>("PingSound");
-        TVHum = GetNode<AudioStreamPlayer3D>("TV Hum");
-        ScreenLight = GetNode<OmniLight3D>("ScreenLight");
+        TVHum = GetNode<AudioStreamPlayer3D>("TV hum");
+        ScreenLight = GetNode<OmniLight3D>("Screen Light");
 
         X = GetNode<Label>("SubViewport/X");
         Y = GetNode<Label>("SubViewport2/Y");
