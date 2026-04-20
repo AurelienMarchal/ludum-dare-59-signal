@@ -561,6 +561,12 @@ uv1_world_triplanar = true
 uv2_triplanar = true
 uv2_world_triplanar = true
 
+[sub_resource type="Resource" id="Resource_jebap"]
+script = ExtResource("9_xn2uv")
+SignalId = "return"
+Signal = "88"
+metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
+
 [sub_resource type="Resource" id="Resource_2esd7"]
 script = ExtResource("8_m3477")
 MachineName = "Antenna"
@@ -589,6 +595,7 @@ metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
 [sub_resource type="Resource" id="Resource_6jy0i"]
 script = ExtResource("37_dscvi")
 Request = SubResource("Resource_dk68j")
+ExpectedResponse = SubResource("Resource_jebap")
 RadarPosition = Vector2(0.5, -0.2)
 metadata/_custom_type_script = "uid://b5skfigjx3lg7"
 

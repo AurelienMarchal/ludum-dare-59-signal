@@ -40,13 +40,18 @@ public partial class QuestManager : Node
             //If we're waiting for a response
             if(CurrentQuest.ExpectedResponse != null)
             {
-                //If the response is the one we expected
-                if(antenna.InputSignal.Signal.ToString() == CurrentQuest.ExpectedResponse.Signal.ToString())
+                //
+                if (antenna.InputSignal != null)
                 {
-                    //If the antenna has power
-                    if (antenna.Powered)
+                    //If the response is the one we expected
+                    if(antenna.InputSignal.Signal.ToString() == CurrentQuest.ExpectedResponse.Signal.ToString())
                     {
-                        _ = QuestCompleteAsync();
+                        //If the antenna has power
+                        if (antenna.Powered)
+                        {
+                            _ = QuestCompleteAsync();
+                        }
+                        
                     }
                     
                 }
