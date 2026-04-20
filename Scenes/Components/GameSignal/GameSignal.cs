@@ -16,4 +16,7 @@ public partial class GameSignal : Resource
 	[Export]
 	public Variant Signal;
 
+	//When this signal is completely parsed, it should say it to the quest giver
+	public bool ShouldSignalQuestOnCompletion = false;
+
 }
