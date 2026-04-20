@@ -331,7 +331,19 @@ outline_color = Color(1, 0.36078432, 0, 1)
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 0.5294118)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_pgii2"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_v8ov8"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_v8ov8"]
+font = ExtResource("8_765eq")
+font_size = 60
+font_color = Color(0.8235294, 0.62352943, 0.12941177, 1)
+outline_size = 3
+outline_color = Color(1, 0.36078432, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.5294118)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nugrx"]
 viewport_path = NodePath("SubViewport")
 
 [node name="TextInputMachine" type="Node3D" unique_id=237586227]
@@ -339,10 +351,10 @@ script = ExtResource("1_na4dv")
 labelNodePath = NodePath("TextDisplay/SubViewport/Label")
 
 [node name="InteractiveKeyPad" parent="." unique_id=155184724 instance=ExtResource("3_pw5rs")]
-transform = Transform3D(5, 8.742278e-07, -3.821371e-14, 0, -2.1855695e-07, -5, -8.742278e-07, 5, -2.1855695e-07, 0.0042518973, 0.6237006, -0.20491509)
+transform = Transform3D(6, 1.0490733e-06, -4.5856453e-14, 0, -2.6226832e-07, -6, -1.0490733e-06, 6, -2.6226832e-07, 0.0042518973, 1.0943329, -0.20491509)
 
 [node name="TextDisplay" type="Node3D" parent="." unique_id=1105645622]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39822417, -0.15709381)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.043286085, -0.15709381)
 
 [node name="SM_Panel_Base" type="MeshInstance3D" parent="TextDisplay" unique_id=847822158]
 transform = Transform3D(1.3374798e-15, 3.059797e-08, 0.7, 0.7, -3.059797e-08, 0, 3.059797e-08, 0.7, -3.059797e-08, 0, 0.66247797, -0.032611758)
@@ -417,8 +429,31 @@ label_settings = SubResource("LabelSettings_dv2p1")
 autowrap_mode = 2
 
 [node name="Screen" parent="LabelPanel3" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_pgii2")
+texture = SubResource("ViewportTexture_v8ov8")
+
+[node name="LabelPanel4" parent="." unique_id=18025926 instance=ExtResource("9_nugrx")]
+transform = Transform3D(-4.3711377e-09, -4.3711395e-09, -0.1, -0.1, -4.371139e-09, 4.371138e-09, -4.3711395e-09, 0.1, -4.371139e-09, 0.29344976, 1.0906552, -0.20625441)
+
+[node name="CSGMesh3D" parent="LabelPanel4" index="0" unique_id=103950934]
+visible = false
+material = ExtResource("2_docm3")
+
+[node name="SubViewport" parent="LabelPanel4" index="1" unique_id=1489154748]
+size = Vector2i(550, 300)
+
+[node name="Text" parent="LabelPanel4/SubViewport" index="0" unique_id=2115537520]
+text = "x delete
+# send"
+label_settings = SubResource("LabelSettings_v8ov8")
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+
+[node name="Screen" parent="LabelPanel4" index="2" unique_id=407905172]
+transform = Transform3D(4.3711395e-08, -1, 1.3113416e-07, 0, 1.3113416e-07, 0.9999999, -0.9999999, -4.3711392e-08, 3.5527137e-15, 1.7857246, 0.07421315, 0)
+texture = SubResource("ViewportTexture_nugrx")
 
 [connection signal="KeyPressed" from="InteractiveKeyPad" to="." method="OnKeyPadKeyPressed"]
 
 [editable path="LabelPanel3"]
+[editable path="LabelPanel4"]
