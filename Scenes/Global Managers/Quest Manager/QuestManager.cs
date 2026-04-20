@@ -9,7 +9,7 @@ public partial class QuestManager : Node
     //The list of basic quests, before we do the alien shit
     [Export]
     Array<Quest> QuestList;
-    public Quest CurrentQuest;
+    Quest CurrentQuest;
 
     [Export]
     NodePath scannerPath;

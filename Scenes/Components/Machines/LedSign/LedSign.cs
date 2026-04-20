@@ -12,42 +12,24 @@ public partial class LedSign : Machine
     {
         base._Ready();
         _label = GetNode<Label>("SubViewport/Control/Text");
-    }
-
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
         UpdateMessage();
     }
-
 
     public void UpdateMessage()
     {
         if (InputSignal != null)
         {
-            if (InputSignal.ProcessingSteps.GetLength(0) > 0)
+            SignalAction NextStep = InputSignal.ProcessingSteps[0];
+            String machineName = NextStep.MachineName.ToString();
+            if (machineName == null || machineName == "")
             {
-                SignalAction NextStep = InputSignal.ProcessingSteps[0];
-                if(NextStep!= null)
-                {
-                    String machineName = NextStep.MachineName.ToString();
-                    if (machineName == null || machineName == "")
-                    {
-                        _label.Text = _defaultMessage;
-                        _currentMessage = _defaultMessage;
-                    }
-                    else
-                    {
-                        _label.Text = machineName;
-                        _currentMessage = machineName;
-                    }
-                }
+                _label.Text = _defaultMessage;
+                _currentMessage = _defaultMessage;
             }
             else
             {
-                String msg = InputSignal.Signal.ToString();
-                _label.Text = msg;
-                _currentMessage = msg;
+                _label.Text = machineName;
+                _currentMessage = machineName;
             }
         }
         else

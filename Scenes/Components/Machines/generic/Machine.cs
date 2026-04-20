@@ -32,7 +32,7 @@ public partial class Machine : Node3D
     protected NodePath _powerGaugePath { get; set; }
     private PowerGauge _powerGauge;
 
-	public QuestManager QM;
+	private QuestManager QM;
 	private string _lastConfirmedSignal = "";
 
     //Call this when processing 

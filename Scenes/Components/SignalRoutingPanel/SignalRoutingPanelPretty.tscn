@@ -192,9 +192,6 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="ViewportTexture" id="ViewportTexture_usxe7"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8dhor"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_at662"]
 viewport_path = NodePath("SubViewport")
 
@@ -867,52 +864,10 @@ mesh = SubResource("ArrayMesh_0mtf2")
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
 
 [node name="Text" parent="Walls/WallSection5/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(1601435377, 1489154748) index="0" unique_id=2115537520]
-text = "Image
-Processing"
+text = "Radio"
 
 [node name="Screen" parent="Walls/WallSection5/LabelPanel" index="2" unique_id=407905172]
 texture = SubResource("ViewportTexture_usxe7")
-
-[node name="WallSection7" type="Node3D" parent="Walls" unique_id=1317951756]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.980052, 0, 0)
-
-[node name="SM_modularConsoleWall_Straight" type="MeshInstance3D" parent="Walls/WallSection7" unique_id=1424786204]
-transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 0, 0, 0)
-mesh = SubResource("ArrayMesh_8rdm8")
-
-[node name="SM_modularConsoleWall_Straight2" type="MeshInstance3D" parent="Walls/WallSection7" unique_id=308312758]
-transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 0, 1, 0)
-mesh = SubResource("ArrayMesh_8rdm8")
-
-[node name="SM_modularConsoleWall_Bottom" type="MeshInstance3D" parent="Walls/WallSection7" unique_id=1260250318]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
-mesh = SubResource("ArrayMesh_wamek")
-
-[node name="SM_modularConsoleWall_Bottom2" type="MeshInstance3D" parent="Walls/WallSection7" unique_id=1897204418]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.010561466, 0, 0.4)
-mesh = SubResource("ArrayMesh_wamek")
-
-[node name="SM_modularConsoleWall_Joint2" type="MeshInstance3D" parent="Walls/WallSection7" unique_id=751382553]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.4, 0)
-mesh = SubResource("ArrayMesh_8dhor")
-
-[node name="SM_modularConsoleWall_Joint1" type="MeshInstance3D" parent="Walls/WallSection7" unique_id=1747708874]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
-mesh = SubResource("ArrayMesh_wubmg")
-
-[node name="SM_modularConsoleWall_Top" type="MeshInstance3D" parent="Walls/WallSection7" unique_id=1810848924]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2.2, 0.25)
-mesh = SubResource("ArrayMesh_0mtf2")
-
-[node name="LabelPanel" parent="Walls/WallSection7" unique_id=1406069383 instance=ExtResource("2_8dhor")]
-transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
-
-[node name="Text" parent="Walls/WallSection7/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(1406069383, 1489154748) index="0" unique_id=2115537520]
-text = "SIGNAL
-ANALYSER"
-
-[node name="Screen" parent="Walls/WallSection7/LabelPanel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_8dhor")
 
 [node name="WallSection6" type="Node3D" parent="Walls" unique_id=923683324]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
@@ -1017,18 +972,6 @@ material_overlay = SubResource("ShaderMaterial_at662")
 [node name="SM_Lever_Holder" parent="SignalRoutingPanel/Noise/Input" parent_id_path=PackedInt32Array(783402258, 525851882) index="0" unique_id=1706492280]
 material_overlay = SubResource("ShaderMaterial_qgpx2")
 
-[node name="LED" parent="SignalRoutingPanel" unique_id=986110384 instance=ExtResource("3_wamek")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9852214, 1, 0.05)
-
-[node name="Output" parent="SignalRoutingPanel/LED" index="0" unique_id=1411931370]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19818044, 0)
-
-[node name="SM_Lever_Holder" parent="SignalRoutingPanel/LED/Output" index="0" unique_id=269371257]
-material_overlay = SubResource("ShaderMaterial_at662")
-
-[node name="SM_Lever_Holder" parent="SignalRoutingPanel/LED/Input" parent_id_path=PackedInt32Array(986110384, 525851882) index="0" unique_id=1706492280]
-material_overlay = SubResource("ShaderMaterial_qgpx2")
-
 [node name="Radio" parent="SignalRoutingPanel" unique_id=2069881468 instance=ExtResource("3_wamek")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0.05)
 
@@ -1052,12 +995,10 @@ script = ExtResource("4_wubmg")
 [editable path="Walls/WallSection3/LabelPanel"]
 [editable path="Walls/WallSection4/LabelPanel"]
 [editable path="Walls/WallSection5/LabelPanel"]
-[editable path="Walls/WallSection7/LabelPanel"]
 [editable path="Walls/WallSection6/LabelPanel"]
 [editable path="SignalRoutingPanel/Antenna"]
 [editable path="SignalRoutingPanel/Morse"]
 [editable path="SignalRoutingPanel/Keypad"]
 [editable path="SignalRoutingPanel/ImageProcessing"]
 [editable path="SignalRoutingPanel/Noise"]
-[editable path="SignalRoutingPanel/LED"]
 [editable path="SignalRoutingPanel/Radio"]

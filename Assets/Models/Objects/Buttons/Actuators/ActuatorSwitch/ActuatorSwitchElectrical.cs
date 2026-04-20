@@ -16,25 +16,12 @@ public partial class ActuatorSwitchElectrical : Actuator
     protected int _powerAmountRequired { get; set; }
 
     [Export]
-    private bool StartsOn = false;
-
-    [Export]
     protected Machine _machine { get; set; }
 
     public override void _Ready()
     {
         base._Ready();
-        if (!StartsOn)
-        {
-            UpdateMachinePower(_isOn);
-        }
-        else
-        {
-            _isOn = true;
-            _animationPlayer.Play("On");
-            UpdateMachinePower(_isOn);
-        }
-
+        UpdateMachinePower(_isOn);
         _audioOn = GetNode<AudioStreamPlayer3D>("AudioOn");
         _audioOff = GetNode<AudioStreamPlayer3D>("AudioOff");
         _audioError = GetNode<AudioStreamPlayer3D>("AudioError");
