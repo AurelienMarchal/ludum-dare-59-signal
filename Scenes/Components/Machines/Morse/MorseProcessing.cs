@@ -129,6 +129,7 @@ public partial class MorseProcessing : Machine
         diode.TurnOn();
         label.Text = "";
         currentCharIndex = 0;
+        decodingResult = "";
     }
 
     protected override void TurnOffBehavior()
@@ -136,6 +137,8 @@ public partial class MorseProcessing : Machine
         base.TurnOffBehavior();
         diode.TurnOff();
         label.Text = "";
+        currentCharIndex = 0;
+        decodingResult = "";
     }
 
 
@@ -146,6 +149,10 @@ public partial class MorseProcessing : Machine
         if (!Powered)
         {   
             diode.TurnOff();
+            label.Text = "";
+            currentCharIndex = 0;
+            decodingResult = "";
+            CompletionProcess = 0;
             return;
         }
 
@@ -158,6 +165,8 @@ public partial class MorseProcessing : Machine
         {
             diode.SetColor(lightColorError);
             label.Text = "No Signal" ;
+            currentCharIndex = 0;
+            decodingResult = "";
             CompletionProcess = 0;
             return;
         }
@@ -165,6 +174,9 @@ public partial class MorseProcessing : Machine
         if(InputSignal.ProcessingSteps.Length == 0)
         {
             diode.SetColor(lightColorError);
+            currentCharIndex = 0;
+            decodingResult = "";
+            CompletionProcess = 0;
             return;
         }
 
@@ -174,6 +186,9 @@ public partial class MorseProcessing : Machine
         {
             diode.SetColor(lightColorError);
             label.Text = "Error" ;
+            currentCharIndex = 0;
+            decodingResult = "";
+            CompletionProcess = 0;
             return;
         }
 
@@ -182,6 +197,9 @@ public partial class MorseProcessing : Machine
         {
             diode.SetColor(lightColorError);
             label.Text = "Error";
+            currentCharIndex = 0;
+            decodingResult = "";
+            CompletionProcess = 0;
             return;
         }
 
@@ -191,6 +209,9 @@ public partial class MorseProcessing : Machine
         {
             diode.SetColor(lightColorError);
             label.Text = "Error" ;
+            currentCharIndex = 0;
+            decodingResult = "";
+            CompletionProcess = 0;
             return;
         }
 

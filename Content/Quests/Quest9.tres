@@ -27,7 +27,7 @@ metadata/_custom_type_script = "uid://drcxhke2571cx"
 script = ExtResource("2_pledn")
 SignalId = "Mid2"
 ProcessingSteps = [SubResource("Resource_6jy0i"), SubResource("Resource_jebap"), SubResource("Resource_67sow")]
-Signal = Vector2(9, 2)
+Signal = Vector2(13, 5)
 metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
 
 [resource]

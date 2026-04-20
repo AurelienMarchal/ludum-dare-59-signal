@@ -130,6 +130,8 @@ public partial class QuestManager : Node
 
         //Signal no longer appears anywhere
         antenna.OverrideSignal = null;
+        antenna.OutputSignal= null;
+        GD.Print("stop it");
         _stopRadar();
         await ToSignal(GetTree().CreateTimer(1),"timeout");
 

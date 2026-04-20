@@ -62,6 +62,7 @@ public partial class NoiseReductionMachine : Machine
         if(InputSignal == null)
         {
             DisplayNoSignal();
+			OutputSignal = null;
 			diode.SetColor(lightColorError);
             return;
         }
