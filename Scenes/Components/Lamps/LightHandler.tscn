@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://60nvc4kjx63w"]
+
+[ext_resource type="Script" uid="uid://c1l6puoitr63" path="res://Scenes/Components/Lamps/LightHandler.cs" id="1_e5gf2"]
+
+[node name="LightHandler" type="Node3D" unique_id=719744512]
+script = ExtResource("1_e5gf2")
+MachineName = "Lights"
+metadata/_custom_type_script = "uid://drtmebqp4tgrk"

@@ -25,6 +25,11 @@
 [ext_resource type="Texture2D" uid="uid://ubepcdmm0lj1" path="res://Assets/Textures/dirt/forest_leaves_02_rough_1k.jpg" id="18_u1xlj"]
 [ext_resource type="PackedScene" uid="uid://brrx0kycea4b7" path="res://Assets/Models/Bits and Bobs/Camera/security_camera_01_1k.gltf" id="24_ed63r"]
 [ext_resource type="ArrayMesh" uid="uid://baesxhdcwq27c" path="res://Assets/Models/Bits and Bobs/Hanging Lamp/HangingLamp.mesh" id="24_y3xqu"]
+[ext_resource type="PackedScene" uid="uid://60nvc4kjx63w" path="res://Scenes/Components/Lamps/LightHandler.tscn" id="27_c1m3j"]
+[ext_resource type="PackedScene" uid="uid://ccsm6xfhcdqhu" path="res://Scenes/Components/Lamps/LampWall.tscn" id="27_ggshv"]
+[ext_resource type="PackedScene" uid="uid://c3n8vrtq5ioba" path="res://Scenes/Components/Lamps/LampHanging.tscn" id="28_6t6fy"]
+[ext_resource type="PackedScene" uid="uid://brjah5d1d2cpr" path="res://Scenes/Components/ElectricalSystem/ElectricalScreen.tscn" id="29_ldd3l"]
+[ext_resource type="PackedScene" uid="uid://1m1yt6nf5ldc" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorSwitch/ActuatorSwitchElectrical.tscn" id="30_n2xh5"]
 [ext_resource type="PackedScene" uid="uid://d88iolutijoi" path="res://Assets/Models/Bits and Bobs/Wall Lamps/industrial_wall_lamp_1k.gltf" id="31_c1m3j"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fopvk"]
@@ -119,13 +124,13 @@ ProcessingSteps = [SubResource("Resource_6jbr1"), SubResource("Resource_pw6n2")]
 Signal = "Salut la team"
 metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ggshv"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_6t6fy"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ldd3l"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_n2xh5"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Shader" id="Shader_fopvk"]
@@ -696,11 +701,6 @@ use_collision = true
 mesh = SubResource("CylinderMesh_hims3")
 material = SubResource("StandardMaterial3D_ju7jk")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=399022044]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.101048775, 4.7454844, 0.13967371)
-light_color = Color(1, 1, 0.6156863, 1)
-omni_range = 9.56
-
 [node name="CharacterController" parent="." unique_id=152917674 instance=ExtResource("6_kw2y0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1504276, 0)
 
@@ -731,13 +731,13 @@ MachineName = "Antenna"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11513424, 0.6261867, -7.0820575)
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel" parent_id_path=PackedInt32Array(51792808, 1002341385) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_ggshv")
-
-[node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection2/LabelPanel" parent_id_path=PackedInt32Array(51792808, 334811226) index="2" unique_id=407905172]
 texture = SubResource("ViewportTexture_6t6fy")
 
-[node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection3/LabelPanel" parent_id_path=PackedInt32Array(51792808, 765657745) index="2" unique_id=407905172]
+[node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection2/LabelPanel" parent_id_path=PackedInt32Array(51792808, 334811226) index="2" unique_id=407905172]
 texture = SubResource("ViewportTexture_ldd3l")
+
+[node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection3/LabelPanel" parent_id_path=PackedInt32Array(51792808, 765657745) index="2" unique_id=407905172]
+texture = SubResource("ViewportTexture_n2xh5")
 
 [node name="MachineConnector1" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="0" unique_id=104554026]
 TargetMachine = NodePath("../../../MorseMachine")
@@ -1194,7 +1194,28 @@ transform = Transform3D(-4.371139e-08, 0, -1, -1, -4.371139e-08, 4.371139e-08, -
 
 [node name="HangingLamp" type="MeshInstance3D" parent="Decor" unique_id=1606867163]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07325578, 5.9310484, 0.0903258)
+visible = false
 mesh = ExtResource("24_y3xqu")
+
+[node name="Lights" type="Node3D" parent="Decor" unique_id=2065145729]
+
+[node name="LightHandler" parent="Decor/Lights" unique_id=719744512 node_paths=PackedStringArray("_lamps") instance=ExtResource("27_c1m3j")]
+_lamps = [NodePath("LampWall"), NodePath("LampHanging")]
+
+[node name="LampWall" parent="Decor/Lights/LightHandler" unique_id=1977835303 instance=ExtResource("27_ggshv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.761524, -7.2043743)
+
+[node name="LampHanging" parent="Decor/Lights/LightHandler" unique_id=465061467 instance=ExtResource("28_6t6fy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6965714, 0)
+
+[node name="ElectricalScreen" parent="Decor/Lights" unique_id=478216216 node_paths=PackedStringArray("_actuators") instance=ExtResource("29_ldd3l")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -2.3396683, 1.9087979, -7.1267476)
+_actuators = [NodePath("../ActuatorSwitchElectrical")]
+
+[node name="ActuatorSwitchElectrical" parent="Decor/Lights" unique_id=599775088 node_paths=PackedStringArray("_machine") instance=ExtResource("30_n2xh5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3386545, 2.4191, -7.1729026)
+_powerAmountRequired = 1
+_machine = NodePath("../LightHandler")
 
 [editable path="SignalRoutingPanelPretty"]
 [editable path="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel"]
