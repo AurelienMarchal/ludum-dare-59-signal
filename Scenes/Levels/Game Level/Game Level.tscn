@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://d1vcbmt2cp3pj" path="res://Assets/Textures/Concrete/Floor/damaged_concrete_floor_diff_4k.jpg" id="4_hims3"]
 [ext_resource type="PackedScene" uid="uid://bx2uthsk7y8ri" path="res://Scenes/Components/Machines/AntennaController/AntennaController.tscn" id="4_pw6n2"]
 [ext_resource type="Texture2D" uid="uid://ng26uxvjplxn" path="res://Assets/Textures/Concrete/Floor/damaged_concrete_floor_nor_dx_4k.jpg" id="5_kw2y0"]
-[ext_resource type="AudioStream" uid="uid://cirwnlgn6ey7n" path="res://Assets/Sound/tv hum.wav" id="5_tbkoj"]
 [ext_resource type="PackedScene" uid="uid://dc6v214h1g3g0" path="res://Scenes/CharacterController/CharacterController.tscn" id="6_kw2y0"]
 [ext_resource type="PackedScene" uid="uid://dsam83ivnrgmx" path="res://Scenes/Components/Machines/Morse/MorseMachine.tscn" id="7_ju7jk"]
 [ext_resource type="Script" uid="uid://drcxhke2571cx" path="res://Scenes/Components/GameSignal/SignalAction.cs" id="8_m3477"]
@@ -23,6 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://d125dvf44n7ug" path="res://Assets/Textures/Tree/Tree2.png" id="17_6juvh"]
 [ext_resource type="Texture2D" uid="uid://dvrs8guod7h83" path="res://Assets/Textures/dirt/forest_leaves_02_nor_dx_1k.png" id="17_rlf6u"]
 [ext_resource type="Texture2D" uid="uid://ubepcdmm0lj1" path="res://Assets/Textures/dirt/forest_leaves_02_rough_1k.jpg" id="18_u1xlj"]
+[ext_resource type="PackedScene" uid="uid://brrx0kycea4b7" path="res://Assets/Models/Bits and Bobs/Camera/security_camera_01_1k.gltf" id="24_ed63r"]
+[ext_resource type="ArrayMesh" uid="uid://baesxhdcwq27c" path="res://Assets/Models/Bits and Bobs/Hanging Lamp/HangingLamp.mesh" id="24_y3xqu"]
+[ext_resource type="PackedScene" uid="uid://d88iolutijoi" path="res://Assets/Models/Bits and Bobs/Wall Lamps/industrial_wall_lamp_1k.gltf" id="31_c1m3j"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fopvk"]
 panorama = ExtResource("2_pw6n2")
@@ -116,13 +118,13 @@ ProcessingSteps = [SubResource("Resource_6jbr1"), SubResource("Resource_pw6n2")]
 Signal = "Salut la team"
 metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_tbkoj"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_n2xh5"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ed63r"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_c1m3j"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_eg8ik"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_3n33g"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Shader" id="Shader_fopvk"]
@@ -567,12 +569,6 @@ stream = ExtResource("4_citn4")
 volume_db = -22.259
 autoplay = true
 
-[node name="TV hum" type="AudioStreamPlayer3D" parent="AmbiantSounds" unique_id=524848800]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.219, 3.629, -0.948)
-stream = ExtResource("5_tbkoj")
-volume_db = -32.635
-autoplay = true
-
 [node name="Control Room Structure" type="Node3D" parent="." unique_id=1626977533]
 transform = Transform3D(3, 0, 0, 0, 1.5, 0, 0, 0, 3, 0, 0, 0)
 
@@ -700,7 +696,8 @@ mesh = SubResource("CylinderMesh_hims3")
 material = SubResource("StandardMaterial3D_ju7jk")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=399022044]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2721148, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.101048775, 4.7454844, 0.13967371)
+light_color = Color(1, 1, 0.6156863, 1)
 omni_range = 9.56
 
 [node name="CharacterController" parent="." unique_id=152917674 instance=ExtResource("6_kw2y0")]
@@ -730,13 +727,13 @@ MachineName = "Antenna"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11513424, 0.6261867, -7.0820575)
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel" parent_id_path=PackedInt32Array(51792808, 1002341385) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_tbkoj")
+texture = SubResource("ViewportTexture_n2xh5")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection2/LabelPanel" parent_id_path=PackedInt32Array(51792808, 334811226) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_ed63r")
+texture = SubResource("ViewportTexture_c1m3j")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection3/LabelPanel" parent_id_path=PackedInt32Array(51792808, 765657745) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_eg8ik")
+texture = SubResource("ViewportTexture_3n33g")
 
 [node name="MachineConnector1" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="0" unique_id=104554026]
 TargetMachine = NodePath("../../../MorseMachine")
@@ -1180,6 +1177,21 @@ alpha_cut = 1
 alpha_scissor_threshold = 0.704
 texture = ExtResource("17_6juvh")
 
+[node name="Decor" type="Node3D" parent="." unique_id=3605109]
+
+[node name="security_camera_01_1k" parent="Decor" unique_id=294197419 instance=ExtResource("24_ed63r")]
+transform = Transform3D(-0.9999999, 0, -8.7422755e-08, 1.560586e-08, 0.98393804, -0.17851026, 8.6018574e-08, -0.17851028, -0.9839379, -0.44776458, 5.352971, 6.9168005)
+
+[node name="security_camera_01" parent="Decor/security_camera_01_1k" index="0" unique_id=368457456]
+transform = Transform3D(1.0000014, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000015, 0, 0, 0)
+
+[node name="industrial_wall_lamp_1k" parent="Decor" unique_id=986140591 instance=ExtResource("31_c1m3j")]
+transform = Transform3D(-4.371139e-08, 0, -1, -1, -4.371139e-08, 4.371139e-08, -4.371139e-08, 1, 1.9106855e-15, 7.3087125, 4.6868577, -0.81387085)
+
+[node name="HangingLamp" type="MeshInstance3D" parent="Decor" unique_id=1606867163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07325578, 5.9310484, 0.0903258)
+mesh = ExtResource("24_y3xqu")
+
 [editable path="SignalRoutingPanelPretty"]
 [editable path="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel"]
 [editable path="SignalRoutingPanelPretty/Walls/WallSection2/LabelPanel"]
@@ -1188,3 +1200,4 @@ texture = ExtResource("17_6juvh")
 [editable path="SignalRoutingPanelPretty/SignalRoutingPanel/MachineConnector2"]
 [editable path="SignalRoutingPanelPretty/SignalRoutingPanel/MachineConnector3"]
 [editable path="Exterior/terrain"]
+[editable path="Decor/security_camera_01_1k"]
