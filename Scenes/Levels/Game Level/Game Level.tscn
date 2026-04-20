@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d1vcbmt2cp3pj" path="res://Assets/Textures/Concrete/Floor/damaged_concrete_floor_diff_4k.jpg" id="4_hims3"]
 [ext_resource type="PackedScene" uid="uid://bx2uthsk7y8ri" path="res://Scenes/Components/Machines/AntennaController/AntennaController.tscn" id="4_pw6n2"]
 [ext_resource type="Texture2D" uid="uid://ng26uxvjplxn" path="res://Assets/Textures/Concrete/Floor/damaged_concrete_floor_nor_dx_4k.jpg" id="5_kw2y0"]
+[ext_resource type="Script" uid="uid://bbdgcs36sdogv" path="res://Scenes/Global Managers/Quest Manager/QuestManager.cs" id="5_y3xqu"]
 [ext_resource type="PackedScene" uid="uid://dc6v214h1g3g0" path="res://Scenes/CharacterController/CharacterController.tscn" id="6_kw2y0"]
 [ext_resource type="PackedScene" uid="uid://dsam83ivnrgmx" path="res://Scenes/Components/Machines/Morse/MorseMachine.tscn" id="7_ju7jk"]
 [ext_resource type="Script" uid="uid://drcxhke2571cx" path="res://Scenes/Components/GameSignal/SignalAction.cs" id="8_m3477"]
@@ -568,6 +569,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.541246, -6.73407)
 stream = ExtResource("4_citn4")
 volume_db = -22.259
 autoplay = true
+
+[node name="QuestManager" type="Node" parent="." unique_id=876038908 groups=["QuestManager"]]
+script = ExtResource("5_y3xqu")
+QuestList = Array[Object]([])
 
 [node name="Control Room Structure" type="Node3D" parent="." unique_id=1626977533]
 transform = Transform3D(3, 0, 0, 0, 1.5, 0, 0, 0, 3, 0, 0, 0)

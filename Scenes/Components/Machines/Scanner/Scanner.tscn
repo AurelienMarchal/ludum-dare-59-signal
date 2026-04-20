@@ -142,8 +142,10 @@ transform = Transform3D(1.0000001, 0, 3.5527137e-14, 0, 1.0000001, 0, -3.5527137
 mesh = SubResource("ArrayMesh_7qml4")
 
 [node name="Screen Light" type="OmniLight3D" parent="." unique_id=1353657075]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030964851, 0.10408223, -0.2353555)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.031576037, 0.0048007965, -0.59229565)
 light_color = Color(0, 0.9137255, 1, 1)
+omni_range = 1.08
+omni_attenuation = 1.27
 
 [node name="PingSound" type="AudioStreamPlayer3D" parent="." unique_id=935198458]
 stream = ExtResource("9_7qml4")

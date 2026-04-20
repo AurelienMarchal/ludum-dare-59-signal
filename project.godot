@@ -23,6 +23,7 @@ project/assembly_name="LudumDare59-Signal"
 
 LevelManager=""
 Player=""
+QuestManager=""
 
 [input]
 

@@ -24,6 +24,10 @@ public partial class AntennaController : Machine
     protected NodePath _antennaPath { get; set; }
     private Antenna _antenna;
 
+    //The signal in space, we don't use InputSignal because we need to have a space signal as well as an input signal for the response
+    public GameSignal OverrideSignal;
+    
+
     private AudioStreamPlayer3D MovingAudio;
 
     public override void _Ready()
@@ -56,19 +60,22 @@ public partial class AntennaController : Machine
     public override void _Process(double delta)
     {
         if (Powered)
-        {
-            if (InputSignal!=null)
+        {   
+            //If there's a signal in space, we look into it
+            if (OverrideSignal!=null)
 			{
-				SignalAction NextStep = InputSignal.ProcessingSteps[0];
+				SignalAction NextStep = OverrideSignal.ProcessingSteps[0];
 				if (NextStep != null && NextStep.MachineName == MachineName)
                 {
-                    Godot.Vector2 target = (Godot.Vector2)InputSignal.Signal;
+                    Godot.Vector2 target = (Godot.Vector2)OverrideSignal.Signal;
                     if(actualX == (int)target.X && actualY == (int)target.Y)
                     {
-                        OutputNewSignal();
+                        OutputNewSignal(OverrideSignal);
                     }
                 }
             }
+
+            //The check for if the response is correct is to just check it's input Signal, the Quest Manager is doing that
         }
             return;
     }

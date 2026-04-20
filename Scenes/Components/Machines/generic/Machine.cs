@@ -32,6 +32,9 @@ public partial class Machine : Node3D
     protected NodePath _powerGaugePath { get; set; }
     private PowerGauge _powerGauge;
 
+	private QuestManager QM;
+	private string _lastConfirmedSignal = "";
+
     //Call this when processing 
     public void OutputNewSignal()
 	{
@@ -41,11 +44,49 @@ public partial class Machine : Node3D
 			OutputSignal = (GameSignal)InputSignal.DuplicateDeep();
 			OutputSignal.ProcessingSteps = OutputSignal.ProcessingSteps.Skip(1).ToArray(); 
 			OutputSignal.Signal = NextStep.NextSignalState;
+
+			//Ping the Quest giver if we finished parsing the signal & it should ping the quest giver & we didn't already did it reddit
+			if((OutputSignal.ProcessingSteps.Length <= 0) && OutputSignal.ShouldSignalQuestOnCompletion && (_lastConfirmedSignal != OutputSignal.SignalId))
+			{
+				//So that we don't send the response twice
+				_lastConfirmedSignal = OutputSignal.SignalId;
+				if (QM != null)
+				{
+                    _ = QM.QuestCompleteAsync();
+				}
+
+			}
+		}
+	}
+
+	//Antenna needs this to bypass the InputSignal don't worry about it
+    public void OutputNewSignal(GameSignal usingSignal)
+	{
+		SignalAction NextStep = usingSignal.ProcessingSteps[0];
+		if(NextStep != null)
+		{
+			OutputSignal = (GameSignal)usingSignal.DuplicateDeep();
+			OutputSignal.ProcessingSteps = OutputSignal.ProcessingSteps.Skip(1).ToArray(); 
+			OutputSignal.Signal = NextStep.NextSignalState;
+
+			//Ping the Quest giver if we finished parsing the signal & it should ping the quest giver & we didn't already did it reddit
+			if((OutputSignal.ProcessingSteps.Length <= 0) && OutputSignal.ShouldSignalQuestOnCompletion && (_lastConfirmedSignal != OutputSignal.SignalId))
+			{
+				//So that we don't send the response twice
+				_lastConfirmedSignal = OutputSignal.SignalId;
+				if (QM != null)
+				{
+                    _ = QM.QuestCompleteAsync();
+				}
+
+			}
 		}
 	}
 
 	public override void _Ready()
 	{
+		QM = (QuestManager)GetTree().GetFirstNodeInGroup("QuestManager");
+
         if (_powerGaugePath != null)
         {
             _powerGauge = GetNode<PowerGauge>(_powerGaugePath);
