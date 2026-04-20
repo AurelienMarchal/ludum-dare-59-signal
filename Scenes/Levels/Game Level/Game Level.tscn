@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://d88iolutijoi" path="res://Assets/Models/Bits and Bobs/Wall Lamps/industrial_wall_lamp_1k.gltf" id="31_c1m3j"]
 [ext_resource type="PackedScene" uid="uid://dq7t66pfdc2ne" path="res://Scenes/Components/Machines/Radio/Radio.tscn" id="32_3n33g"]
 [ext_resource type="PackedScene" uid="uid://c6nkdsi3qce7s" path="res://Scenes/Components/Machines/Image/ImageDecodingMachine.tscn" id="33_7tuyw"]
+[ext_resource type="PackedScene" path="res://Scenes/Levels/Game Level/fluff.tscn" id="33_ayug7"]
 [ext_resource type="PackedScene" uid="uid://0tfyp2550ah0" path="res://Scenes/Components/Machines/NoiseReduction/NoiseReductionMachine.tscn" id="34_s4dlf"]
 [ext_resource type="PackedScene" uid="uid://da3hy0wksug3a" path="res://Scenes/Components/Machines/TextInput/TextInputMachine.tscn" id="35_dscvi"]
 [ext_resource type="Script" uid="uid://bbdgcs36sdogv" path="res://Scenes/Global Managers/Quest Manager/QuestManager.cs" id="36_s4dlf"]
@@ -961,10 +962,9 @@ transform = Transform3D(0.0012827945, -0.044870608, 0.733628, 0, 0.7336291, 0.04
 
 [node name="LedSign" parent="." unique_id=1405049397 instance=ExtResource("15_y3xqu")]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -3.1813636, 4.5218887, -6.8401303)
-MachineName = "Led Sign"
 
 [node name="AntennaController" parent="." unique_id=1976791375 instance=ExtResource("4_pw6n2")]
-transform = Transform3D(-0.70710677, 0, -0.7071067, 0, 0.99999976, 0, 0.7071067, 0, -0.70710677, 0.96711355, 1.06052, 1.3163121)
+transform = Transform3D(-0.70710677, 0, -0.7071067, 0, 0.99999976, 0, 0.7071067, 0, -0.70710677, 0.96711355, 0.8893825, 1.3163121)
 MachineName = "Antenna"
 
 [node name="SignalRoutingPanelPretty" parent="." unique_id=51792808 instance=ExtResource("15_gb3pf")]
@@ -1056,7 +1056,7 @@ TargetMachine = NodePath("../../../Decor/Radio")
 [node name="terrain" parent="Exterior" unique_id=77538588 instance=ExtResource("15_3q1oc")]
 transform = Transform3D(1.6797404, 0, 0, 0, 1.2369887, 0, 0, 0, 1.6182325, -57.73485, 28.246298, 27.41631)
 
-[node name="Grid" parent="Exterior/terrain" index="0" unique_id=604317961]
+[node name="Grid" parent="Exterior/terrain" index="0" unique_id=1337920709]
 transform = Transform3D(-24.773746, 0, -0.55657005, 0, 24.78, 0, 0.55657005, 0, -24.773746, 69.814, -24.523, -1.732)
 surface_material_override/0 = SubResource("StandardMaterial3D_6juvh")
 
@@ -1471,7 +1471,7 @@ texture = ExtResource("17_6juvh")
 [node name="security_camera_01_1k" parent="Decor" unique_id=294197419 instance=ExtResource("24_ed63r")]
 transform = Transform3D(-0.9999999, 0, -8.7422755e-08, 1.560586e-08, 0.98393804, -0.17851026, 8.6018574e-08, -0.17851028, -0.9839379, -0.44776458, 5.352971, 6.9168005)
 
-[node name="security_camera_01" parent="Decor/security_camera_01_1k" index="0" unique_id=1135020440]
+[node name="security_camera_01" parent="Decor/security_camera_01_1k" index="0" unique_id=1403536701]
 transform = Transform3D(1.0000014, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000015, 0, 0, 0)
 
 [node name="industrial_wall_lamp_1k" parent="Decor" unique_id=986140591 instance=ExtResource("31_c1m3j")]
@@ -1484,8 +1484,7 @@ mesh = ExtResource("24_y3xqu")
 
 [node name="Lights" type="Node3D" parent="Decor" unique_id=2065145729]
 
-[node name="LightHandler" parent="Decor/Lights" unique_id=719744512 node_paths=PackedStringArray("_lamps") instance=ExtResource("27_c1m3j")]
-_lamps = [NodePath("LampWall"), NodePath("LampHanging"), NodePath("LampWall2"), NodePath("LampHanging2")]
+[node name="LightHandler" parent="Decor/Lights" unique_id=719744512 instance=ExtResource("27_c1m3j")]
 
 [node name="LampWall" parent="Decor/Lights/LightHandler" unique_id=1977835303 instance=ExtResource("27_ggshv")]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -1.6178042, 3.761524, -8.359644)
@@ -1504,7 +1503,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8517578, 4.6965714, -13.426
 
 [node name="ElectricalScreen" parent="Decor/Lights" unique_id=478216216 node_paths=PackedStringArray("_actuators") instance=ExtResource("29_ldd3l")]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 3.4824276, 1.9087979, -8.7099)
-_actuators = [NodePath("../ActuatorSwitchElectrical")]
+_actuators = []
 
 [node name="ActuatorSwitchElectrical" parent="Decor/Lights" unique_id=599775088 node_paths=PackedStringArray("_machine") instance=ExtResource("30_n2xh5")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.4814138, 2.4191, -8.663746)
@@ -1512,8 +1511,12 @@ _powerAmountRequired = 1
 StartsOn = true
 _machine = NodePath("../LightHandler")
 
-[node name="Radio" parent="Decor" unique_id=713797886 instance=ExtResource("32_3n33g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5070858, 1.122895, -2.2398412)
+[node name="Radio" parent="Decor" unique_id=713797886 node_paths=PackedStringArray("_musics") instance=ExtResource("32_3n33g")]
+transform = Transform3D(0.8769533, 0, -0.4805756, 0, 1, 0, 0.4805756, 0, 0.8769533, 2.4697804, 1.539566, -6.830101)
+_musics = []
+
+[node name="Fluff" parent="Decor" unique_id=1322379002 instance=ExtResource("33_ayug7")]
+visible = true
 
 [node name="ImageDecodingMachine" parent="." unique_id=1108847518 instance=ExtResource("33_7tuyw")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, 0.6, 0)
