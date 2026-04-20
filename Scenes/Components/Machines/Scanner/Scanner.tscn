@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ce48agb1m7t6l" path="res://Scenes/Components/Machines/Scanner/Assets/Model/TV/Television_01_nor_gl_1k.jpg" id="7_y3gb6"]
 [ext_resource type="AudioStream" uid="uid://bobah3fujlve6" path="res://Scenes/Components/Machines/Scanner/Assets/Sound/ping.wav" id="9_7qml4"]
 [ext_resource type="FontFile" uid="uid://dsav2nb5aw8lp" path="res://Assets/Fonts/SPACEBOY.TTF" id="12_cvpbu"]
+[ext_resource type="AudioStream" uid="uid://cirwnlgn6ey7n" path="res://Assets/Sound/tv hum.wav" id="13_anvna"]
 
 [sub_resource type="Resource" id="Resource_anvna"]
 script = ExtResource("2_aq8h1")
@@ -116,7 +117,7 @@ transform = Transform3D(-4.8749995, 0, -4.26186e-07, 0, 4.8749995, 0, 4.26186e-0
 transform = Transform3D(1.0000001, 0, 3.5527137e-14, 0, 1.0000001, 0, -3.5527137e-14, 0, 1.0000001, -0.09590731, -0.06422767, -0.2327219)
 mesh = SubResource("ArrayMesh_7qml4")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1353657075]
+[node name="Screen Light" type="OmniLight3D" parent="." unique_id=1353657075]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030964851, 0.10408223, -0.2353555)
 light_color = Color(0, 0.9137255, 1, 1)
 
@@ -173,6 +174,11 @@ modulate = Color(0, 1, 1, 1)
 pixel_size = 0.055
 render_priority = 4
 texture = SubResource("ViewportTexture_cvpbu")
+
+[node name="TV hum" type="AudioStreamPlayer3D" parent="." unique_id=934786050]
+stream = ExtResource("13_anvna")
+volume_db = -32.635
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 

@@ -12,6 +12,8 @@ public partial class Scanner : Machine
     private Sprite3D AimThing;
     private Sprite3D Ping;
     private AudioStreamPlayer3D PingAudio;
+    private AudioStreamPlayer3D TVHum;
+    private OmniLight3D ScreenLight;
     private Label X;
     private Label Y;
 
@@ -23,6 +25,9 @@ public partial class Scanner : Machine
         AimThing = GetNode<Sprite3D>("AimThing");
         Ping = GetNode<Sprite3D>("Ping");
         PingAudio = GetNode<AudioStreamPlayer3D>("PingSound");
+        TVHum = GetNode<AudioStreamPlayer3D>("TV Hum");
+        ScreenLight = GetNode<OmniLight3D>("ScreenLight");
+
         X = GetNode<Label>("SubViewport/X");
         Y = GetNode<Label>("SubViewport2/Y");
         Powered = true;
@@ -30,10 +35,7 @@ public partial class Scanner : Machine
 
     public override void _Process( double delta)
     {
-        Ray.SetVisible(Powered);
-        AimThing.SetVisible(Powered);
-        Ping.SetVisible(Powered);
-
+        
         if (Powered)
         {
             if (InputSignal != null)
@@ -47,6 +49,27 @@ public partial class Scanner : Machine
         }
         _rotateRay(delta);
     }
+
+    protected override void TurnOffBehavior()
+    {
+        base.TurnOffBehavior();
+        Ray.SetVisible(false);
+        AimThing.SetVisible(false);
+        Ping.SetVisible(false);
+        TVHum.Stop();
+        ScreenLight.SetVisible(false);
+    }
+
+    protected override void TurnOnBehavior()
+    {
+        base.TurnOnBehavior();
+        Ray.SetVisible(true);
+        AimThing.SetVisible(true);
+        Ping.SetVisible(true);
+        TVHum.Play();
+        ScreenLight.SetVisible(true);
+    }
+
 
     public void _rotateRay(double delta)
     {

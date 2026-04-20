@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bpg401nlrkb6j"]
+
+[ext_resource type="Script" uid="uid://ta1rop0hm78y" path="res://Scenes/Components/Diode/Diode.cs" id="1_1revn"]
+[ext_resource type="ArrayMesh" uid="uid://c5l4ad38huihg" path="res://Assets/Models/Bits and Bobs/Wall Lamps/wallLamp.mesh" id="2_d5rt5"]
+
+[node name="Diode" type="Node3D" unique_id=646774809]
+script = ExtResource("1_1revn")
+
+[node name="industrial_wall_lamp" type="MeshInstance3D" parent="." unique_id=817311919]
+mesh = ExtResource("2_d5rt5")
+
+[node name="light" type="OmniLight3D" parent="." unique_id=214961566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.10623482)
+light_color = Color(1, 0, 0, 1)
+omni_range = 0.315
