@@ -1323,7 +1323,7 @@ mesh = ExtResource("24_y3xqu")
 [node name="Lights" type="Node3D" parent="Decor" unique_id=2065145729]
 
 [node name="LightHandler" parent="Decor/Lights" unique_id=719744512 node_paths=PackedStringArray("_lamps") instance=ExtResource("27_c1m3j")]
-_lamps = [NodePath("LampWall"), NodePath("LampHanging")]
+_lamps = [NodePath("LampWall"), NodePath("LampHanging"), NodePath("LampWall2"), NodePath("LampHanging2")]
 
 [node name="LampWall" parent="Decor/Lights/LightHandler" unique_id=1977835303 instance=ExtResource("27_ggshv")]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -1.6178042, 3.761524, -8.359644)
