@@ -173,6 +173,7 @@ public partial class AntennaController : Machine
         {
             _ = _antenna.UpdatePositionAsync(_x, _y);
             MovingAudio.Play();
+            confirmDiode.TurnOff();
         }
     }
 
