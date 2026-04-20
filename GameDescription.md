@@ -1,18 +1,18 @@
-# Nom du jeu
-
-In this game, you are playing as a **satellite technician** in a control room. Your goal is to control the **satellite antenna** to receive signals from spaceships and satelittes, read them and then answer back. But the signals won't be readable at first, therefore you have access to a array of machines to help your read the signal. 
+# STATION 88
+![Antenna.png](///raw/d3a/44/z/70ebc.png)
+In this game, you are playing as a **satellite technician** in a control room. Your goal is to control the **satellite antenna** to receive signals from spaceships and satellites, read them and then answer back. But the signals won't be readable at first, therefore you have access to a array of machines to help your read the signal. 
 
 ## ⌨️ Controls
 
 - **[WASD]** Move
 - **[Mouse]** Look around
 - **[Left click]**  Interact (most of the time)
-- **[Right click]** Only for substracting in [Antenna Controls](#antenna-controls) 
+- **[Right click]** Only for substracting in [Antenna Controls]
 
 ## 📟 Control room
 The whole game happens inside the control room. It is composed of multiple parts that all have theirs utilities.
 
-### 📡 Satelitte Antenna 
+### 📡 Satellite Antenna 
 
 From the main window you will see a massive antenna that you can move with the antenna controls at the center.
 
@@ -24,17 +24,13 @@ At the center of the main room there is a control panel with 4 levers to control
 - SET Lever : Command the satelitte antenna to point to the given coordinates (20s animation)
 
 ### 🌐 Radar
-At the left hand side of the window there is a radar (in light blue) where you can see if signals are being sent to you. If a signal is detected, the radar will give you the coordinates to enter on the [Antenna Controls](#antenna-controls) to receive the signal. 
+At the left hand side of the window there is a radar (in light blue) where you can see if signals are being sent to you. If a signal is detected, the radar will give you the coordinates to enter on the [Antenna Controls] to receive the signal. 
 
 ### 〰️ Wiring Panel
-At the back of the main room there is a smaller room. On the left when entering, there is a wiring panel. this is where you can hook the machines together. The **top connectors** are the **input** of the machines and the **bottom connectors** are the **output** of the machines. To connnect two machines together, click on an **output connector** of a machine and click on an **input connector** of another machine. For example, to connect the antenna to the noise reduction machine, click on the top connector of the antenna and on the bottom connector of the noise reduction machine. If there is a signal received bu the antenna, you should see a noisy signal in the noise reduction machine (in the main room). Left clicking again on the same connector unplugsthe wire.
-
-### ⚡ Electrical panel
-On the right of the smaller there is a another panel to control the power levels of the machines. If a machine is not powered, it will not work.
-... remi dis nous tout moi j'ai rien sur l'elec je suis pas électricien
+At the back of the main room there is a smaller room. On the left when entering, there is a wiring panel. This is where you can hook the machines together. The **top connectors** are the **input** of the machines and the **bottom connectors** are the **output** of the machines. To connnect two machines together, click on an **output connector** of a machine and click on an **input connector** of another machine. For example, to connect the antenna to the noise reduction machine, click on the top connector of the antenna and on the bottom connector of the noise reduction machine. If there is a signal received bu the antenna, you should see a noisy signal in the noise reduction machine (in the main room). Left clicking again on the same connector unplugsthe wire.
 
 ### ⚙️ The machines
-At the back of the main room (opposite of the window) is where the machines are located. The machines are helpfull to transform the signal to be readable or to send a message.
+At the back of the main room (opposite of the window) is where the machines are located. The machines are helpful to transform the signal to be readable or to send a message.
 
 #### Signal analyser
 Diplays informations about the signal (works on any signal)
@@ -54,13 +50,16 @@ Allows the user input numbers to respond to the signals.
 - #️⃣ = send signal
 
 #### Morse .. -. . . -.. ... .-.. . . .--.
-Translate from text to morse code and the other way around (use switch go from one to the other). When powered, the light turns on. 
+Translate from text to morse code and the other way around (use switch to go from one to the other). When powered, the light turns on. 
 - Red Light 🔴 = No signal or signal that can't be red by the machine
 - Yellow light 🟡 = Processing signal
 - Green Light 🟢 = Finished Processing 
 
-tip : if you translate morse code to morse code, the machine will work but il will just translate the morse code to more morse code which is not espacially useful.
+tip : if you translate morse code to morse code, the machine will work but il will just translate the morse code to more morse code which is not especially useful.
 
+## Cheats 
+#### Quest 1
+- 
 
 
 ## Credits : 
