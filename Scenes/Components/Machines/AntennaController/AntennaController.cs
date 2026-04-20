@@ -25,6 +25,7 @@ public partial class AntennaController : Machine
     private Antenna _antenna;
 
     //The signal in space, we don't use InputSignal because we need to have a space signal as well as an input signal for the response
+    [Export]
     public GameSignal OverrideSignal;
     
 

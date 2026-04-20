@@ -304,7 +304,9 @@ public partial class MorseProcessing : Machine
 
     private void OnActuatorSwitchActuatorTriggered(bool isOn)
     {
-        //currentCharIndex = 0;
         AsciiToMorse = isOn;
+        CompletionProcess = 0;
+        currentCharIndex = 0;
+        decodingResult = "";
     }
 }

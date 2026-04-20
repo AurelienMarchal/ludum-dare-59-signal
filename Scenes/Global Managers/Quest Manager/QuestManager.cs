@@ -28,6 +28,7 @@ public partial class QuestManager : Node
         antenna = GetNode<AntennaController>(antennaPath);
         rng = new RandomNumberGenerator();
         rng.Randomize();
+        SetupQuest();
     }   
 
     public override void _Process(double delta)
@@ -89,13 +90,18 @@ public partial class QuestManager : Node
         QuestList = QuestList.Slice(1); //Remove the first quest
         _setupRadar();
         
+        if(CurrentQuest.ExpectedResponse == null)
+        {
+            CurrentQuest.Request.ShouldSignalQuestOnCompletion = true;
+        }
+
         antenna.OverrideSignal = CurrentQuest.Request;
     }
 
     //Called by the machines when the signal is complete or by the antenna if the signal inputted is the one we expected
     public async Task QuestCompleteAsync()
     {
-        
+        GD.Print("Quest Complete");
         CurrentQuest = null;
         //Simulate upload time
         await ToSignal(GetTree().CreateTimer(rng.RandiRange(1,3)),"timeout");

@@ -783,8 +783,7 @@ mesh = SubResource("ArrayMesh_0mtf2")
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
 
 [node name="Text" parent="Walls/WallSection3/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(765657745, 1489154748) index="0" unique_id=2115537520]
-text = "Image
-Processing"
+text = "Antenna"
 
 [node name="Screen" parent="Walls/WallSection3/LabelPanel" index="2" unique_id=407905172]
 texture = SubResource("ViewportTexture_8rdm8")
@@ -905,7 +904,7 @@ mesh = SubResource("ArrayMesh_0mtf2")
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
 
 [node name="Text" parent="Walls/WallSection6/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(30835056, 1489154748) index="0" unique_id=2115537520]
-text = "Machine 1"
+text = "Radio"
 
 [node name="Screen" parent="Walls/WallSection6/LabelPanel" index="2" unique_id=407905172]
 texture = SubResource("ViewportTexture_in556")

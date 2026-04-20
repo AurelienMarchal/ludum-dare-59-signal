@@ -94,6 +94,7 @@ public partial class NoiseReductionMachine : Machine
 
         DisplayNoisySignal();
 		DiplayCleanSignal();
+		OutputNewSignal();
 	}
 
 	private void DisplayNoSignal()
