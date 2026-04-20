@@ -25,10 +25,13 @@ public partial class AntennaController : Machine
     private Antenna _antenna;
 
     //The signal in space, we don't use InputSignal because we need to have a space signal as well as an input signal for the response
+    [Export]
     public GameSignal OverrideSignal;
     
 
     private AudioStreamPlayer3D MovingAudio;
+
+    private Diode confirmDiode;
 
     public override void _Ready()
     {
@@ -38,6 +41,8 @@ public partial class AntennaController : Machine
         _labelY = GetNode<Label>("SubViewport2/LabelY");
         
         MovingAudio = GetNode<AudioStreamPlayer3D>("Antenna/AudioStreamPlayer3D");
+
+        confirmDiode = GetNode<Diode>("Diode");
 
         _actuatorLeverX = GetNode<ActuatorLever>("ActuatorLeverX");
         _actuatorLeverY = GetNode<ActuatorLever>("ActuatorLeverY");
@@ -61,6 +66,7 @@ public partial class AntennaController : Machine
     {
         if (Powered)
         {   
+            confirmDiode.TurnOff();
             //If there's a signal in space, we look into it
             if (OverrideSignal!=null)
 			{
@@ -70,6 +76,7 @@ public partial class AntennaController : Machine
                     Godot.Vector2 target = (Godot.Vector2)OverrideSignal.Signal;
                     if(actualX == (int)target.X && actualY == (int)target.Y)
                     {
+                        confirmDiode.TurnOn();
                         OutputNewSignal(OverrideSignal);
                     }
                 }
@@ -77,12 +84,17 @@ public partial class AntennaController : Machine
 
             //The check for if the response is correct is to just check it's input Signal, the Quest Manager is doing that
         }
+        else
+        {
+            confirmDiode.TurnOff();
+        }
             return;
     }
 
     protected override void TurnOffBehavior()
     {
         base.TurnOffBehavior();
+        confirmDiode.TurnOff();
         if (_labelX==null)
             _labelX = GetNode<Label>("SubViewport/LabelX");
         if (_labelY==null)
@@ -161,6 +173,7 @@ public partial class AntennaController : Machine
         {
             _ = _antenna.UpdatePositionAsync(_x, _y);
             MovingAudio.Play();
+            confirmDiode.TurnOff();
         }
     }
 

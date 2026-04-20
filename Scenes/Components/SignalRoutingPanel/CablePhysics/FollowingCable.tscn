@@ -12,6 +12,9 @@ bottom_radius = 0.02
 height = 0.2
 radial_segments = 4
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cdut"]
+albedo_color = Color(0.033853278, 0.033853278, 0.033853274, 1)
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_p5yro"]
 height = 0.2
 radius = 0.02
@@ -41,6 +44,7 @@ collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Rope/Cable Segment" unique_id=581630356]
 mesh = SubResource("CylinderMesh_vdgsf")
+surface_material_override/0 = SubResource("StandardMaterial3D_7cdut")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rope/Cable Segment" unique_id=1951688178]
 shape = SubResource("CylinderShape3D_p5yro")
@@ -59,6 +63,7 @@ collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Rope/Cable Segment2" unique_id=1758067780]
 mesh = SubResource("CylinderMesh_vdgsf")
+surface_material_override/0 = SubResource("StandardMaterial3D_7cdut")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rope/Cable Segment2" unique_id=415089143]
 shape = SubResource("CylinderShape3D_p5yro")
@@ -77,6 +82,7 @@ collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Rope/Cable Segment3" unique_id=1375559942]
 mesh = SubResource("CylinderMesh_vdgsf")
+surface_material_override/0 = SubResource("StandardMaterial3D_7cdut")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rope/Cable Segment3" unique_id=1165701062]
 shape = SubResource("CylinderShape3D_p5yro")
@@ -95,6 +101,7 @@ collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Rope/Cable Segment4" unique_id=12686933]
 mesh = SubResource("CylinderMesh_vdgsf")
+surface_material_override/0 = SubResource("StandardMaterial3D_7cdut")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rope/Cable Segment4" unique_id=644833373]
 shape = SubResource("CylinderShape3D_p5yro")
@@ -113,6 +120,7 @@ collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Rope/Cable Segment5" unique_id=300239741]
 mesh = SubResource("CylinderMesh_vdgsf")
+surface_material_override/0 = SubResource("StandardMaterial3D_7cdut")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rope/Cable Segment5" unique_id=1661310215]
 shape = SubResource("CylinderShape3D_p5yro")

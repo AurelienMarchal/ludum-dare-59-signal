@@ -177,12 +177,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ij4q5")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8dhor"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_wubmg"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_8rdm8"]
 viewport_path = NodePath("SubViewport")
 
@@ -193,6 +187,12 @@ viewport_path = NodePath("SubViewport")
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_in556"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_usxe7"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_at662"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Shader" id="Shader_8dhor"]
@@ -706,7 +706,7 @@ text = "Text
 Processing"
 
 [node name="Screen" parent="Walls/WallSection/LabelPanel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_8dhor")
+texture = SubResource("ViewportTexture_8rdm8")
 
 [node name="WallSection2" type="Node3D" parent="Walls" unique_id=774841510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
@@ -746,7 +746,7 @@ transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 
 text = "Keypad"
 
 [node name="Screen" parent="Walls/WallSection2/LabelPanel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_wubmg")
+texture = SubResource("ViewportTexture_0mtf2")
 
 [node name="WallSection3" type="Node3D" parent="Walls" unique_id=612113619]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
@@ -783,11 +783,10 @@ mesh = SubResource("ArrayMesh_0mtf2")
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
 
 [node name="Text" parent="Walls/WallSection3/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(765657745, 1489154748) index="0" unique_id=2115537520]
-text = "Image
-Processing"
+text = "Antenna"
 
 [node name="Screen" parent="Walls/WallSection3/LabelPanel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_8rdm8")
+texture = SubResource("ViewportTexture_sunu6")
 
 [node name="WallSection4" type="Node3D" parent="Walls" unique_id=508664717]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
@@ -828,7 +827,7 @@ text = "Noise
 Reduction"
 
 [node name="Screen" parent="Walls/WallSection4/LabelPanel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_0mtf2")
+texture = SubResource("ViewportTexture_in556")
 
 [node name="WallSection5" type="Node3D" parent="Walls" unique_id=1072211194]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
@@ -868,7 +867,7 @@ transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 
 text = "Radio"
 
 [node name="Screen" parent="Walls/WallSection5/LabelPanel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_sunu6")
+texture = SubResource("ViewportTexture_usxe7")
 
 [node name="WallSection6" type="Node3D" parent="Walls" unique_id=923683324]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
@@ -905,10 +904,10 @@ mesh = SubResource("ArrayMesh_0mtf2")
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
 
 [node name="Text" parent="Walls/WallSection6/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(30835056, 1489154748) index="0" unique_id=2115537520]
-text = "Machine 1"
+text = "Radio"
 
 [node name="Screen" parent="Walls/WallSection6/LabelPanel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_in556")
+texture = SubResource("ViewportTexture_at662")
 
 [node name="SignalRoutingPanel" type="Node3D" parent="." unique_id=573874878]
 script = ExtResource("1_71dif")

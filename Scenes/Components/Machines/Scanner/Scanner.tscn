@@ -1,10 +1,8 @@
 [gd_scene format=4 uid="uid://ipu2kyfd18rc"]
 
 [ext_resource type="Script" uid="uid://ugwc0efbcrg3" path="res://Scenes/Components/Machines/Scanner/Scanner.cs" id="1_y3gb6"]
-[ext_resource type="Script" uid="uid://drcxhke2571cx" path="res://Scenes/Components/GameSignal/SignalAction.cs" id="2_aq8h1"]
 [ext_resource type="Texture2D" uid="uid://4lmlvmj102sh" path="res://Scenes/Components/Machines/Scanner/Assets/ping.png" id="2_o416m"]
 [ext_resource type="Texture2D" uid="uid://d3n81b17ktknw" path="res://Scenes/Components/Machines/Scanner/Assets/Radar Ray.png" id="2_sl7hr"]
-[ext_resource type="Script" uid="uid://ch0dfrr2gjlif" path="res://Scenes/Components/GameSignal/GameSignal.cs" id="3_cvpbu"]
 [ext_resource type="Texture2D" uid="uid://bjwcqnl8eet87" path="res://Scenes/Components/Machines/Scanner/Assets/Radar Target thing.png" id="3_ge6lr"]
 [ext_resource type="Texture2D" uid="uid://di7mugah5pe1j" path="res://Scenes/Components/Machines/Scanner/Assets/Model/TV/tv diff transparent.png" id="3_y3gb6"]
 [ext_resource type="Texture2D" uid="uid://wqd5n74fo2xw" path="res://Scenes/Components/Machines/Scanner/Assets/RadarBg.png" id="4_r4vvq"]
@@ -13,19 +11,6 @@
 [ext_resource type="AudioStream" uid="uid://bobah3fujlve6" path="res://Scenes/Components/Machines/Scanner/Assets/Sound/ping.wav" id="9_7qml4"]
 [ext_resource type="FontFile" uid="uid://dsav2nb5aw8lp" path="res://Assets/Fonts/SPACEBOY.TTF" id="12_cvpbu"]
 [ext_resource type="AudioStream" uid="uid://cirwnlgn6ey7n" path="res://Assets/Sound/tv hum.wav" id="13_anvna"]
-
-[sub_resource type="Resource" id="Resource_anvna"]
-script = ExtResource("2_aq8h1")
-MachineName = "Scannersdqs"
-NextSignalState = Vector2(12, 25)
-metadata/_custom_type_script = "uid://drcxhke2571cx"
-
-[sub_resource type="Resource" id="Resource_jfwdr"]
-script = ExtResource("3_cvpbu")
-SignalId = "test"
-ProcessingSteps = [SubResource("Resource_anvna")]
-Signal = Vector2(-0.5, 0.25)
-metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_anvna"]
 radius = 0.63329816
@@ -93,7 +78,6 @@ viewport_path = NodePath("SubViewport2")
 [node name="Scanner" type="Node3D" unique_id=1867250863]
 script = ExtResource("1_y3gb6")
 MachineName = "Radar"
-InputSignal = SubResource("Resource_jfwdr")
 metadata/_custom_type_script = "uid://drtmebqp4tgrk"
 
 [node name="Ping" type="Sprite3D" parent="." unique_id=1521594515]
@@ -137,7 +121,7 @@ texture = ExtResource("4_r4vvq")
 [node name="test" parent="." unique_id=1241732080 instance=ExtResource("5_micmt")]
 transform = Transform3D(-4.8749995, 0, -4.26186e-07, 0, 4.8749995, 0, 4.26186e-07, 0, -4.8749995, -0.78654903, -0.9503942, -0.34054756)
 
-[node name="Television_01" parent="test" index="0" unique_id=518811806]
+[node name="Television_01" parent="test" index="0" unique_id=1074850054]
 transform = Transform3D(1.0000001, 0, 3.5527137e-14, 0, 1.0000001, 0, -3.5527137e-14, 0, 1.0000001, -0.09590731, -0.06422767, -0.2327219)
 mesh = SubResource("ArrayMesh_7qml4")
 

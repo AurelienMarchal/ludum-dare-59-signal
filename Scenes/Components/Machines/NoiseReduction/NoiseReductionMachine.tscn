@@ -320,7 +320,7 @@ outline_color = Color(1, 0.36078432, 0, 1)
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 0.5294118)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_b8w7y"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_adab4"]
 viewport_path = NodePath("SubViewport")
 
 [node name="NoiseReductionMachine" type="Node3D" unique_id=432472323]
@@ -383,7 +383,7 @@ label_settings = SubResource("LabelSettings_eqbiw")
 autowrap_mode = 2
 
 [node name="Screen" parent="LabelPanel3" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_b8w7y")
+texture = SubResource("ViewportTexture_adab4")
 
 [node name="Diode" parent="." unique_id=646774809 instance=ExtResource("9_adab4")]
 transform = Transform3D(-2.1855694e-08, -0.5, 0, 0.5, -2.1855694e-08, 0, 0, 0, 0.5, 0, 1, -0.20841712)

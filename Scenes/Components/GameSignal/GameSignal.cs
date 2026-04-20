@@ -15,7 +15,7 @@ public partial class GameSignal : Resource
 	//The current state of the signal, can be audio or image depending on what we do, in the shadow, la série.
 	[Export]
 	public Variant Signal;
-
+	[Export]
 	//When this signal is completely parsed, it should say it to the quest giver
 	public bool ShouldSignalQuestOnCompletion = false;
 

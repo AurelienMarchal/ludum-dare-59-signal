@@ -44,12 +44,16 @@ public partial class Machine : Node3D
 			OutputSignal = (GameSignal)InputSignal.DuplicateDeep();
 			OutputSignal.ProcessingSteps = OutputSignal.ProcessingSteps.Skip(1).ToArray(); 
 			OutputSignal.Signal = NextStep.NextSignalState;
-
 			//Ping the Quest giver if we finished parsing the signal & it should ping the quest giver & we didn't already did it reddit
 			if((OutputSignal.ProcessingSteps.Length <= 0) && OutputSignal.ShouldSignalQuestOnCompletion && (_lastConfirmedSignal != OutputSignal.SignalId))
 			{
 				//So that we don't send the response twice
 				_lastConfirmedSignal = OutputSignal.SignalId;
+				if (QM == null)
+				{
+						QM = (QuestManager)GetTree().GetFirstNodeInGroup("QuestManager");
+				}
+
 				if (QM != null)
 				{
                     _ = QM.QuestCompleteAsync();
@@ -74,6 +78,10 @@ public partial class Machine : Node3D
 			{
 				//So that we don't send the response twice
 				_lastConfirmedSignal = OutputSignal.SignalId;
+				if (QM == null)
+				{
+						QM = (QuestManager)GetTree().GetFirstNodeInGroup("QuestManager");
+				}
 				if (QM != null)
 				{
                     _ = QM.QuestCompleteAsync();
