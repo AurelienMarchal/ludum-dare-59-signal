@@ -16,7 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://caq80iv131s3v" path="res://Scenes/Components/Machines/SignalGenerator/SignalGenerator.tscn" id="12_fopvk"]
 [ext_resource type="PackedScene" uid="uid://ipu2kyfd18rc" path="res://Scenes/Components/Machines/Scanner/Scanner.tscn" id="13_fopvk"]
 [ext_resource type="PackedScene" uid="uid://bjk66onerp5fv" path="res://Assets/Models/Bits and Bobs/Terrain/terrain.gltf" id="15_3q1oc"]
-[ext_resource type="PackedScene" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanelPretty.tscn" id="15_gb3pf"]
+[ext_resource type="PackedScene" uid="uid://w6878jnfh3ir" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanelPretty.tscn" id="15_gb3pf"]
+[ext_resource type="PackedScene" uid="uid://dq02ate5hfrd0" path="res://Scenes/Components/Machines/LedSign/LedSign.tscn" id="15_y3xqu"]
 [ext_resource type="Texture2D" uid="uid://dop6e2g02x1bv" path="res://Assets/Textures/Tree/Tree.png" id="16_3q1oc"]
 [ext_resource type="Texture2D" uid="uid://becr4suytao3y" path="res://Assets/Textures/dirt/forest_leaves_02_diffuse_1k.jpg" id="16_pml4l"]
 [ext_resource type="Texture2D" uid="uid://d125dvf44n7ug" path="res://Assets/Textures/Tree/Tree2.png" id="17_6juvh"]
@@ -118,13 +119,13 @@ ProcessingSteps = [SubResource("Resource_6jbr1"), SubResource("Resource_pw6n2")]
 Signal = "Salut la team"
 metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_n2xh5"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ggshv"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_c1m3j"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_6t6fy"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_3n33g"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ldd3l"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Shader" id="Shader_fopvk"]
@@ -719,6 +720,9 @@ OutputSignal = SubResource("Resource_fopvk")
 [node name="Scanner" parent="." unique_id=1867250863 instance=ExtResource("13_fopvk")]
 transform = Transform3D(0.0012827945, -0.044870608, 0.733628, 0, 0.7336291, 0.044870675, -0.7349989, -7.831273e-05, 0.0012804018, 7.219, 3.629, -0.948)
 
+[node name="LedSign" parent="." unique_id=1405049397 instance=ExtResource("15_y3xqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5218887, -7.172152)
+
 [node name="AntennaController" parent="." unique_id=1976791375 instance=ExtResource("4_pw6n2")]
 transform = Transform3D(-0.70710677, 0, -0.7071067, 0, 0.99999976, 0, 0.7071067, 0, -0.70710677, 0.96711355, 1.06052, 1.3163121)
 MachineName = "Antenna"
@@ -727,13 +731,13 @@ MachineName = "Antenna"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11513424, 0.6261867, -7.0820575)
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel" parent_id_path=PackedInt32Array(51792808, 1002341385) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_n2xh5")
+texture = SubResource("ViewportTexture_ggshv")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection2/LabelPanel" parent_id_path=PackedInt32Array(51792808, 334811226) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_c1m3j")
+texture = SubResource("ViewportTexture_6t6fy")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection3/LabelPanel" parent_id_path=PackedInt32Array(51792808, 765657745) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_3n33g")
+texture = SubResource("ViewportTexture_ldd3l")
 
 [node name="MachineConnector1" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="0" unique_id=104554026]
 TargetMachine = NodePath("../../../MorseMachine")
@@ -767,7 +771,7 @@ material_overlay = SubResource("ShaderMaterial_6juvh")
 [node name="terrain" parent="Exterior" unique_id=77538588 instance=ExtResource("15_3q1oc")]
 transform = Transform3D(1.6797404, 0, 0, 0, 1.2369887, 0, 0, 0, 1.6182325, -57.73485, 28.246298, 27.41631)
 
-[node name="Grid" parent="Exterior/terrain" index="0" unique_id=1355081315]
+[node name="Grid" parent="Exterior/terrain" index="0" unique_id=764643488]
 transform = Transform3D(-24.773746, 0, -0.55657005, 0, 24.78, 0, 0.55657005, 0, -24.773746, 69.814, -24.523, -1.732)
 surface_material_override/0 = SubResource("StandardMaterial3D_6juvh")
 
@@ -1182,7 +1186,7 @@ texture = ExtResource("17_6juvh")
 [node name="security_camera_01_1k" parent="Decor" unique_id=294197419 instance=ExtResource("24_ed63r")]
 transform = Transform3D(-0.9999999, 0, -8.7422755e-08, 1.560586e-08, 0.98393804, -0.17851026, 8.6018574e-08, -0.17851028, -0.9839379, -0.44776458, 5.352971, 6.9168005)
 
-[node name="security_camera_01" parent="Decor/security_camera_01_1k" index="0" unique_id=368457456]
+[node name="security_camera_01" parent="Decor/security_camera_01_1k" index="0" unique_id=1872017991]
 transform = Transform3D(1.0000014, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000015, 0, 0, 0)
 
 [node name="industrial_wall_lamp_1k" parent="Decor" unique_id=986140591 instance=ExtResource("31_c1m3j")]
