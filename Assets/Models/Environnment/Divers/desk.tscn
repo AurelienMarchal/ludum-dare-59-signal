@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://jw6x65kg0j0u"]
-
-[ext_resource type="PackedScene" uid="uid://dfs4ccivh2f1r" path="res://Assets/Models/Environnment/Divers/desk/metal_office_desk_2k.gltf" id="1_f1d4n"]
-
-[node name="Desk" unique_id=575186296 instance=ExtResource("1_f1d4n")]

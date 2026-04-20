@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://7a60xx64yrsu"]
-
-[ext_resource type="PackedScene" uid="uid://ja03t553w0lh" path="res://Assets/Models/Environnment/Divers/stool/metal_stool_02_2k.gltf" id="1_0kvoe"]
-
-[node name="stool" unique_id=630136894 instance=ExtResource("1_0kvoe")]
-
-[node name="metal_stool_02" parent="." index="0" unique_id=1731521516]
-transform = Transform3D(-8.480009e-08, 0, 1.94, 0, 1.94, 0, -1.94, 0, -8.480009e-08, 0, 0, 0)
