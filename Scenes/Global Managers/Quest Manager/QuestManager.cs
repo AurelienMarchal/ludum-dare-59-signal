@@ -19,6 +19,7 @@ public partial class QuestManager : Node
     AntennaController antenna;
 
     AudioStreamPlayer3D victory;
+    AudioStreamPlayer3D alarm;
 
     RandomNumberGenerator rng;
 
@@ -32,6 +33,7 @@ public partial class QuestManager : Node
         rng.Randomize();
         SetupQuest();
         victory = GetNode<AudioStreamPlayer3D>("../Complete");
+        alarm = GetNode<AudioStreamPlayer3D>("../Alarm");
     }   
 
     public override void _Process(double delta)
@@ -139,14 +141,14 @@ public partial class QuestManager : Node
             SetupQuest();
         }else
         {
-            AlienStuff();
+            _=AlienStuffAsync();
         }
 
     }
 
 
     //Inshallah y'a le temps
-    public void AlienStuff()
+    public async Task AlienStuffAsync()
     {
         //Setup the radar
 
@@ -162,10 +164,41 @@ public partial class QuestManager : Node
             ProcessingSteps = [action]
         };
 
-        
+        scanner.InputSignal = scannerInput;
+        alarm.Play();
+
+        await ToSignal(GetTree().CreateTimer(3),"timeout");
+
+        scannerInput = new GameSignal
+        {
+            Signal = (Variant)new Vector2(0.4F,0.4F),
+            ProcessingSteps = [action]
+        };
 
         scanner.InputSignal = scannerInput;
-        GetTree().CreateTween().TweenProperty(scanner.InputSignal.Signal.AsGodotObject(), "position",new Vector2(0,0),2);
+
+        await ToSignal(GetTree().CreateTimer(3),"timeout");
+
+        scannerInput = new GameSignal
+        {
+            Signal = (Variant)new Vector2(0.3F,0.3F),
+            ProcessingSteps = [action]
+        };
+
+        scanner.InputSignal = scannerInput;
+
+        await ToSignal(GetTree().CreateTimer(3),"timeout");
+
+        scannerInput = new GameSignal
+        {
+            Signal = (Variant)new Vector2(0.1F,0.1F),
+            ProcessingSteps = [action]
+        };
+
+        scanner.InputSignal = scannerInput;
+
+
+
     }
 
 }
