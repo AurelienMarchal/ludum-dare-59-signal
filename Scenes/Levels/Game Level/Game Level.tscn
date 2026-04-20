@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cpmywfj2uo47s" path="res://Scenes/Global Managers/Level Manager/Level.cs" id="1_4taje"]
 [ext_resource type="Texture2D" uid="uid://q01ymi7wh06i" path="res://Assets/Textures/Concrete/concrete_wall_007_diff_4k.jpg" id="2_ccnwj"]
+[ext_resource type="Texture2D" uid="uid://csrp16ftt64rs" path="res://Assets/Textures/Skybox/NightSky1.png" id="2_pw6n2"]
 [ext_resource type="AudioStream" uid="uid://bd3chinm70iof" path="res://Assets/Sound/eerie forest.mp3" id="3_u1xlj"]
 [ext_resource type="AudioStream" uid="uid://brfd5yjfoj2p4" path="res://Assets/Sound/fan.wav" id="4_citn4"]
 [ext_resource type="Texture2D" uid="uid://ooh5gkdw0jkv" path="res://Assets/Textures/Concrete/concrete_wall_007_nor_dx_4k.jpg" id="4_fotk7"]
@@ -29,6 +30,31 @@
 [ext_resource type="Texture2D" uid="uid://bfrj1lclx2x24" path="res://Assets/Models/Bits and Bobs/Camera/textures/security_camera_01_arm_1k.jpg" id="25_n2xh5"]
 [ext_resource type="Texture2D" uid="uid://bkcxcja5ds6rf" path="res://Assets/Models/Bits and Bobs/Camera/textures/security_camera_01_nor_gl_1k.jpg" id="26_c1m3j"]
 [ext_resource type="PackedScene" uid="uid://d88iolutijoi" path="res://Assets/Models/Bits and Bobs/Wall Lamps/industrial_wall_lamp_1k.gltf" id="31_c1m3j"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fopvk"]
+panorama = ExtResource("2_pw6n2")
+energy_multiplier = 0.09
+
+[sub_resource type="Sky" id="Sky_pw6n2"]
+sky_material = SubResource("PanoramaSkyMaterial_fopvk")
+
+[sub_resource type="Environment" id="Environment_gb3pf"]
+background_mode = 2
+sky = SubResource("Sky_pw6n2")
+tonemap_mode = 2
+tonemap_exposure = 0.7
+tonemap_white = 6.03
+ssao_enabled = true
+glow_enabled = true
+glow_bloom = 0.11
+fog_enabled = true
+fog_light_color = Color(0.019799998, 0.023709998, 0.03, 1)
+fog_light_energy = 0.4
+fog_sun_scatter = 0.15
+fog_density = 0.0115
+fog_aerial_perspective = 0.883
+adjustment_enabled = true
+adjustment_contrast = 1.07
 
 [sub_resource type="BoxMesh" id="BoxMesh_4taje"]
 size = Vector3(0.2, 4, 5)
@@ -267,9 +293,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ij4q5")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ldd3l"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_n2xh5"]
 viewport_path = NodePath("SubViewport")
 
@@ -283,6 +306,9 @@ viewport_path = NodePath("SubViewport")
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_jbv0q"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7tuyw"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Shader" id="Shader_pw6n2"]
@@ -783,6 +809,17 @@ shadow_mesh = SubResource("ArrayMesh_jv6h2")
 script = ExtResource("1_4taje")
 metadata/_custom_type_script = "uid://cpmywfj2uo47s"
 
+[node name="Environment" type="Node" parent="." unique_id=15667179]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=1485731227]
+transform = Transform3D(-0.99691737, 0.06794748, -0.039229482, 0, 0.49999997, 0.86602545, 0.07845898, 0.8633558, -0.49845862, 0, 0, 0)
+light_color = Color(0.4743, 0.68696, 0.93, 1)
+light_energy = 0.083
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=1799675292]
+environment = SubResource("Environment_gb3pf")
+
 [node name="AmbiantSounds" type="Node" parent="." unique_id=782095210]
 
 [node name="Forest Sound" type="AudioStreamPlayer3D" parent="AmbiantSounds" unique_id=201547784]
@@ -1018,7 +1055,7 @@ mesh = SubResource("ArrayMesh_wubmg")
 mesh = SubResource("ArrayMesh_0mtf2")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel" parent_id_path=PackedInt32Array(51792808, 1002341385) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_ldd3l")
+texture = SubResource("ViewportTexture_n2xh5")
 
 [node name="SM_modularConsoleWall_Straight" parent="SignalRoutingPanelPretty/Walls/WallSection2" parent_id_path=PackedInt32Array(51792808, 774841510) index="0" unique_id=674452082]
 mesh = SubResource("ArrayMesh_8rdm8")
@@ -1042,7 +1079,7 @@ mesh = SubResource("ArrayMesh_wubmg")
 mesh = SubResource("ArrayMesh_0mtf2")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection2/LabelPanel" parent_id_path=PackedInt32Array(51792808, 334811226) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_n2xh5")
+texture = SubResource("ViewportTexture_c1m3j")
 
 [node name="SM_modularConsoleWall_Straight" parent="SignalRoutingPanelPretty/Walls/WallSection3" parent_id_path=PackedInt32Array(51792808, 612113619) index="0" unique_id=642523613]
 mesh = SubResource("ArrayMesh_8rdm8")
@@ -1066,16 +1103,16 @@ mesh = SubResource("ArrayMesh_wubmg")
 mesh = SubResource("ArrayMesh_0mtf2")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection3/LabelPanel" parent_id_path=PackedInt32Array(51792808, 765657745) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_c1m3j")
-
-[node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection4/LabelPanel" parent_id_path=PackedInt32Array(51792808, 694213290) index="2" unique_id=407905172]
 texture = SubResource("ViewportTexture_3n33g")
 
-[node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection5/LabelPanel" parent_id_path=PackedInt32Array(51792808, 1601435377) index="2" unique_id=407905172]
+[node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection4/LabelPanel" parent_id_path=PackedInt32Array(51792808, 694213290) index="2" unique_id=407905172]
 texture = SubResource("ViewportTexture_4tv50")
 
-[node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection6/LabelPanel" parent_id_path=PackedInt32Array(51792808, 30835056) index="2" unique_id=407905172]
+[node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection5/LabelPanel" parent_id_path=PackedInt32Array(51792808, 1601435377) index="2" unique_id=407905172]
 texture = SubResource("ViewportTexture_jbv0q")
+
+[node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection6/LabelPanel" parent_id_path=PackedInt32Array(51792808, 30835056) index="2" unique_id=407905172]
+texture = SubResource("ViewportTexture_7tuyw")
 
 [node name="Antenna" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="0" unique_id=107649636]
 TargetMachine = NodePath("../../../SignalGenerator")
