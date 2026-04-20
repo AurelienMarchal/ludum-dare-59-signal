@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://brjah5d1d2cpr" path="res://Scenes/Components/ElectricalSystem/ElectricalScreen.tscn" id="29_ldd3l"]
 [ext_resource type="PackedScene" uid="uid://1m1yt6nf5ldc" path="res://Assets/Models/Objects/Buttons/Actuators/ActuatorSwitch/ActuatorSwitchElectrical.tscn" id="30_n2xh5"]
 [ext_resource type="PackedScene" uid="uid://d88iolutijoi" path="res://Assets/Models/Bits and Bobs/Wall Lamps/industrial_wall_lamp_1k.gltf" id="31_c1m3j"]
+[ext_resource type="PackedScene" uid="uid://dq7t66pfdc2ne" path="res://Scenes/Components/Machines/Radio/Radio.tscn" id="32_3n33g"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fopvk"]
 panorama = ExtResource("2_pw6n2")
@@ -124,13 +125,13 @@ ProcessingSteps = [SubResource("Resource_6jbr1"), SubResource("Resource_pw6n2")]
 Signal = "Salut la team"
 metadata/_custom_type_script = "uid://ch0dfrr2gjlif"
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_6t6fy"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_4tv50"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ldd3l"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_jbv0q"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_n2xh5"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_7tuyw"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Shader" id="Shader_fopvk"]
@@ -731,13 +732,13 @@ MachineName = "Antenna"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11513424, 0.6261867, -7.0820575)
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel" parent_id_path=PackedInt32Array(51792808, 1002341385) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_6t6fy")
+texture = SubResource("ViewportTexture_4tv50")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection2/LabelPanel" parent_id_path=PackedInt32Array(51792808, 334811226) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_ldd3l")
+texture = SubResource("ViewportTexture_jbv0q")
 
 [node name="Screen" parent="SignalRoutingPanelPretty/Walls/WallSection3/LabelPanel" parent_id_path=PackedInt32Array(51792808, 765657745) index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_n2xh5")
+texture = SubResource("ViewportTexture_7tuyw")
 
 [node name="MachineConnector1" parent="SignalRoutingPanelPretty/SignalRoutingPanel" parent_id_path=PackedInt32Array(51792808, 573874878) index="0" unique_id=104554026]
 TargetMachine = NodePath("../../../MorseMachine")
@@ -1216,6 +1217,9 @@ _actuators = [NodePath("../ActuatorSwitchElectrical")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3386545, 2.4191, -7.1729026)
 _powerAmountRequired = 1
 _machine = NodePath("../LightHandler")
+
+[node name="Radio" parent="Decor" unique_id=713797886 instance=ExtResource("32_3n33g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6511219, -2.8651924)
 
 [editable path="SignalRoutingPanelPretty"]
 [editable path="SignalRoutingPanelPretty/Walls/WallSection/LabelPanel"]

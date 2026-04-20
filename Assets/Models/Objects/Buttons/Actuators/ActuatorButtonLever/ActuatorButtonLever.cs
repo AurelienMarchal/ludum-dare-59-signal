@@ -37,7 +37,8 @@ public partial class ActuatorButtonLever : Actuator
                 return;
 
             SetIdle(false);
-            _animationPlayer.Play("Up");
+            if (_animationPlayer != null)
+                _animationPlayer.Play("Up");
             _audioTrigger.Play();
             _isOn = true;
         }

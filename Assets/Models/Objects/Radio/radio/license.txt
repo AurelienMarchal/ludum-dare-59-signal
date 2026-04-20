@@ -1,0 +1,11 @@
+Model Information:
+* title:	Vintage Graetz Radio
+* source:	https://sketchfab.com/3d-models/vintage-graetz-radio-296893c411fe46dcac6df974b6093161
+* author:	nsadoun (https://sketchfab.com/nsadoun)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Vintage Graetz Radio" (https://sketchfab.com/3d-models/vintage-graetz-radio-296893c411fe46dcac6df974b6093161) by nsadoun (https://sketchfab.com/nsadoun) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
