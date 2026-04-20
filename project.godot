@@ -23,6 +23,7 @@ project/assembly_name="LudumDare59-Signal"
 
 LevelManager=""
 Player=""
+QuestManager=""
 
 [input]
 
@@ -62,6 +63,7 @@ ui_down={
 [layer_names]
 
 3d_physics/layer_2="MouseInteract"
+3d_physics/layer_3="Ping"
 
 [physics]
 

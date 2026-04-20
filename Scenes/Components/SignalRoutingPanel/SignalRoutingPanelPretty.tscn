@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://w6878jnfh3ir"]
+[gd_scene format=4 uid="uid://dy07mxgpk33wc"]
 
 [ext_resource type="Script" uid="uid://db8vlflhlwnl4" path="res://Scenes/Components/SignalRoutingPanel/SignalRoutingPanel.cs" id="1_71dif"]
 [ext_resource type="PackedScene" uid="uid://crsrftlp4ctyc" path="res://Assets/Models/Bits and Bobs/LabelPanel/LabelPanel.tscn" id="2_8dhor"]
@@ -177,14 +177,492 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ij4q5")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_wubmg"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8dhor"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8dhor"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_wubmg"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_8rdm8"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0mtf2"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sunu6"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_in556"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Shader" id="Shader_8dhor"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wubmg"]
+render_priority = 0
+shader = SubResource("Shader_8dhor")
+shader_parameter/outline_thickness = -0.085
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_8rdm8"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0mtf2"]
+render_priority = 0
+shader = SubResource("Shader_8rdm8")
+shader_parameter/outline_thickness = -0.085
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_sunu6"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_in556"]
+render_priority = 0
+shader = SubResource("Shader_sunu6")
+shader_parameter/outline_thickness = -0.085
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_usxe7"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_at662"]
+render_priority = 0
+shader = SubResource("Shader_usxe7")
+shader_parameter/outline_thickness = -0.085
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_knk5x"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qgpx2"]
+render_priority = 0
+shader = SubResource("Shader_knk5x")
+shader_parameter/outline_thickness = -0.085
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_wubmg"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8rdm8"]
+render_priority = 0
+shader = SubResource("Shader_wubmg")
+shader_parameter/outline_thickness = -0.085
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_6qc17"]
+code = "shader_type spatial;
+render_mode cull_front, unshaded, world_vertex_coords;
+
+// Настройки контура
+uniform float outline_thickness = 0.03;
+uniform float speed = 2.0;
+uniform float noise_scale = 4.0;
+uniform float alpha = 1.0;
+uniform sampler2D fire_noise : source_color, repeat_enable;
+uniform sampler2D color_ramp : source_color, repeat_enable, filter_linear_mipmap;
+
+// Анимированный шум для огня
+float animated_noise(vec2 uv) {
+    float time_factor = TIME * speed;
+    return texture(fire_noise, uv * noise_scale + vec2(time_factor * 0.3, time_factor * 0.7)).r;
+}
+
+void vertex() {
+    // Динамическое смещение вершин на основе шума
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 noise_uv = world_pos.xz * 0.5 + vec2(TIME * speed * 0.2);
+    float displacement = animated_noise(noise_uv) * 0.1;
+
+    VERTEX += NORMAL * (outline_thickness + displacement);
+}
+
+void fragment() {
+    // Генерация огненного паттерна
+    vec3 world_pos = (VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    vec2 fire_uv = world_pos.xz * 0.3 + vec2(TIME * speed, 0.0);
+
+    // Многослойный шум для сложного эффекта
+    float noise1 = animated_noise(fire_uv);
+    float noise2 = animated_noise(fire_uv * 2.0 + vec2(0.2));
+    float noise3 = animated_noise(fire_uv * 0.5 - vec2(TIME * 0.5));
+
+    // Комбинирование шумов и нормализация
+    float combined_noise = clamp((noise1 * 0.6 + noise2 * 0.3 + noise3 * 0.1), 0.0, 1.0);
+
+    // Получение цвета из Color Ramp
+    vec3 fire_color = texture(color_ramp, vec2(combined_noise, 0.0)).rgb;
+
+    // Усиление контраста
+    float ramp_pos = smoothstep(0.2, 0.8, combined_noise);
+    fire_color = texture(color_ramp, vec2(ramp_pos, 0.0)).rgb;
+
+    // Эффект \"языков пламени\"
+    float flame_mask = step(0.5, combined_noise);
+    fire_color *= 1.0 + flame_mask * 2.0;
+
+    // Динамическая прозрачность с учетом нового параметра alpha
+    ALPHA = smoothstep(0.2, 0.8, combined_noise) * alpha; // <-- Умножаем на alpha
+
+    // Добавляем свечение с вариациями
+    EMISSION = fire_color * (1.0 + sin(TIME * 10.0) * 0.3);
+    ALBEDO = fire_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wamx"]
+render_priority = 0
+shader = SubResource("Shader_6qc17")
+shader_parameter/outline_thickness = -0.085
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/alpha = 1.0
 
 [node name="SignalRoutingPanelPretty" type="Node3D" unique_id=51792808]
 
@@ -224,10 +702,11 @@ mesh = SubResource("ArrayMesh_0mtf2")
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
 
 [node name="Text" parent="Walls/WallSection/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(1002341385, 1489154748) index="0" unique_id=2115537520]
-text = "Machine 2"
+text = "Text
+Processing"
 
 [node name="Screen" parent="Walls/WallSection/LabelPanel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_wubmg")
+texture = SubResource("ViewportTexture_8dhor")
 
 [node name="WallSection2" type="Node3D" parent="Walls" unique_id=774841510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
@@ -264,10 +743,10 @@ mesh = SubResource("ArrayMesh_0mtf2")
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
 
 [node name="Text" parent="Walls/WallSection2/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(334811226, 1489154748) index="0" unique_id=2115537520]
-text = "Machine 3"
+text = "Keypad"
 
 [node name="Screen" parent="Walls/WallSection2/LabelPanel" index="2" unique_id=407905172]
-texture = SubResource("ViewportTexture_8dhor")
+texture = SubResource("ViewportTexture_wubmg")
 
 [node name="WallSection3" type="Node3D" parent="Walls" unique_id=612113619]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
@@ -304,31 +783,207 @@ mesh = SubResource("ArrayMesh_0mtf2")
 transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
 
 [node name="Text" parent="Walls/WallSection3/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(765657745, 1489154748) index="0" unique_id=2115537520]
-text = "Machine 1"
+text = "Image
+Processing"
 
 [node name="Screen" parent="Walls/WallSection3/LabelPanel" index="2" unique_id=407905172]
 texture = SubResource("ViewportTexture_8rdm8")
 
+[node name="WallSection4" type="Node3D" parent="Walls" unique_id=508664717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="SM_modularConsoleWall_Straight" type="MeshInstance3D" parent="Walls/WallSection4" unique_id=1469675458]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8rdm8")
+
+[node name="SM_modularConsoleWall_Straight2" type="MeshInstance3D" parent="Walls/WallSection4" unique_id=1495826724]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 0, 1, 0)
+mesh = SubResource("ArrayMesh_8rdm8")
+
+[node name="SM_modularConsoleWall_Bottom" type="MeshInstance3D" parent="Walls/WallSection4" unique_id=198067683]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("ArrayMesh_wamek")
+
+[node name="SM_modularConsoleWall_Bottom2" type="MeshInstance3D" parent="Walls/WallSection4" unique_id=508687670]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.010561466, 0, 0.4)
+mesh = SubResource("ArrayMesh_wamek")
+
+[node name="SM_modularConsoleWall_Joint2" type="MeshInstance3D" parent="Walls/WallSection4" unique_id=580743726]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.4, 0)
+mesh = SubResource("ArrayMesh_8dhor")
+
+[node name="SM_modularConsoleWall_Joint1" type="MeshInstance3D" parent="Walls/WallSection4" unique_id=746697192]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+mesh = SubResource("ArrayMesh_wubmg")
+
+[node name="SM_modularConsoleWall_Top" type="MeshInstance3D" parent="Walls/WallSection4" unique_id=451012403]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2.2, 0.25)
+mesh = SubResource("ArrayMesh_0mtf2")
+
+[node name="LabelPanel" parent="Walls/WallSection4" unique_id=694213290 instance=ExtResource("2_8dhor")]
+transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
+
+[node name="Text" parent="Walls/WallSection4/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(694213290, 1489154748) index="0" unique_id=2115537520]
+text = "Noise
+Reduction"
+
+[node name="Screen" parent="Walls/WallSection4/LabelPanel" index="2" unique_id=407905172]
+texture = SubResource("ViewportTexture_0mtf2")
+
+[node name="WallSection5" type="Node3D" parent="Walls" unique_id=1072211194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="SM_modularConsoleWall_Straight" type="MeshInstance3D" parent="Walls/WallSection5" unique_id=1491525438]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8rdm8")
+
+[node name="SM_modularConsoleWall_Straight2" type="MeshInstance3D" parent="Walls/WallSection5" unique_id=1957878299]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 0, 1, 0)
+mesh = SubResource("ArrayMesh_8rdm8")
+
+[node name="SM_modularConsoleWall_Bottom" type="MeshInstance3D" parent="Walls/WallSection5" unique_id=169264872]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("ArrayMesh_wamek")
+
+[node name="SM_modularConsoleWall_Bottom2" type="MeshInstance3D" parent="Walls/WallSection5" unique_id=1158004185]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.010561466, 0, 0.4)
+mesh = SubResource("ArrayMesh_wamek")
+
+[node name="SM_modularConsoleWall_Joint2" type="MeshInstance3D" parent="Walls/WallSection5" unique_id=1382315281]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.4, 0)
+mesh = SubResource("ArrayMesh_8dhor")
+
+[node name="SM_modularConsoleWall_Joint1" type="MeshInstance3D" parent="Walls/WallSection5" unique_id=1631738843]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+mesh = SubResource("ArrayMesh_wubmg")
+
+[node name="SM_modularConsoleWall_Top" type="MeshInstance3D" parent="Walls/WallSection5" unique_id=1101881464]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2.2, 0.25)
+mesh = SubResource("ArrayMesh_0mtf2")
+
+[node name="LabelPanel" parent="Walls/WallSection5" unique_id=1601435377 instance=ExtResource("2_8dhor")]
+transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
+
+[node name="Text" parent="Walls/WallSection5/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(1601435377, 1489154748) index="0" unique_id=2115537520]
+text = "Radio"
+
+[node name="Screen" parent="Walls/WallSection5/LabelPanel" index="2" unique_id=407905172]
+texture = SubResource("ViewportTexture_sunu6")
+
+[node name="WallSection6" type="Node3D" parent="Walls" unique_id=923683324]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="SM_modularConsoleWall_Straight" type="MeshInstance3D" parent="Walls/WallSection6" unique_id=178132851]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8rdm8")
+
+[node name="SM_modularConsoleWall_Straight2" type="MeshInstance3D" parent="Walls/WallSection6" unique_id=1661047100]
+transform = Transform3D(5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, 5.9604645e-08, 0, 1, 0)
+mesh = SubResource("ArrayMesh_8rdm8")
+
+[node name="SM_modularConsoleWall_Bottom" type="MeshInstance3D" parent="Walls/WallSection6" unique_id=1859426076]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("ArrayMesh_wamek")
+
+[node name="SM_modularConsoleWall_Bottom2" type="MeshInstance3D" parent="Walls/WallSection6" unique_id=300156841]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.010561466, 0, 0.4)
+mesh = SubResource("ArrayMesh_wamek")
+
+[node name="SM_modularConsoleWall_Joint2" type="MeshInstance3D" parent="Walls/WallSection6" unique_id=540625553]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.4, 0)
+mesh = SubResource("ArrayMesh_8dhor")
+
+[node name="SM_modularConsoleWall_Joint1" type="MeshInstance3D" parent="Walls/WallSection6" unique_id=501114976]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+mesh = SubResource("ArrayMesh_wubmg")
+
+[node name="SM_modularConsoleWall_Top" type="MeshInstance3D" parent="Walls/WallSection6" unique_id=977269204]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2.2, 0.25)
+mesh = SubResource("ArrayMesh_0mtf2")
+
+[node name="LabelPanel" parent="Walls/WallSection6" unique_id=30835056 instance=ExtResource("2_8dhor")]
+transform = Transform3D(3.821371e-16, -8.742278e-09, -0.2, -0.2, -8.742278e-09, 0, -8.742278e-09, 0.2, -8.742278e-09, 0, 1.2417772, 0.03448254)
+
+[node name="Text" parent="Walls/WallSection6/LabelPanel/SubViewport" parent_id_path=PackedInt32Array(30835056, 1489154748) index="0" unique_id=2115537520]
+text = "Machine 1"
+
+[node name="Screen" parent="Walls/WallSection6/LabelPanel" index="2" unique_id=407905172]
+texture = SubResource("ViewportTexture_in556")
+
 [node name="SignalRoutingPanel" type="Node3D" parent="." unique_id=573874878]
 script = ExtResource("1_71dif")
 
-[node name="MachineConnector1" parent="SignalRoutingPanel" unique_id=104554026 instance=ExtResource("3_wamek")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.05)
-
-[node name="Output" parent="SignalRoutingPanel/MachineConnector1" index="0" unique_id=1411931370]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20456302, 0)
-
-[node name="MachineConnector2" parent="SignalRoutingPanel" unique_id=517836460 instance=ExtResource("3_wamek")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0.05)
-
-[node name="Output" parent="SignalRoutingPanel/MachineConnector2" index="0" unique_id=1411931370]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19818044, 0)
-
-[node name="MachineConnector3" parent="SignalRoutingPanel" unique_id=107649636 instance=ExtResource("3_wamek")]
+[node name="Antenna" parent="SignalRoutingPanel" unique_id=107649636 instance=ExtResource("3_wamek")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0.05)
 
-[node name="Output" parent="SignalRoutingPanel/MachineConnector3" index="0" unique_id=1411931370]
+[node name="Output" parent="SignalRoutingPanel/Antenna" index="0" unique_id=1411931370]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17610002, 0)
+
+[node name="SM_Lever_Holder" parent="SignalRoutingPanel/Antenna/Output" index="0" unique_id=269371257]
+material_overlay = SubResource("ShaderMaterial_wubmg")
+
+[node name="SM_Lever_Holder" parent="SignalRoutingPanel/Antenna/Input" parent_id_path=PackedInt32Array(107649636, 525851882) index="0" unique_id=1706492280]
+material_overlay = SubResource("ShaderMaterial_wubmg")
+
+[node name="Morse" parent="SignalRoutingPanel" unique_id=104554026 instance=ExtResource("3_wamek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.05)
+
+[node name="Output" parent="SignalRoutingPanel/Morse" index="0" unique_id=1411931370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20456302, 0)
+
+[node name="SM_Lever_Holder" parent="SignalRoutingPanel/Morse/Output" index="0" unique_id=269371257]
+material_overlay = SubResource("ShaderMaterial_wubmg")
+
+[node name="SM_Lever_Holder" parent="SignalRoutingPanel/Morse/Input" parent_id_path=PackedInt32Array(104554026, 525851882) index="0" unique_id=1706492280]
+material_overlay = SubResource("ShaderMaterial_wubmg")
+
+[node name="Keypad" parent="SignalRoutingPanel" unique_id=517836460 instance=ExtResource("3_wamek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0.05)
+
+[node name="Output" parent="SignalRoutingPanel/Keypad" index="0" unique_id=1411931370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19818044, 0)
+
+[node name="SM_Lever_Holder" parent="SignalRoutingPanel/Keypad/Output" index="0" unique_id=269371257]
+material_overlay = SubResource("ShaderMaterial_wubmg")
+
+[node name="SM_Lever_Holder" parent="SignalRoutingPanel/Keypad/Input" parent_id_path=PackedInt32Array(517836460, 525851882) index="0" unique_id=1706492280]
+material_overlay = SubResource("ShaderMaterial_wubmg")
+
+[node name="ImageProcessing" parent="SignalRoutingPanel" unique_id=1906844995 instance=ExtResource("3_wamek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 0.05)
+
+[node name="Output" parent="SignalRoutingPanel/ImageProcessing" index="0" unique_id=1411931370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20456302, 0)
+
+[node name="SM_Lever_Holder" parent="SignalRoutingPanel/ImageProcessing/Output" index="0" unique_id=269371257]
+material_overlay = SubResource("ShaderMaterial_0mtf2")
+
+[node name="SM_Lever_Holder" parent="SignalRoutingPanel/ImageProcessing/Input" parent_id_path=PackedInt32Array(1906844995, 525851882) index="0" unique_id=1706492280]
+material_overlay = SubResource("ShaderMaterial_in556")
+
+[node name="Noise" parent="SignalRoutingPanel" unique_id=783402258 instance=ExtResource("3_wamek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0.05)
+
+[node name="Output" parent="SignalRoutingPanel/Noise" index="0" unique_id=1411931370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19818044, 0)
+
+[node name="SM_Lever_Holder" parent="SignalRoutingPanel/Noise/Output" index="0" unique_id=269371257]
+material_overlay = SubResource("ShaderMaterial_at662")
+
+[node name="SM_Lever_Holder" parent="SignalRoutingPanel/Noise/Input" parent_id_path=PackedInt32Array(783402258, 525851882) index="0" unique_id=1706492280]
+material_overlay = SubResource("ShaderMaterial_qgpx2")
+
+[node name="Radio" parent="SignalRoutingPanel" unique_id=2069881468 instance=ExtResource("3_wamek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0.05)
+
+[node name="Output" parent="SignalRoutingPanel/Radio" index="0" unique_id=1411931370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17610002, 0)
+
+[node name="SM_Lever_Holder" parent="SignalRoutingPanel/Radio/Output" index="0" unique_id=269371257]
+material_overlay = SubResource("ShaderMaterial_8rdm8")
+
+[node name="SM_Lever_Holder" parent="SignalRoutingPanel/Radio/Input" parent_id_path=PackedInt32Array(2069881468, 525851882) index="0" unique_id=1706492280]
+material_overlay = SubResource("ShaderMaterial_4wamx")
 
 [node name="CablesManager" type="Node3D" parent="SignalRoutingPanel" unique_id=1321690325]
 script = ExtResource("3_8dhor")
@@ -339,6 +994,12 @@ script = ExtResource("4_wubmg")
 [editable path="Walls/WallSection/LabelPanel"]
 [editable path="Walls/WallSection2/LabelPanel"]
 [editable path="Walls/WallSection3/LabelPanel"]
-[editable path="SignalRoutingPanel/MachineConnector1"]
-[editable path="SignalRoutingPanel/MachineConnector2"]
-[editable path="SignalRoutingPanel/MachineConnector3"]
+[editable path="Walls/WallSection4/LabelPanel"]
+[editable path="Walls/WallSection5/LabelPanel"]
+[editable path="Walls/WallSection6/LabelPanel"]
+[editable path="SignalRoutingPanel/Antenna"]
+[editable path="SignalRoutingPanel/Morse"]
+[editable path="SignalRoutingPanel/Keypad"]
+[editable path="SignalRoutingPanel/ImageProcessing"]
+[editable path="SignalRoutingPanel/Noise"]
+[editable path="SignalRoutingPanel/Radio"]

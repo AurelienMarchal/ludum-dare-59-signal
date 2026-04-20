@@ -17,8 +17,6 @@ public partial class Scanner : Machine
     private Label X;
     private Label Y;
 
-    
-    
     public override void _Ready()
     {
         Ray = GetNode<Sprite3D>("Ray");
@@ -30,23 +28,11 @@ public partial class Scanner : Machine
 
         X = GetNode<Label>("SubViewport/X");
         Y = GetNode<Label>("SubViewport2/Y");
-        Powered = true;
+        
     }
 
     public override void _Process( double delta)
     {
-        
-        if (Powered)
-        {
-            if (InputSignal != null)
-            {
-                if(InputSignal.ProcessingSteps[0].MachineName == "Scanner")
-                {
-                    
-                    OutputNewSignal();
-                }
-            }
-        }
         _rotateRay(delta);
     }
 
@@ -76,27 +62,26 @@ public partial class Scanner : Machine
         Ray.Rotate(Ray.Basis.Column2.Normalized(), (float)(SCAN_ROTATION_SPEED * delta));
     }
     
-    public void _on_timer_timeout()
+    public void _on_area_3d_area_entered(Area3D area)
     {
         if (Powered)
         {
-            X.Text = "X:--";
-            Y.Text = "Y:--";
-
             if (InputSignal != null)
             {
-                if(InputSignal.ProcessingSteps[0].MachineName == "Scanner")
-                {
-                    Vector2 pingLocation = (Vector2)InputSignal.Signal;
-                    Ping.Position = new Vector3(pingLocation.X, pingLocation.Y, 0);
-                    PingAudio.Play();
-                    Ping.Modulate = new Color(1,1,1,1);
-                    GetTree().CreateTween().TweenProperty(Ping, "modulate",new Color(1,1,1,0),2);
+                Vector2 pingLocation = (Vector2)InputSignal.Signal;
+                Ping.Position = new Vector3(pingLocation.X, pingLocation.Y, 0);
+                PingAudio.Play();
+                Ping.Modulate = new Color(1,1,1,1);
+                GetTree().CreateTween().TweenProperty(Ping, "modulate",new Color(1,1,1,0),2);
 
-                    X.Text = "X:"+((Vector2)InputSignal.ProcessingSteps[1].NextSignalState).X.ToString();
-                    Y.Text = "Y:"+((Vector2)InputSignal.ProcessingSteps[1].NextSignalState).Y.ToString();
-                    
-                }
+                X.Text = "X:"+((Vector2)InputSignal.ProcessingSteps[0].NextSignalState).X.ToString();
+                Y.Text = "Y:"+((Vector2)InputSignal.ProcessingSteps[0].NextSignalState).Y.ToString();
+                
+            }
+            else
+            {
+                X.Text = "X:--";
+                Y.Text = "Y:--";
             }
         }
     }
