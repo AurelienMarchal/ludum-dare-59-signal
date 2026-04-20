@@ -32,6 +32,7 @@ public partial class AntennaController : Machine
     private AudioStreamPlayer3D MovingAudio;
 
     private Diode confirmDiode;
+    private Diode errorDiode;
 
     public override void _Ready()
     {
@@ -43,6 +44,7 @@ public partial class AntennaController : Machine
         MovingAudio = GetNode<AudioStreamPlayer3D>("Antenna/AudioStreamPlayer3D");
 
         confirmDiode = GetNode<Diode>("Diode");
+        errorDiode = GetNode<Diode>("ErrorDiode");
 
         _actuatorLeverX = GetNode<ActuatorLever>("ActuatorLeverX");
         _actuatorLeverY = GetNode<ActuatorLever>("ActuatorLeverY");
@@ -67,6 +69,8 @@ public partial class AntennaController : Machine
         if (Powered)
         {   
             confirmDiode.TurnOff();
+            errorDiode.TurnOff();
+
             //If there's a signal in space, we look into it
             if (OverrideSignal!=null)
 			{
@@ -82,11 +86,34 @@ public partial class AntennaController : Machine
                 }
             }
 
+            if (InputSignal!=null)
+            {
+                if (!(InputSignal.Signal.Obj is string))
+                {
+                    errorDiode.TurnOn();
+                }
+                else
+                {
+                    if(QM.CurrentQuest != null)
+                    {
+                        if(QM.CurrentQuest.ExpectedResponse!= null)
+                        {
+                            String expectedResponse = (String)QM.CurrentQuest.ExpectedResponse.Signal;
+                            if((String)InputSignal.Signal != expectedResponse)
+                            {
+                                errorDiode.TurnOn();
+                            } 
+                        }
+                    }
+                }
+            }
+
             //The check for if the response is correct is to just check it's input Signal, the Quest Manager is doing that
         }
         else
         {
             confirmDiode.TurnOff();
+            errorDiode.TurnOff();
         }
             return;
     }
